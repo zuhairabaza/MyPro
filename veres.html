@@ -1,0 +1,282 @@
+<!DOCTYPE html><html dir="rtl" lang="ar"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>نتيجة التحقق من الوثيقة - جامعة البيان</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter and Arabic friendly font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline-variant": "#c4c6cf",
+                      "primary-container": "#1a365d",
+                      "on-background": "#191c1d",
+                      "on-secondary-fixed-variant": "#5d4200",
+                      "error": "#ba1a1a",
+                      "tertiary-container": "#4f2e00",
+                      "surface-variant": "#e1e3e4",
+                      "secondary": "#7b5800",
+                      "primary": "#002045",
+                      "on-tertiary-fixed-variant": "#633f0f",
+                      "inverse-surface": "#2e3132",
+                      "surface-container-high": "#e7e8e9",
+                      "surface-tint": "#455f88",
+                      "primary-fixed-dim": "#adc7f7",
+                      "surface-bright": "#f8f9fa",
+                      "secondary-container": "#fdc34d",
+                      "secondary-fixed": "#ffdea6",
+                      "secondary-fixed-dim": "#f7bd48",
+                      "on-tertiary-container": "#c6955e",
+                      "on-primary-fixed-variant": "#2d476f",
+                      "error-container": "#ffdad6",
+                      "on-primary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "surface-container-low": "#f3f4f5",
+                      "on-tertiary-fixed": "#2b1700",
+                      "surface-dim": "#d9dadb",
+                      "primary-fixed": "#d6e3ff",
+                      "tertiary-fixed-dim": "#f2bc82",
+                      "on-secondary-fixed": "#271900",
+                      "inverse-primary": "#adc7f7",
+                      "on-tertiary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "outline": "#74777f",
+                      "surface-container-lowest": "#ffffff",
+                      "surface": "#f8f9fa",
+                      "on-surface": "#191c1d",
+                      "on-secondary": "#ffffff",
+                      "surface-container-highest": "#e1e3e4",
+                      "on-primary-fixed": "#001b3c",
+                      "tertiary-fixed": "#ffddba",
+                      "surface-container": "#edeeef",
+                      "tertiary": "#321b00",
+                      "on-surface-variant": "#43474e",
+                      "background": "#f8f9fa",
+                      "inverse-on-surface": "#f0f1f2",
+                      "on-primary-container": "#86a0cd",
+                      "on-secondary-container": "#715000",
+                      "action-blue": '#1a365d'
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "container-max": "1440px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "unit": "4px",
+                      "margin-desktop": "48px"
+              },
+              "fontFamily": {
+                      "sans": ["Inter", "Noto Sans Arabic", "sans-serif"],
+                      "headline-lg": ["Inter", "Noto Sans Arabic"],
+                      "caption-sm": ["Inter", "Noto Sans Arabic"],
+                      "label-md": ["Inter", "Noto Sans Arabic"],
+                      "display-lg": ["Inter", "Noto Sans Arabic"],
+                      "body-md": ["Inter", "Noto Sans Arabic"],
+                      "headline-md": ["Inter", "Noto Sans Arabic"],
+                      "body-lg": ["Inter", "Noto Sans Arabic"]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card-shadow {
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+</head>
+<body class="font-sans text-on-surface flex flex-col min-h-screen">
+<!-- BEGIN: TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-8">
+    <a href="index.html" class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim">Bayan University</a>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md" href="index.html">Dashboard</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md" href="reqstat.html">My Requests</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md" href="vereq.html">Verify Document</a>
+</nav>
+    <!-- Mobile nav toggle -->
+    <button id="mobileNavToggle" class="md:hidden p-2 rounded-lg bg-surface/90 text-slate-700">
+        <span class="material-symbols-outlined">menu</span>
+    </button>
+    <!-- Mobile nav menu -->
+    <nav id="mobileNav" class="hidden md:hidden absolute top-16 right-4 left-4 bg-surface rounded-lg p-4 shadow-lg z-50 space-y-2">
+        <a class="block text-slate-700 font-label-md" href="index.html">Dashboard</a>
+        <a class="block text-slate-700 font-label-md" href="reqstat.html">My Requests</a>
+        <a class="block text-slate-700 font-label-md" href="vereq.html">Verify Document</a>
+    </nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center bg-surface-container-high px-4 py-1.5 rounded-full gap-2 border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md placeholder:text-on-surface-variant w-48" placeholder="بحث عن وثيقة..." type="text">
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">help</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-xl font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">New Request</button>
+</div>
+</header>
+<!-- END: TopNavBar -->
+<!-- BEGIN: MainContent -->
+<main class="flex-grow flex items-center justify-center pt-24 pb-12 px-4 md:px-gutter">
+<div class="w-full max-w-3xl bg-surface-container-lowest rounded-xl overflow-hidden card-shadow border border-outline-variant" data-purpose="verification-card">
+<!-- Card Header -->
+<div class="bg-primary py-8 px-8">
+<h2 class="text-on-primary text-2xl font-bold text-center">نتيجة التحقق الإلكتروني</h2>
+</div>
+<!-- Card Body -->
+<div class="p-6 md:p-10 space-y-8">
+<!-- Success Banner -->
+<div class="flex justify-center md:justify-end">
+<div class="bg-success-container text-on-success-container px-6 py-3 rounded-full flex items-center gap-3 font-medium text-lg border border-outline-variant/20" data-purpose="success-status" style="background-color: #dcfce7; color: #166534;">
+<span class="material-symbols-outlined text-green-700">check_circle</span>
+<span id="verificationMessage">الوثيقة معتمدة وموجودة في سجلاتنا</span>
+</div>
+</div>
+<!-- Error Banner -->
+<div class="hidden justify-center md:justify-end" id="errorBanner">
+<div class="bg-error-container text-on-error-container px-6 py-3 rounded-full flex items-center gap-3 font-medium text-lg border border-outline-variant/20" style="background-color: #fee2e2; color: #a11d1d;">
+<span class="material-symbols-outlined text-red-700">error</span>
+<span id="errorMessage">لم يتم العثور على الوثيقة.</span>
+</div>
+</div>
+<!-- Data Table -->
+<div class="border border-outline-variant rounded-xl overflow-hidden bg-surface-container-lowest" data-purpose="student-data-table" id="studentDataTable">
+<div class="grid grid-cols-12 border-b border-outline-variant last:border-b-0 hover:bg-surface-container-low transition-colors">
+<div class="col-span-4 bg-surface-container-low p-4 text-on-surface-variant font-medium text-right border-l border-outline-variant">الرقم الجامعي</div>
+<div class="col-span-8 p-4 font-bold text-right text-on-surface" id="resultUniversityId">---</div>
+</div>
+<div class="grid grid-cols-12 border-b border-outline-variant last:border-b-0 hover:bg-surface-container-low transition-colors">
+<div class="col-span-4 bg-surface-container-low p-4 text-on-surface-variant font-medium text-right border-l border-outline-variant">اسم الخريج</div>
+<div class="col-span-8 p-4 font-medium text-right text-on-surface" id="resultGraduateName">---</div>
+</div>
+<div class="grid grid-cols-12 border-b border-outline-variant last:border-b-0 hover:bg-surface-container-low transition-colors">
+<div class="col-span-4 bg-surface-container-low p-4 text-on-surface-variant font-medium text-right border-l border-outline-variant">سنة الالتحاق</div>
+<div class="col-span-8 p-4 font-medium text-right text-on-surface" id="resultEntryYear">---</div>
+</div>
+<div class="grid grid-cols-12 border-b border-outline-variant last:border-b-0 hover:bg-surface-container-low transition-colors">
+<div class="col-span-4 bg-surface-container-low p-4 text-on-surface-variant font-medium text-right border-l border-outline-variant">التقدير العام</div>
+<div class="col-span-8 p-4 font-medium text-right text-on-surface" id="resultGrade">---</div>
+</div>
+<div class="grid grid-cols-12 border-b border-outline-variant last:border-b-0 hover:bg-surface-container-low transition-colors">
+<div class="col-span-4 bg-surface-container-low p-4 text-on-surface-variant font-medium text-right border-l border-outline-variant">تاريخ إجازة الدرجة</div>
+<div class="col-span-8 p-4 font-medium text-right text-on-surface" id="resultApprovalDate">---</div>
+</div>
+<div class="grid grid-cols-12 border-b border-outline-variant last:border-b-0 hover:bg-surface-container-low transition-colors">
+<div class="col-span-4 bg-surface-container-low p-4 text-on-surface-variant font-medium text-right border-l border-outline-variant">الحالة</div>
+<div class="col-span-8 p-4 font-medium text-right text-on-surface" id="resultStatus">---</div>
+</div>
+</div>
+<!-- Footer Note -->
+<div id="disclaimerText" class="bg-surface-container-low p-4 rounded-lg border-r-4 border-primary" data-purpose="disclaimer-text">
+<p class="text-on-surface-variant leading-relaxed text-sm md:text-base">
+                        هذه الوثيقة تطابق السجل الرسمي للجامعة ويمكن اعتمادها. إذا كنت تحتاج نسخة مطبوعة من التقرير، يرجى التواصل مع قسم الخريجين بالجامعة.
+                    </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4" data-purpose="action-buttons">
+<button type="button" onclick="window.location.href='vereq.html'" class="w-full sm:w-auto px-8 py-3 bg-primary text-on-primary font-bold rounded-lg hover:opacity-90 transition-all shadow-sm text-base">
+                        العودة إلى صفحة التحقق
+                    </button>
+<button type="button" onclick="window.location.href='sndml.html'" class="w-full sm:w-auto px-8 py-3 bg-surface-container-highest text-on-surface font-bold rounded-lg hover:bg-surface-dim transition-all shadow-sm text-base border border-outline-variant">
+                        طلب مصادقة وثيقة بالبريد
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: MainFooter -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant py-8 px-6 md:px-margin-desktop" data-purpose="page-footer">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6 max-w-screen-xl mx-auto">
+<div class="flex flex-wrap justify-center gap-6 text-sm text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">الدعم الفني</a>
+<a class="hover:text-primary transition-colors" href="#">شروط الخدمة</a>
+<a class="hover:text-primary transition-colors" href="#">سياسة الخصوصية</a>
+</div>
+<div class="text-center md:text-left">
+<p class="text-sm text-on-surface font-bold">جامعة البيان</p>
+<p class="text-xs text-on-surface-variant mt-1">Al-Bayan University. All Rights Reserved. Document Verification System v2.0 2024 ©</p>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+<script src="libs/responsive-nav.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const params = new URLSearchParams(window.location.search);
+        const universityId = params.get('university-id') || params.get('unino') || params.get('reqrev');
+        const successContainer = document.querySelector('[data-purpose="success-status"]');
+        const errorBanner = document.getElementById('errorBanner');
+        const errorMessage = document.getElementById('errorMessage');
+        const studentDataTable = document.getElementById('studentDataTable');
+
+        const setField = (id, value) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = value || '---';
+        };
+
+        const disclaimerText = document.getElementById('disclaimerText');
+        const showError = (message) => {
+            if (successContainer) successContainer.classList.add('hidden');
+            if (errorBanner) errorBanner.classList.remove('hidden');
+            if (studentDataTable) studentDataTable.classList.add('hidden');
+            if (disclaimerText) disclaimerText.classList.add('hidden');
+            if (errorMessage) errorMessage.textContent = message || 'لم يتم العثور على الوثيقة.';
+        };
+
+        const showSuccess = () => {
+            if (successContainer) successContainer.classList.remove('hidden');
+            if (errorBanner) errorBanner.classList.add('hidden');
+            if (studentDataTable) studentDataTable.classList.remove('hidden');
+            if (disclaimerText) disclaimerText.classList.remove('hidden');
+        };
+
+        if (!universityId) {
+            showError('يرجى الدخول عبر صفحة التحقق مع رقم الجامعة الصحيح.');
+            return;
+        }
+
+        try {
+            const response = await fetch(`/verify?university-id=${encodeURIComponent(universityId)}`);
+            const data = await response.json();
+
+            if (!response.ok || !data.success || !data.request) {
+                throw new Error(data.message || 'تعذر استرجاع بيانات الوثيقة.');
+            }
+
+            const req = data.request;
+            const messageElement = document.getElementById('verificationMessage');
+            if (req.Status && req.Status.toLowerCase().includes('مكتمل')) {
+                if (messageElement) messageElement.textContent = 'الوثيقة معتمدة وموجودة في سجلاتنا.';
+            } else {
+                if (messageElement) messageElement.textContent = 'الوثيقة موجودة في السجلات لكن حالتها قد تكون قيد المتابعة.';
+            }
+
+            showSuccess();
+
+            setField('resultUniversityId', req.student_id);
+            setField('resultGraduateName', req.full_name);
+            setField('resultEntryYear', req.entry_year);
+            setField('resultGrade', req.graduation_grade);
+            setField('resultApprovalDate', req.degree_approval_date);
+            setField('resultStatus', 'موثقة');
+        } catch (error) {
+            showError(error.message || 'حدث خطأ أثناء التحميل.');
+        }
+    });
+</script>
+</body></html>

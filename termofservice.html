@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        /* Custom scrollbar for a professional look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #adc7f7;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #455f88;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#191c1d",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#321b00",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#edeeef",
+                        "secondary-fixed": "#ffdea6",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "on-tertiary-fixed-variant": "#633f0f",
+                        "primary-fixed": "#d6e3ff",
+                        "primary": "#002045",
+                        "on-surface-variant": "#43474e",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-container-high": "#e7e8e9",
+                        "on-primary-container": "#86a0cd",
+                        "surface-variant": "#e1e3e4",
+                        "primary-fixed-dim": "#adc7f7",
+                        "on-tertiary-container": "#c6955e",
+                        "tertiary-fixed": "#ffddba",
+                        "tertiary-container": "#4f2e00",
+                        "surface": "#f8f9fa",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "secondary": "#7b5800",
+                        "on-secondary-fixed-variant": "#5d4200",
+                        "primary-container": "#1a365d",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "surface-bright": "#f8f9fa",
+                        "on-secondary-container": "#715000",
+                        "on-tertiary-fixed": "#2b1700",
+                        "secondary-container": "#fdc34d",
+                        "on-secondary-fixed": "#271900",
+                        "on-primary-fixed": "#001b3c",
+                        "background": "#f8f9fa",
+                        "surface-tint": "#455f88",
+                        "tertiary-fixed-dim": "#f2bc82",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#f7bd48",
+                        "surface-dim": "#d9dadb",
+                        "outline-variant": "#c4c6cf",
+                        "inverse-primary": "#adc7f7",
+                        "outline": "#74777f",
+                        "on-surface": "#191c1d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "caption-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "caption-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>@media print { .no-print { display: none !important; } body { background: white !important; padding: 0 !important; } main { padding-top: 0 !important; max-width: 100% !important; } .bg-surface-container-lowest { border: none !important; box-shadow: none !important; } }</style></head>
+<body class="text-on-surface bg-surface-container-lowest"><div class="no-print bg-primary-container text-white py-2 px-margin-desktop flex justify-between items-center sticky top-0 z-[60]"><button class="flex items-center gap-2 hover:opacity-80 transition-opacity font-label-md" onclick="window.history.back()"><span class="material-symbols-outlined">arrow_forward</span>العودة للصفحة الرئيسية</button><span class="font-label-md opacity-90">هذه الصفحة للقراءة فقط ولا يمكن تعديل محتواها</span><button class="bg-secondary text-white px-4 py-1 rounded flex items-center gap-2 hover:opacity-90 transition-all font-label-md" onclick="window.print()"><span class="material-symbols-outlined">print</span>طباعة / تصدير PDF</button></div><header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline no-print">
+<div class="flex items-center gap-8">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim">جامعة البيان</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-bold font-label-md text-label-md" href="#">لوحة التحكم</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md" href="#">طلباتي</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md" href="#">الوثائق</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md" href="#">الملف الشخصي</a>
+</nav>
+    <!-- Mobile nav toggle -->
+    <button id="mobileNavToggle" class="md:hidden p-2 rounded-lg bg-surface/90 text-slate-700">
+        <span class="material-symbols-outlined">menu</span>
+    </button>
+    <!-- Mobile nav menu -->
+    <nav id="mobileNav" class="hidden md:hidden absolute top-16 right-4 left-4 bg-surface rounded-lg p-4 shadow-lg z-50 space-y-2">
+        <a class="block text-slate-700 font-label-md" href="#">لوحة التحكم</a>
+        <a class="block text-slate-700 font-label-md" href="#">طلباتي</a>
+        <a class="block text-slate-700 font-label-md" href="#">الوثائق</a>
+        <a class="block text-slate-700 font-label-md" href="#">الملف الشخصي</a>
+    </nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center bg-surface-container-high px-4 py-1.5 rounded-full gap-2 border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md placeholder:text-on-surface-variant w-48" placeholder="بحث عن وثيقة..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">help</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-xl font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">طلب جديد</button>
+</div>
+</header>
+<main class="pt-24 pb-16 px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-8 md:p-12 shadow-sm mb-8">
+<div class="text-center mb-12">
+<div class="inline-block p-4 bg-primary-container rounded-full mb-6">
+<span class="material-symbols-outlined text-on-primary-container text-4xl" style="font-variation-settings: 'FILL' 1;">gavel</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary mb-4">شروط وأحكام استخدام نظام طلب استخراج الوثائق الكترونيا</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                    مرحباً بكم في تطبيق نظام طلب استخراج الوثائق الكترونيا. يرجى قراءة هذه الشروط بعناية قبل البدء باستخدام خدماتنا الأكاديمية الرقمية لضمان أفضل تجربة مستخدم وحماية حقوقكم.
+                </p>
+</div>
+<div class="space-y-12">
+<section class="relative">
+<div class="flex items-start gap-4">
+<span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white font-bold text-sm">١</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-3">قبول الشروط والقانون الحاكم</h2>
+<footer class="bg-surface-container-lowest dark:bg-surface-dim border-t border-outline-variant dark:border-outline no-print">
+<script src="libs/responsive-nav.js"></script>
+</footer>
+                                بمجرد دخولك واستخدامك لهذا النظام، فإنك تقر بموافقتك الكاملة وغير المشروطة على كافة الشروط والأحكام الواردة هنا. يخضع هذا النظام وكافة التعاملات من خلاله للقوانين والأنظمة المعمول بها في وزارة التعليم العالي والبحث العلمي واللوائح الداخلية لجامعة البيان.
+                            </p>
+</div>
+</div>
+</section>
+<section class="relative">
+<div class="flex items-start gap-4">
+<span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white font-bold text-sm">٢</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-3">خدمات التطبيق والمسؤولية عن البيانات</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed text-justify">
+                                يوفر النظام خدمات استخراج الوثائق الأكاديمية (شهادات التخرج، كشوفات الدرجات، وغيرها) إلكترونياً. يتحمل المستخدم المسؤولية الكاملة عن صحة البيانات المدخلة والمستندات المرفقة. أي تلاعب أو تزوير في البيانات يعرض صاحبه للمسائلة القانونية وإلغاء الطلب فوراً.
+                            </p>
+</div>
+</div>
+</section>
+<section class="relative p-6 bg-surface-container-lowest rounded-xl border border-secondary/20 shadow-sm">
+<div class="flex items-start gap-4">
+<span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-secondary text-white font-bold text-sm">٣</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-secondary-container mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined">payments</span>
+                                سياسة الدفع وعدم الاسترداد
+                            </h2>
+<p class="font-body-md text-body-md text-on-secondary-fixed-variant leading-relaxed font-medium text-justify">
+                                يتم تسديد الرسوم المقررة لكل وثيقة عبر بوابات الدفع الإلكتروني المعتمدة في النظام. يرجى العلم بأن الرسوم المدفوعة مقابل الخدمات الأكاديمية الرقمية غير قابلة للاسترداد بعد البدء في معالجة الطلب، وذلك نظراً لطبيعة الخدمة الإدارية المقدمة.
+                            </p>
+</div>
+</div>
+</section>
+<section class="relative">
+<div class="flex items-start gap-4">
+<span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white font-bold text-sm">٤</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-3">الملكية الفكرية وحقوق النشر</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed text-justify">
+                                تعود ملكية كافة حقوق الملكية الفكرية الخاصة بالنظام، بما في ذلك التصاميم، النصوص، البرمجيات، والعلامات التجارية لجامعة البيان. يمنع منعاً باتاً نسخ أو إعادة توزيع أي جزء من هذا النظام دون إذن كتابي مسبق.
+                            </p>
+</div>
+</div>
+</section>
+<section class="relative">
+<div class="flex items-start gap-4">
+<span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white font-bold text-sm">٥</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-3">تحديد المسؤوليات القانونية</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed text-justify">
+                                تبذل الجامعة أقصى جهدها لضمان استمرارية الخدمة، ومع ذلك لا تتحمل المسؤولية عن أي انقطاع فني خارج عن إرادتها أو فقدان بيانات ناتج عن سوء استخدام من قبل المستخدم أو اختراق أجهزة المستخدم الشخصية.
+                            </p>
+</div>
+</div>
+</section>
+<section class="relative">
+<div class="flex items-start gap-4">
+<span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white font-bold text-sm">٦</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-3">سرية البيانات والأمن الرقمي</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed text-justify">
+                                تلتزم الجامعة بحماية سرية بيانات المستخدمين وفقاً لأعلى معايير الأمن السيبراني. سيتم استخدام البيانات فقط للأغراض الأكاديمية والإدارية المتعلقة بطلبك ولن يتم مشاركتها مع أي جهة خارجية إلا بموجب أمر قضائي.
+                            </p>
+</div>
+</div>
+</section>
+<section class="relative">
+<div class="flex items-start gap-4">
+<span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white font-bold text-sm">٧</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-3">الاختصاص القضائي</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed text-justify">
+                                في حال نشوء أي نزاع قانوني يتعلق باستخدام هذا النظام، تكون المحاكم المختصة في مدينة الخرطوم هي الجهة الوحيدة المخولة بالنظر في هذه النزاعات وفقاً للقانون السوداني النافذ.
+                            </p>
+</div>
+</div>
+</section>
+</div>
+<div class="mt-16 pt-8 border-t border-outline-variant flex flex-col items-center gap-6 no-print">
+<p class="font-label-md text-label-md text-on-surface-variant text-center">
+                    آخر تحديث للشروط: ديسمبر ٢٠٢٤
+                </p>
+
+</div>
+</div>
+</main>
+<footer class="bg-surface-container-lowest dark:bg-surface-dim border-t border-outline-variant dark:border-outline no-print">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop py-gutter max-w-container-max mx-auto gap-4">
+<div class="flex items-center gap-4">
+<span class="font-label-md text-label-md font-semibold text-primary dark:text-inverse-primary">جامعة البيان</span>
+<span class="font-caption-sm text-caption-sm text-on-surface-variant dark:text-surface-variant">© 2024 Al-Bayan University. All Rights Reserved. Document Extraction System v1.0</span>
+</div>
+<div class="flex gap-6">
+<a class="font-caption-sm text-caption-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary underline opacity-90 hover:opacity-100 transition-opacity" href="privacypolicy.html">Privacy Policy</a>
+<a class="font-caption-sm text-caption-sm text-secondary dark:text-secondary-fixed-dim font-bold hover:text-primary dark:hover:text-inverse-primary underline opacity-90 hover:opacity-100 transition-opacity" href="termofservice.html">Terms of Service</a>
+<a class="font-caption-sm text-caption-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary underline opacity-90 hover:opacity-100 transition-opacity" href="mailto:zuhairabaza@gmail.com">Support</a>
+</div>
+</div>
+</footer>
+<script src="libs/responsive-nav.js"></script>
+</body></html>

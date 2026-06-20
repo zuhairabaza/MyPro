@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>استمارة طلب وثيقة أكاديمية - جامعة البيان</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Kufi+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>        body {
+            font-family: 'Noto Kufi Arabic', 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            font-size: 13px;
+        }
+        @media print {
+            body {
+                background-color: white;
+                font-size: 11px;
+            }
+            .no-print {
+                display: none;
+            }
+            .print-container {
+                box-shadow: none !important;
+                margin: 0 !important;
+                width: 100% !important;
+            }
+        }
+        /* Print-specific adjustments to force single-A4 output */
+        @page { size: A4 portrait; margin: 8mm; }
+        @media print {
+            html, body { -webkit-print-color-adjust: exact; height: auto; }
+            .page-a4 { width: 210mm; max-height: 297mm; box-sizing: border-box; padding: 8mm; margin: 0 auto; overflow: visible; page-break-after: avoid; page-break-before: avoid; page-break-inside: avoid; }
+            .page-a4 img { max-height: 54px; max-width: 100%; height: auto; }
+            .page-a4 .data-row { padding: 6px 0; border-bottom-width: 1px; white-space: normal; overflow: visible; }
+            .page-a4 .data-value { overflow: visible; text-overflow: clip; }
+            .page-a4 .data-label { min-width: 90px; }
+            .page-a4 { font-size: 10.5px; line-height: 1.02; }
+            .no-print { display: none !important; }
+            .print-container { box-shadow: none !important; }
+            /* Reduce spacing for lists and notes to save space */
+            .page-a4 .official-box { height: 70px; }
+            .page-a4 .grid { gap: 8px; }
+            .page-a4 .w-32 { width: 28ch; }
+        }
+        .page-a4 {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 12mm 18mm;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .data-row {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 6px 0;
+            white-space: normal;
+            overflow: visible;
+            gap: 6px;
+        }
+        .data-label {
+            font-weight: 600;
+            color: #4b5563;
+            min-width: 105px;
+            flex-shrink: 0;
+            font-size: 0.92em;
+        }
+        .data-value {
+            flex: 1;
+            color: #111827;
+            overflow: visible;
+            text-overflow: clip;
+            word-break: break-word;
+            font-size: 0.95em;
+        }
+        .official-box {
+            border: 2px dashed #d1d5db;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 0.75rem;
+        }</style>
+</head>
+<body class="py-6">
+<script>
+// Fetch request data from database and populate the page
+async function loadReviewLookups() {
+    const empty = { colleges: {}, departments: {} };
+    try {
+        const [collegesResponse, departmentsResponse] = await Promise.all([
+            fetch('/admin/colleges'),
+            fetch('/admin/departments')
+        ]);
+
+        const collegesData = collegesResponse.ok ? await collegesResponse.json() : {};
+        const departmentsData = departmentsResponse.ok ? await departmentsResponse.json() : {};
+
+        const colleges = Array.isArray(collegesData.colleges) ? collegesData.colleges : [];
+        const departments = Array.isArray(departmentsData.departments) ? departmentsData.departments : [];
+
+        return {
+            colleges: colleges.reduce((acc, college) => {
+                acc[String(college.id)] = college.name;
+                return acc;
+            }, {}),
+            departments: departments.reduce((acc, department) => {
+                acc[String(department.id)] = department.name;
+                return acc;
+            }, {})
+        };
+    } catch (error) {
+        console.warn('تعذّر تحميل بيانات الكليات والأقسام لصفحة الطلب:', error);
+        return empty;
+    }
+}
+
+function formatDocType(code) {
+    switch (code) {
+        case 'graduation':
+        case 'وثيقة تخرج':
+            return 'وثيقة تخرج';
+        case 'transcript':
+        case 'بيان درجات':
+            return 'بيان درجات';
+        case 'enrollment':
+        case 'إفادة قيد':
+            return 'إفادة قيد';
+        default:
+            return code || '-';
+    }
+}
+
+function formatLanguage(code) {
+    switch (code) {
+        case 'arabic':
+        case 'العربية':
+            return 'العربية';
+        case 'english':
+        case 'الإنجليزية':
+            return 'الإنجليزية';
+        case 'both':
+        case 'العربية والإنجليزية':
+            return 'العربية والإنجليزية';
+        default:
+            return code || '-';
+    }
+}
+
+function setText(id, value, fallback = '-') {
+    const el = document.getElementById(id);
+    if (el) {
+        el.textContent = value !== undefined && value !== null && String(value).trim() !== '' ? value : fallback;
+    }
+}
+
+async function loadRequestData() {
+    const params = new URLSearchParams(window.location.search);
+    const reqrev = params.get('reqrev');
+    
+    if (!reqrev) {
+        const warning = document.getElementById('missingReqrevMessage');
+        if (warning) {
+            warning.classList.remove('hidden');
+        }
+        console.warn('لم يتم توفير رقم الطلب. يرجى استخدام URL مثل: stdreq.html?reqrev=XXXXX');
+        return;
+    }
+
+    try {
+        const response = await fetch(`/track-request?reqrev=${encodeURIComponent(reqrev)}`);
+        
+        if (!response.ok) {
+            let errorMessage = 'لم يتم العثور على الطلب';
+            try {
+                const error = await response.json();
+                errorMessage = error.message || error.error || errorMessage;
+            } catch (e) {
+                // non-json error body
+            }
+            alert('خطأ: ' + errorMessage);
+            return;
+        }
+
+        const data = await response.json();
+        const request = data.request || data;
+        const lookups = await loadReviewLookups();
+
+        const collegeName = request.CollegeName || request.College || request.college || request.collegename || request.faculty || request.facultyName || lookups.colleges[String(request.faculty_id || request.college || request.College || '')] || '-';
+        const departmentName = request.DepartmentName || request.Department || request.Dept || request.dept || request.department || lookups.departments[String(request.Dno || request.department_id || request.department || request.Dept || request.dept || '')] || '-';
+
+        // Update Personal Information
+        setText('arabicName', request.Astdname);
+        setText('englishName', request.Estdname);
+        setText('nationality', request.Nationality);
+        setText('nationality-en', request.Nationality);
+        setText('identityNumber', request.Unino);
+        setText('phone', request.phone, '-');
+
+        // Update Academic Information
+        setText('graduationYear', request.Gyear);
+        setText('universityId', request.Unino);
+        setText('collegeName', collegeName, '-');
+        setText('departmentName', departmentName, '-');
+        setText('documentType', formatDocType(request.Certype || request.doc_type || request.DocType));
+        setText('documentLanguage', formatLanguage(request.Lang || request.language || request.Language));
+        setText('copies', request.Ccno || request.copies || '1');
+
+        // Update Request Status
+        setText('requestStatus', request.Status || 'قيد الاجراء');
+        setText('requestNumber', request.Reqrev);
+        // Bind request date display directly to DB field requests.Reqdate - use best available option
+        const reqDate = request.Reqdate || request.reqdate || request.requestDate;
+        setText('requestDate', formatDate(reqDate), '-');
+
+    } catch (error) {
+        console.error('خطأ في جلب بيانات الطلب:', error);
+        alert('حدث خطأ في تحميل البيانات');
+    }
+}
+
+// Format date from YYYY-MM-DD or ISO format to Arabic format
+function formatDate(dateStr) {
+    if (!dateStr) return '-';
+    // Handle both YYYY-MM-DD and ISO 8601 formats
+    let date;
+    if (dateStr.includes('T') || dateStr.includes('Z')) {
+        // ISO format with time (e.g., 2026-06-02T22:00:00.000Z)
+        date = new Date(dateStr);
+    } else {
+        // Simple date format YYYY-MM-DD
+        date = new Date(dateStr + 'T00:00:00');
+    }
+    const months = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 
+                    'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+    // Use UTC methods to avoid timezone issues
+    const day = date.getUTCDate();
+    const month = months[date.getUTCMonth()];
+    const year = date.getUTCFullYear();
+    return `${day} ${month} ${year}`;
+}
+
+// Load data when page is ready
+document.addEventListener('DOMContentLoaded', loadRequestData);
+</script>
+<!-- Top Action Bar (Hidden on Print) -->
+<div class="no-print max-w-[210mm] mx-auto mb-6 flex justify-between items-center bg-slate-900 text-white p-4 rounded-lg shadow-lg">
+<div class="flex items-center gap-4">
+<button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-semibold flex items-center gap-2 transition-colors" onclick="window.print()">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                طباعة / تصدير PDF
+            </button>
+<p class="text-sm text-slate-400">يمكنك تعديل البيانات مباشرة في المتصفح قبل الطباعة.</p>
+</div>
+<a class="text-slate-300 hover:text-white transition-colors" href="#">العودة للوحة التحكم ←</a>
+</div>
+<div id="missingReqrevMessage" class="hidden max-w-[210mm] mx-auto mb-6 rounded-lg border border-rose-200 bg-rose-50 p-4 text-rose-800 text-sm">
+    يرجى فتح الصفحة باستخدام معرف الطلب عبر رابط مثل: <span class="font-semibold">stdreq.html?reqrev=XXXXX</span>
+</div>
+<!-- Main A4 Document -->
+<div class="page-a4 print-container relative" contenteditable="true">
+<!-- Header -->
+<div class="flex justify-between items-center border-b-2 border-slate-900 pb-3 mb-4">
+<div class="text-right">
+<h2 class="text-lg font-bold text-slate-800 mb-0.5">جامعة البيان</h2>
+<p class="text-sm text-slate-600">مكتب المسجل العام</p>
+</div>
+<div class="flex flex-col items-center">
+<img alt="جامعة البيان" class="h-20 w-20 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJAM0RCXkT_DQxY9709lbRzMvRVhWhe3w_obxsijrDuo1iASxb1OIFW6K1b-ikasIdZ9y8XxsYS4rNpSUNah0N7g6GEd9G-Fh-e1CK7fv208PupyuOgPeSwKweb4E73kfbmH2qITQlqhN9xB05cjHHmBX2tmdg4VlD-yzw7_S3yenILxzK_YEAU2S_M-gNFogqxtthNlq8zu4OrqwjD6ketykULXeMLOIHgIBZMFyH8M0oX0RFEd3hLF0IYWtZzvgstEn4FpCDwoc"/>
+</div>
+<div class="text-left" dir="ltr">
+<h2 class="text-lg font-bold text-slate-800 mb-0.5">Bayan University</h2>
+<p class="text-sm text-slate-600">Registrar General Office</p>
+</div>
+</div>
+<!-- Title -->
+<div class="text-center mb-6">
+<h1 class="text-xl font-bold text-slate-900 mb-0.5">استمارة طلب وثيقة أكاديمية</h1>
+<p class="text-slate-500 font-medium text-sm" dir="ltr">Document Request Form</p>
+<div class="w-24 h-0.5 bg-slate-900 mx-auto mt-2 rounded-full"></div>
+</div>
+<!-- Section: Personal Information -->
+<div class="">
+<div class="flex items-center gap-2 border-r-4 border-slate-900 pr-2 mb-3 bg-slate-50 py-1.5">
+<h3 class="text-base font-bold text-slate-800">البيانات الشخصية</h3>
+<span class="text-slate-400 text-xs font-medium" dir="ltr">Personal Information</span>
+</div>
+<div class="grid grid-cols-2 gap-x-8">
+<div class="data-row">
+<div class="data-label">الاسم بالكامل:</div>
+<div class="data-value" id="arabicName">أحمد محمد عبد الله علي</div>
+</div>
+<div class="data-row" dir="ltr">
+<div class="data-label text-left" style="min-width: 75px; font-size: 0.92em;">Full Name:</div>
+<div class="data-value text-left" id="englishName" style="font-size: 0.95em;">Ahmed Mohamed Abdallah Ali</div>
+</div>
+<div class="data-row">
+<div class="data-label">الجنسية:</div>
+<div class="data-value" id="nationality">سوداني</div>
+</div>
+<div class="data-row" dir="ltr">
+<div class="data-label text-left" style="min-width: 75px; font-size: 0.92em;">Nationality:</div>
+<div class="data-value text-left" id="nationality-en" style="font-size: 0.95em;">Sudanese</div>
+</div>
+<div class="data-row">
+<div class="data-label">رقم الهوية:</div>
+<div class="data-value" id="identityNumber">102-1988-1234567</div>
+</div>
+<div class="data-row">
+<div class="data-label">رقم الهاتف:</div>
+<div class="data-value" id="phone">0912345678</div>
+</div>
+</div>
+</div>
+<!-- Section: Academic Information -->
+<div class="">
+<div class="flex items-center gap-2 border-r-4 border-slate-900 pr-2 mb-3 bg-slate-50 py-1.5">
+<h3 class="text-base font-bold text-slate-800">البيانات الأكاديمية</h3>
+<span class="text-slate-400 text-xs font-medium" dir="ltr">Academic Information</span>
+</div>
+<div class="grid grid-cols-2 gap-x-8">
+<div class="data-row">
+<div class="data-label">الكلية:</div>
+<div class="data-value" id="collegeName">العلوم والتقانة</div>
+</div>
+<div class="data-row">
+<div class="data-label">القسم:</div>
+<div class="data-value" id="departmentName">هندسة الحاسوب</div>
+</div>
+<div class="data-row">
+<div class="data-label">سنة التخرج:</div>
+<div class="data-value" id="graduationYear">2023</div>
+</div>
+<div class="data-row">
+<div class="data-label">الرقم الجامعي:</div>
+<div class="data-value" id="universityId">UOB-2019-4592</div>
+</div>
+</div>
+<div class="data-row mt-2">
+<div class="data-label">نوع الوثيقة:</div>
+<div class="data-value flex gap-6" id="documentType">إفادة تخرج عامة</div>
+</div>
+<div class="data-row mt-2">
+<div class="data-label">لغة الوثيقة:</div>
+<div class="data-value" id="documentLanguage">العربية</div>
+</div>
+</div>
+<!-- Section: Request Details -->
+<div class="">
+<div class="flex items-center gap-2 border-r-4 border-slate-900 pr-2 mb-3 bg-slate-50 py-1.5">
+<h3 class="text-base font-bold text-slate-800">تفاصيل الطلب</h3>
+<span class="text-slate-400 text-xs font-medium" dir="ltr">Request Details</span>
+</div>
+<div class="grid grid-cols-2 gap-x-8">
+<div class="data-row">
+<div class="data-label">عدد النسخ:</div>
+<div class="data-value"><span id="copies">02</span> نسخة</div>
+</div>
+<div class="data-row">
+<div class="data-label">رقم الطلب:</div>
+<div class="data-value" id="requestNumber">-</div>
+</div>
+<div class="data-row">
+<div class="data-label">تاريخ الطلب:</div>
+<div class="data-value" id="requestDate">-</div>
+</div>
+<div class="data-row">
+<div class="data-label">حالة الطلب:</div>
+<div class="data-value" id="requestStatus">قيد الاجراء</div>
+</div>
+</div>
+</div>
+<!-- Section: Attachments -->
+<div class="">
+<div class="flex items-center gap-2 border-r-4 border-slate-900 pr-2 mb-3 bg-slate-50 py-1.5">
+<h3 class="text-base font-bold text-slate-800">المرفقات المرفوعة</h3>
+<span class="text-slate-400 text-xs font-medium" dir="ltr">Attachments Checklist</span>
+</div>
+<div class="grid grid-cols-3 gap-3 text-center">
+<div class="p-3 border-2 border-slate-100 rounded-lg">
+<p class="font-bold text-xs mb-0.5">صورة شخصية</p>
+<p class="text-[9px] text-slate-400 mb-1.5">(Passport Size)</p>
+<div class="text-emerald-600 flex items-center justify-center gap-1 text-xs font-semibold">
+<svg class="h-4 w-4" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
+</svg>
+                        تم الرفع بنجاح
+                    </div>
+</div>
+<div class="p-3 border-2 border-slate-100 rounded-lg">
+<p class="font-bold text-xs mb-0.5">صورة الهوية / الجواز</p>
+<p class="text-[9px] text-slate-400 mb-1.5">ID / Passport Copy</p>
+<div class="text-emerald-600 flex items-center justify-center gap-1 text-xs font-semibold">
+<svg class="h-4 w-4" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
+</svg>
+                        تم الرفع بنجاح
+                    </div>
+</div>
+<div class="p-3 border-2 border-slate-100 rounded-lg">
+<p class="font-bold text-xs mb-0.5">إشعار الدفع</p>
+<p class="text-[9px] text-slate-400 mb-1.5">Payment Receipt</p>
+<div class="text-emerald-600 flex items-center justify-center gap-1 text-xs font-semibold">
+<svg class="h-4 w-4" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
+</svg>
+                        تم الرفع بنجاح
+                    </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Instructions Overlay (Hidden on Print) -->
+<div class="no-print fixed bottom-6 left-6 max-w-xs bg-white p-4 rounded-xl shadow-2xl border border-slate-200">
+<h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+<span class="w-2 h-2 bg-blue-600 rounded-full"></span>
+            تعليمات الملف
+        </h4>
+<ul class="text-xs text-slate-600 space-y-2 leading-relaxed">
+<li>• يمكنك <b>تعديل أي نص</b> مباشرة بالنقر عليه.</li>
+<li>• لحفظ التعديلات، استخدم <b>Ctrl + S</b>.</li>
+<li>• للتحويل إلى PDF، اضغط زر الطباعة واختر <b>Save as PDF</b>.</li>
+<li>• الشعار والخطوط مرتبطة بالإنترنت لضمان الجودة.</li>
+</ul>
+</div>
+<script>
+// Improve print flow: add a class before printing to allow CSS tweaks
+function beforePrint() {
+    document.body.classList.add('printing');
+}
+function afterPrint() {
+    document.body.classList.remove('printing');
+}
+if (window.matchMedia) {
+    const mq = window.matchMedia('print');
+    if (typeof mq.addEventListener === 'function') {
+        mq.addEventListener('change', (event) => {
+            if (event.matches) beforePrint(); else afterPrint();
+        });
+    } else if (typeof mq.addListener === 'function') {
+        mq.addListener((m) => {
+            if (m.matches) beforePrint(); else afterPrint();
+        });
+    }
+}
+window.addEventListener('beforeprint', beforePrint);
+window.addEventListener('afterprint', afterPrint);
+</script>
+</body>
+</html>

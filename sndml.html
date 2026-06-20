@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ارسال طلب عبر البريد - جامعة البيان</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#271900",
+                    "on-primary-fixed-variant": "#2d476f",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "surface-tint": "#455f88",
+                    "inverse-on-surface": "#f0f1f2",
+                    "outline": "#74777f",
+                    "on-surface": "#191c1d",
+                    "tertiary-container": "#4f2e00",
+                    "surface-variant": "#e1e3e4",
+                    "outline-variant": "#c4c6cf",
+                    "surface-container-low": "#f3f4f5",
+                    "secondary-container": "#fdc34d",
+                    "on-tertiary-fixed": "#2b1700",
+                    "on-tertiary-container": "#c6955e",
+                    "background": "#f8f9fa",
+                    "primary": "#002045",
+                    "secondary-fixed": "#ffdea6",
+                    "secondary-fixed-dim": "#f7bd48",
+                    "surface": "#f8f9fa",
+                    "inverse-primary": "#adc7f7",
+                    "on-primary-fixed": "#001b3c",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f8f9fa",
+                    "on-secondary-fixed-variant": "#5d4200",
+                    "on-error-container": "#93000a",
+                    "secondary": "#7b5800",
+                    "tertiary-fixed-dim": "#f2bc82",
+                    "tertiary": "#321b00",
+                    "surface-container-high": "#e7e8e9",
+                    "on-tertiary-fixed-variant": "#633f0f",
+                    "on-secondary-container": "#715000",
+                    "primary-fixed-dim": "#adc7f7",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#ffddba",
+                    "surface-container": "#edeeef",
+                    "on-primary-container": "#86a0cd",
+                    "primary-fixed": "#d6e3ff",
+                    "primary-container": "#1a365d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#43474e",
+                    "on-background": "#191c1d",
+                    "error": "#ba1a1a",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-dim": "#d9dadb",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "margin-desktop": "48px",
+                    "unit": "4px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "caption-sm": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "caption-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a365d; /* Forced dark blue background per requirement */
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-container {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-8">
+    <a href="index.html" class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim">Bayan University</a>
+    <nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md" href="index.html">Dashboard</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md" href="reqstat.html">My Requests</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md" href="vereq.html">Verify Document</a>
+</nav>
+    <!-- Mobile nav toggle -->
+    <button id="mobileNavToggle" class="md:hidden p-2 rounded-lg bg-surface/90 text-slate-700">
+        <span class="material-symbols-outlined">menu</span>
+    </button>
+    <!-- Mobile nav menu -->
+    <nav id="mobileNav" class="hidden md:hidden absolute top-16 right-4 left-4 bg-surface rounded-lg p-4 shadow-lg z-50 space-y-2">
+        <a class="block text-slate-700 font-label-md" href="index.html">Dashboard</a>
+        <a class="block text-slate-700 font-label-md" href="reqstat.html">My Requests</a>
+        <a class="block text-slate-700 font-label-md" href="vereq.html">Verify Document</a>
+    </nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center bg-surface-container-high px-4 py-1.5 rounded-full gap-2 border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md placeholder:text-on-surface-variant w-48" placeholder="بحث عن وثيقة..." type="text">
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">help</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-xl font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">New Request</button>
+</div>
+</header>
+<!-- Main Content: Centered Card -->
+<main class="flex-grow w-full max-w-screen-xl flex items-center justify-center pt-24 pb-12 px-margin-mobile md:px-margin-desktop">
+<div class="glass-container w-full max-w-xl rounded-xl shadow-2xl p-6 md:p-8 border border-white/20 animate-in fade-in zoom-in duration-500">
+<!-- Branding/Heading within Card -->
+<div class="text-center mb-10">
+<div class="inline-flex items-center justify-center w-16 h-16 bg-primary-container rounded-full mb-6">
+<span class="material-symbols-outlined text-on-primary-container text-4xl" style="font-variation-settings: 'FILL' 1;">mail</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">ارسال طلب عبر البريد</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">يرجى ملء النموذج أدناه لتقديم طلب مصادقة الوثائق الرسمية</p>
+</div>
+<!-- Form -->
+<form class="space-y-6">
+<!-- Email Field -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2" for="email">عنوان البريد الإلكتروني <span class="text-error">*</span></label>
+<div class="relative">
+<input class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md text-right" id="email" placeholder="example@university.edu" required="" type="email"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">alternate_email</span>
+</div>
+</div>
+<!-- Student ID Field -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2" for="student_id">الرقم الجامعي <span class="text-error">*</span></label>
+<div class="relative">
+<input class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md text-right" id="student_id" placeholder="أدخل الرقم الجامعي هنا" required="" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">badge</span>
+</div>
+</div>
+<!-- Additional Info Field -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2" for="additional_info">معلومات إضافية</label>
+<textarea class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md text-right resize-none" id="additional_info" placeholder="اكتب أي ملاحظات أو تفاصيل إضافية هنا..." rows="4"></textarea>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-4 pt-4">
+<button class="w-full bg-primary-container text-on-primary-container py-4 rounded-xl font-headline-md text-headline-md font-bold flex items-center justify-center gap-2 hover:bg-primary hover:text-on-primary transition-all active:scale-[0.98]" type="submit">
+<span>ارسال البريد</span>
+<span class="material-symbols-outlined">send</span>
+</button>
+<a class="w-full border border-outline-variant text-on-surface-variant py-3 rounded-xl font-label-md text-label-md text-center hover:bg-surface-container-high transition-all active:scale-[0.98]" href="vereq.html">
+                        العودة إلى صفحة المصادقة
+                    </a>
+</div>
+</form>
+<div class="mt-8 flex items-start gap-3 p-4 bg-secondary-fixed/20 rounded-lg">
+<span class="material-symbols-outlined text-secondary pt-1">info</span>
+<p class="font-caption-sm text-caption-sm text-on-secondary-fixed-variant leading-relaxed">
+                    سيتم مراجعة طلبك من قبل قسم شؤون الطلبة والرد عليك عبر البريد الإلكتروني المزود فورا. فثط تأكد من صحة البيانات المدخلة.
+                </p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-primary dark:bg-on-background border-t border-primary-container">
+<div class="flex flex-col gap-2">
+<span class="font-headline-md text-headline-md text-on-primary">جامعة البيان</span>
+<p class="font-caption-sm text-caption-sm text-on-primary-container dark:text-on-primary-fixed-variant">
+                © 2024 Al-Bayan University. All Rights Reserved. Digital Records Division.
+            </p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-caption-sm text-caption-sm text-on-primary-container dark:text-on-primary-fixed-variant hover:text-white transition-colors" href="#">سياسة الخصوصية</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container dark:text-on-primary-fixed-variant hover:text-white transition-colors" href="#">شروط الخدمة</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container dark:text-on-primary-fixed-variant hover:text-white transition-colors" href="#">الدعم الفني</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container dark:text-on-primary-fixed-variant hover:text-white transition-colors" href="#">الرئيسية</a>
+</div>
+</footer>
+<!-- Decorative Elements (Subtle Background Glow) -->
+<div class="fixed top-1/4 -right-20 w-80 h-80 bg-primary-container/20 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="fixed bottom-1/4 -left-20 w-96 h-96 bg-secondary-container/10 rounded-full blur-[140px] pointer-events-none"></div>
+<script>
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const studentId = document.getElementById('student_id').value.trim();
+            const additional = document.getElementById('additional_info').value.trim();
+            const recipient = 'zuhairabaza@gmail.com';
+            const subject = 'طلب مصادقة وثيقة';
+
+            if (!email || !studentId) {
+                alert('يرجى ملء البريد الإلكتروني والرقم الجامعي قبل إرسال الطلب.');
+                return;
+            }
+
+            let bodyText = `student_id : ${studentId}`;
+            if (additional) {
+                bodyText += `\n\n${additional}`;
+            }
+
+            const mailto = `mailto:${encodeURIComponent(recipient)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}&from=${encodeURIComponent(email)}`;
+            window.location.href = mailto;
+        });
+    </script>
+    <script src="libs/responsive-nav.js"></script>
+    </body></html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>إدارة الكليات والأقسام - جامعة البيان</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#001b3c",
+                    "on-background": "#191c1d",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-container-highest": "#e1e3e4",
+                    "secondary-fixed-dim": "#f7bd48",
+                    "outline": "#74777f",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#633f0f",
+                    "on-secondary-fixed": "#271900",
+                    "on-error": "#ffffff",
+                    "primary-container": "#1a365d",
+                    "on-surface": "#191c1d",
+                    "tertiary-container": "#4f2e00",
+                    "secondary-fixed": "#ffdea6",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#ffddba",
+                    "on-secondary-fixed-variant": "#5d4200",
+                    "on-primary-fixed-variant": "#2d476f",
+                    "surface-tint": "#455f88",
+                    "primary-fixed": "#d6e3ff",
+                    "on-surface-variant": "#43474e",
+                    "tertiary": "#321b00",
+                    "inverse-primary": "#adc7f7",
+                    "on-secondary-container": "#715000",
+                    "on-tertiary-container": "#c6955e",
+                    "tertiary-fixed-dim": "#f2bc82",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#f8f9fa",
+                    "surface-dim": "#d9dadb",
+                    "error-container": "#ffdad6",
+                    "primary": "#002045",
+                    "error": "#ba1a1a",
+                    "inverse-surface": "#2e3132",
+                    "surface-container-high": "#e7e8e9",
+                    "secondary-container": "#fdc34d",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e1e3e4",
+                    "surface": "#f8f9fa",
+                    "outline-variant": "#c4c6cf",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-primary-container": "#86a0cd",
+                    "secondary": "#7b5800",
+                    "surface-container": "#edeeef",
+                    "background": "#f8f9fa",
+                    "primary-fixed-dim": "#adc7f7",
+                    "on-tertiary-fixed": "#2b1700",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "container-max": "1440px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "48px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Cairo", "Inter", "sans-serif"],
+                    "label-md": ["Cairo", "Inter", "sans-serif"],
+                    "body-lg": ["Cairo", "Inter", "sans-serif"],
+                    "headline-md": ["Cairo", "Inter", "sans-serif"],
+                    "display-lg": ["Cairo", "Inter", "sans-serif"],
+                    "caption-sm": ["Cairo", "Inter", "sans-serif"],
+                    "body-md": ["Cairo", "Inter", "sans-serif"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "fontWeight": "700"}],
+                    "caption-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Cairo', 'Inter', sans-serif; background: radial-gradient(circle at top, #ffffff 0%, #f4f7fb 40%, #ebeff5 100%); }
+        h1, h2, h3, h4, button, select, input, textarea { font-family: 'Cairo', 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .card-elevated { box-shadow: 0 18px 48px -32px rgba(0, 32, 69, 0.28); }
+        .nav-link { transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+        .nav-link:hover { transform: translateX(-1px); box-shadow: 0 14px 30px -24px rgba(0, 32, 69, 0.4); }
+        .surface-panel { background: rgba(255,255,255,0.84); backdrop-filter: blur(8px); border-color: rgba(196, 198, 207, 0.72); }
+        .btn-primary-soft { transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease; }
+        .btn-primary-soft:hover { transform: translateY(-1px); box-shadow: 0 18px 30px -18px rgba(0, 32, 69, 0.55); }
+        .btn-secondary-soft { transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease; }
+        .btn-secondary-soft:hover { transform: translateY(-1px); box-shadow: 0 18px 28px -20px rgba(0, 32, 69, 0.3); }
+        .icon-btn-soft { transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+        .icon-btn-soft:hover { transform: translateY(-1px); box-shadow: 0 14px 28px -18px rgba(0, 32, 69, 0.28); }
+    </style>
+</head>
+<body class="bg-transparent text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 w-full z-50 border-b border-outline-variant bg-white/90 backdrop-blur-xl lg:pr-60">
+<div class="flex h-18 items-center justify-between px-margin-mobile md:px-margin-desktop">
+<div class="flex items-center gap-3">
+<span class="lg:hidden material-symbols-outlined text-primary">menu</span>
+<div>
+<p class="text-caption-sm uppercase tracking-[0.3em] text-on-surface-variant">Bayan University</p>
+<h1 class="text-lg font-bold text-primary sm:text-xl">لوحة الإدارة المركزية</h1>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2 rounded-full border border-outline-variant bg-surface-container-high px-4 py-2 shadow-[0_12px_30px_-20px_rgba(0,32,69,0.28)]">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+<input class="w-64 bg-transparent border-none text-sm focus:ring-0" placeholder="ابحث في السجلات..." type="text"/>
+</div>
+<button class="rounded-full bg-surface-container-high p-2 text-on-surface-variant transition-colors hover:text-primary">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="rounded-full bg-surface-container-high p-2 text-on-surface-variant transition-colors hover:text-primary">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="flex items-center gap-3 rounded-full border border-outline-variant bg-surface-container-low px-2 py-1">
+<div class="h-9 w-9 overflow-hidden rounded-full border border-white">
+<img alt="User profile avatar" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx8k4lvM2Ze2VSBrtJ6OriVdnC8YNp7DMKSQkvAo9VcfC8ycZLPqaSeSQBZ2wGgqkOrnRA1sYWtAzT-qtHp7GQbydnb1lqyAZ2GvFw470B4NmLLPqYR42J0Gb3UGxg-KnZPI9GcA2cPqVHy0OWPIRYJUwJnYWU1we46RdYN36fi7qDaeYYzvsOkSwJprYWIOrGnn8ecJcWehWDem6jzQCiYwSRgD1SgGKT4zc85lyJWM_CIHR9WmROTPb-L77nwhSq1mV5xTvG5Uo"/>
+</div>
+<div class="hidden sm:block">
+<p class="text-sm font-bold text-on-surface">مدير النظام</p>
+<p class="text-caption-sm text-on-surface-variant">متصل الآن</p>
+</div>
+<button id="logoutBtn" type="button" class="inline-flex items-center gap-2 rounded-full border border-error/20 bg-error-container px-3 py-2 text-xs font-bold text-error hover:bg-error/10 transition-colors">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span>تسجيل الخروج</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col h-screen fixed right-0 top-0 pt-20 pb-8 px-2 z-40 w-60">
+<div class="mx-2 mb-5 rounded-[22px] border border-white/60 bg-white/80 p-3 backdrop-blur-xl card-elevated">
+<div class="flex items-center gap-2.5">
+<div class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-fixed text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="shield_person">shield_person</span>
+</div>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Admin Portal</h2>
+</div>
+</div>
+<nav class="flex-1 space-y-1.5 px-2">
+<div class="px-2 pb-1">
+<p class="text-caption-sm font-bold uppercase tracking-[0.2em] text-on-surface-variant">لوحة التحكم</p>
+</div>
+<a class="nav-link flex items-center gap-3 rounded-2xl px-3 py-2.5 text-on-surface-variant hover:bg-surface-container-high" href="admincp.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">إدارة الطلبات</span>
+</a>
+<a class="nav-link flex items-center gap-3 rounded-2xl px-3 py-2.5 text-on-surface-variant hover:bg-surface-container-high" href="admindept.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="apartment">apartment</span>
+<span class="font-label-md text-label-md">إدارة الأقسام</span>
+</a>
+<a class="nav-link flex items-center gap-3 rounded-2xl px-3 py-2.5 bg-primary-container text-on-primary-container shadow-[0_16px_34px_-24px_rgba(0,32,69,0.45)]" href="adminusr.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="group">group</span>
+<span class="font-label-md text-label-md">إدارة المستخدمين</span>
+</a>
+
+<div class="mt-auto px-2 pt-5 border-t border-outline-variant">
+<div class="mt-2 space-y-1">
+
+<a id="sidebarLogoutBtn" class="nav-link flex items-center gap-3 rounded-2xl px-3 py-2.5 text-error hover:bg-error-container" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">تسجيل الخروج</span>
+</a>
+</div>
+</div>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="pt-24 pb-16 px-margin-mobile md:px-margin-desktop lg:mr-60 min-h-screen">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary">إدارة الكليات والأقسام</h1>
+<p class="text-on-surface-variant font-body-md text-body-md mt-2">تنظيم الهيكل الأكاديمي وتعديل بيانات الكليات المعتمدة.</p>
+</div>
+<button id="addCollegeBtn" class="bg-secondary-container text-on-secondary-container flex items-center gap-2 px-6 py-3 rounded-xl font-label-md text-label-md hover:opacity-90 transition-opacity self-start">
+<span class="material-symbols-outlined">add</span>
+                إضافة كلية جديدة
+            </button>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-gutter">
+<!-- Colleges Table Card -->
+<section class="xl:col-span-7 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="p-6 border-b border-outline-variant flex items-center justify-between bg-surface-bright">
+<h3 class="font-headline-md text-headline-md text-primary">قائمة الكليات</h3>
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container-high rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md py-0" placeholder="بحث عن كلية..." type="text"/>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-right">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant tracking-wider uppercase">اسم الكلية</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant tracking-wider uppercase">الأقسام</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant tracking-wider uppercase">الحالة</th>
+</tr>
+</thead>
+<tbody id="collegeTableBody" class="divide-y divide-outline-variant">
+</tbody>
+</table>
+</div>
+</section>
+<!-- Departments Details Panel -->
+<section class="xl:col-span-5 flex flex-col gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 id="departmentPanelTitle" class="font-headline-md text-headline-md text-primary">اختر كلية لعرض الأقسام</h3>
+<button id="addDepartmentBtn" class="text-primary font-label-md text-label-md flex items-center gap-1 hover:underline disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+                            إضافة قسم
+                        </button>
+</div>
+<div id="departmentList" class="space-y-4">
+<div class="rounded-xl border border-dashed border-outline-variant bg-surface-bright px-4 py-6 text-sm text-on-surface-variant">اختر كلية من القائمة لعرض الأقسام وإضافة قسم جديد.</div>
+</div>
+<div id="statusMessage" class="mt-4 hidden rounded-xl border border-outline-variant px-3 py-2 text-sm"></div>
+<div class="mt-8 pt-6 border-t border-outline-variant">
+<div class="bg-primary-container p-6 rounded-xl text-on-primary-container relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-headline-md text-headline-md mb-2">إحصائيات الكلية</h4>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="font-caption-sm text-caption-sm opacity-80 uppercase tracking-wide">إجمالي الأقسام</p>
+<p id="selectedCollegeDepartmentCount" class="font-display-lg text-headline-lg font-bold">0</p>
+</div>
+<div>
+<p class="font-caption-sm text-caption-sm opacity-80 uppercase tracking-wide">الحالة</p>
+<p id="selectedCollegeStatus" class="font-display-lg text-headline-lg font-bold">-</p>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined absolute -bottom-6 -left-6 text-[120px] opacity-10 rotate-12">account_balance</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-bright border border-outline-variant rounded-xl p-6">
+<h3 class="font-label-md text-label-md text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">info</span>
+                        ملاحظة إدارية
+                    </h3>
+<p class="font-caption-sm text-caption-sm text-on-surface-variant leading-relaxed">
+                        يُرجى التأكد من نقل جميع الطلاب والأرشيف الرقمي قبل حذف أي قسم أو كلية من النظام. التغييرات في الحالة "نشطة/غير نشطة" تؤثر فوراً على بوابة تسجيل الطلاب.
+                    </p>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-primary text-on-primary">
+<div class="flex flex-col gap-2">
+<span class="font-headline-md text-headline-md text-on-primary">Bayan University</span>
+<p class="font-caption-sm text-caption-sm text-on-primary-container">© 2024 Bayan University. All Rights Reserved. Digital Records Division.</p>
+</div>
+<div class="flex gap-6">
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">Contact Support</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">University Home</a>
+</div>
+</footer>
+<script>
+window.addEventListener('DOMContentLoaded', async function() {
+    const session = localStorage.getItem('adminSession');
+    if (!session) {
+        window.location.href = 'admincp.html';
+        return;
+    }
+
+    try {
+        const parsed = JSON.parse(session);
+        if (parsed.role !== 'admin') {
+            window.location.href = 'admincp.html';
+            return;
+        }
+    } catch (error) {
+        localStorage.removeItem('adminSession');
+        window.location.href = 'admincp.html';
+        return;
+    }
+
+    const logoutBtn = document.getElementById('logoutBtn');
+    const sidebarLogoutBtn = document.getElementById('sidebarLogoutBtn');
+
+    function handleLogout(event) {
+        if (event) event.preventDefault();
+        localStorage.removeItem('adminSession');
+        window.location.href = 'admincp.html';
+    }
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', handleLogout);
+    }
+    if (sidebarLogoutBtn) {
+        sidebarLogoutBtn.addEventListener('click', handleLogout);
+    }
+
+    const collegeTableBody = document.getElementById('collegeTableBody');
+    const departmentList = document.getElementById('departmentList');
+    const departmentPanelTitle = document.getElementById('departmentPanelTitle');
+    const addDepartmentBtn = document.getElementById('addDepartmentBtn');
+    const addCollegeBtn = document.getElementById('addCollegeBtn');
+    const statusMessage = document.getElementById('statusMessage');
+    const selectedCollegeDepartmentCount = document.getElementById('selectedCollegeDepartmentCount');
+    const selectedCollegeStatus = document.getElementById('selectedCollegeStatus');
+
+    let colleges = [];
+    let departments = [];
+    let selectedCollegeId = null;
+
+    function showStatus(message, type = 'info') {
+        statusMessage.textContent = message;
+        statusMessage.className = 'mt-4 rounded-xl border px-3 py-2 text-sm';
+
+        if (type === 'error') {
+            statusMessage.classList.add('border-error/20', 'bg-error-container', 'text-error');
+        } else if (type === 'success') {
+            statusMessage.classList.add('border-green-200', 'bg-green-50', 'text-green-700');
+        } else {
+            statusMessage.classList.add('border-outline-variant', 'bg-surface-container-low', 'text-on-surface-variant');
+        }
+
+        statusMessage.classList.remove('hidden');
+    }
+
+    function renderCollegeTable() {
+        if (!colleges.length) {
+            collegeTableBody.innerHTML = `
+                <tr>
+                    <td colspan="3" class="px-6 py-8 text-center text-sm text-on-surface-variant">لا توجد كليات مسجلة حالياً.</td>
+                </tr>
+            `;
+            selectedCollegeId = null;
+            departmentPanelTitle.textContent = 'اختر كلية لعرض الأقسام';
+            addDepartmentBtn.disabled = true;
+            selectedCollegeDepartmentCount.textContent = '0';
+            selectedCollegeStatus.textContent = '-';
+            departmentList.innerHTML = '<div class="rounded-xl border border-dashed border-outline-variant bg-surface-bright px-4 py-6 text-sm text-on-surface-variant">لم يتم إضافة كليات بعد. ابدأ بإضافة كلية جديدة.</div>';
+            return;
+        }
+
+        collegeTableBody.innerHTML = colleges.map(college => {
+            const collegeDepartments = departments.filter(item => Number(item.college_id) === Number(college.id));
+            const isSelected = Number(college.id) === Number(selectedCollegeId);
+            return `
+                <tr class="${isSelected ? 'bg-primary-fixed/10' : 'hover:bg-surface-container-high'} transition-colors cursor-pointer" data-college-id="${college.id}">
+                    <td class="px-6 py-5 font-body-md text-body-md ${isSelected ? 'text-primary font-semibold' : 'text-primary'}">${college.name}</td>
+                    <td class="px-6 py-5 font-body-md text-body-md">${collegeDepartments.length} أقسام</td>
+                    <td class="px-6 py-5">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">نشطة</span>
+                    </td>
+                </tr>
+            `;
+        }).join('');
+
+        if (!selectedCollegeId) {
+            selectedCollegeId = colleges[0].id;
+        }
+
+        renderDepartments();
+    }
+
+    function renderDepartments() {
+        const selectedCollege = colleges.find(college => Number(college.id) === Number(selectedCollegeId));
+        if (!selectedCollege) {
+            departmentPanelTitle.textContent = 'اختر كلية لعرض الأقسام';
+            addDepartmentBtn.disabled = true;
+            selectedCollegeDepartmentCount.textContent = '0';
+            selectedCollegeStatus.textContent = '-';
+            departmentList.innerHTML = '<div class="rounded-xl border border-dashed border-outline-variant bg-surface-bright px-4 py-6 text-sm text-on-surface-variant">اختر كلية من القائمة لعرض الأقسام وإضافة قسم جديد.</div>';
+            return;
+        }
+
+        departmentPanelTitle.textContent = `الأقسام: ${selectedCollege.name}`;
+        addDepartmentBtn.disabled = false;
+
+        const collegeDepartments = departments.filter(item => Number(item.college_id) === Number(selectedCollege.id));
+        selectedCollegeDepartmentCount.textContent = String(collegeDepartments.length);
+        selectedCollegeStatus.textContent = 'نشطة';
+
+        if (!collegeDepartments.length) {
+            departmentList.innerHTML = `<div class="rounded-xl border border-dashed border-outline-variant bg-surface-bright px-4 py-6 text-sm text-on-surface-variant">لم يتم إضافة أقسام بعد لهذه الكلية. اضغط على "إضافة قسم".</div>`;
+            return;
+        }
+
+        departmentList.innerHTML = collegeDepartments.map(item => `
+            <div class="flex items-center justify-between p-4 bg-surface-bright border border-outline-variant rounded-xl group hover:border-primary transition-colors">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined">school</span>
+                    </div>
+                    <div>
+                        <p class="font-body-md text-body-md font-bold text-primary">${item.name}</p>
+                        <p class="font-caption-sm text-caption-sm text-on-surface-variant">قسم معتمد ضمن ${selectedCollege.name}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 opacity-90">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">نشط</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    async function loadData() {
+        try {
+            const [collegesRes, departmentsRes] = await Promise.all([
+                fetch('/admin/colleges'),
+                fetch('/admin/departments')
+            ]);
+
+            if (!collegesRes.ok) throw new Error('تعذر جلب الكليات');
+            if (!departmentsRes.ok) throw new Error('تعذر جلب الأقسام');
+
+            const collegeData = await collegesRes.json();
+            const departmentData = await departmentsRes.json();
+
+            colleges = Array.isArray(collegeData.colleges) ? collegeData.colleges : [];
+            departments = Array.isArray(departmentData.departments) ? departmentData.departments : [];
+        } catch (error) {
+            console.error(error);
+            showStatus(error.message || 'حدث خطأ أثناء تحميل البيانات.', 'error');
+        }
+
+        renderCollegeTable();
+    }
+
+    addCollegeBtn.addEventListener('click', async function() {
+        const collegeName = window.prompt('أدخل اسم الكلية الجديدة:', '');
+        if (!collegeName) return;
+
+        try {
+            const response = await fetch('/admin/colleges', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: collegeName.trim() })
+            });
+
+            const payload = await response.json();
+            if (!response.ok) {
+                showStatus(payload.message || 'فشل في إضافة الكلية.', 'error');
+                return;
+            }
+
+            showStatus('تمت إضافة الكلية بنجاح.', 'success');
+            selectedCollegeId = payload.collegeId;
+            await loadData();
+        } catch (error) {
+            showStatus('حدث خطأ أثناء حفظ الكلية.', 'error');
+        }
+    });
+
+    addDepartmentBtn.addEventListener('click', async function() {
+        if (!selectedCollegeId) {
+            showStatus('يرجى اختيار كلية أولاً.', 'error');
+            return;
+        }
+
+        const departmentName = window.prompt('أدخل اسم القسم الجديد:', '');
+        if (!departmentName) return;
+
+        try {
+            const response = await fetch('/admin/departments', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: departmentName.trim(),
+                    college_id: selectedCollegeId
+                })
+            });
+
+            const payload = await response.json();
+            if (!response.ok) {
+                showStatus(payload.message || 'فشل في إضافة القسم.', 'error');
+                return;
+            }
+
+            showStatus('تمت إضافة القسم بنجاح.', 'success');
+            await loadData();
+        } catch (error) {
+            showStatus('حدث خطأ أثناء حفظ القسم.', 'error');
+        }
+    });
+
+    collegeTableBody.addEventListener('click', function(event) {
+        const row = event.target.closest('[data-college-id]');
+        if (!row) return;
+        selectedCollegeId = Number(row.dataset.collegeId);
+        renderCollegeTable();
+    });
+
+    await loadData();
+});
+</script>
+</body></html>

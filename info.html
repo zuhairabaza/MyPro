@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>جامعة البيان - طلب وثيقة</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#edeeef",
+                        "tertiary": "#321b00",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#001b3c",
+                        "surface-tint": "#455f88",
+                        "secondary-fixed-dim": "#f7bd48",
+                        "secondary": "#7b5800",
+                        "on-secondary-container": "#715000",
+                        "background": "#f8f9fa",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-fixed": "#d6e3ff",
+                        "primary-container": "#1a365d",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-fixed": "#ffdea6",
+                        "tertiary-fixed": "#ffddba",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f0f1f2",
+                        "outline-variant": "#c4c6cf",
+                        "outline": "#74777f",
+                        "surface-container-high": "#e7e8e9",
+                        "on-tertiary-fixed-variant": "#633f0f",
+                        "on-background": "#191c1d",
+                        "on-tertiary-container": "#c6955e",
+                        "surface": "#f8f9fa",
+                        "tertiary-container": "#4f2e00",
+                        "on-surface-variant": "#43474e",
+                        "on-secondary-fixed-variant": "#5d4200",
+                        "on-secondary-fixed": "#271900",
+                        "secondary-container": "#fdc34d",
+                        "surface-variant": "#e1e3e4",
+                        "primary-fixed-dim": "#adc7f7",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "surface-dim": "#d9dadb",
+                        "primary": "#002045",
+                        "inverse-primary": "#adc7f7",
+                        "on-tertiary-fixed": "#2b1700",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#191c1d",
+                        "surface-container-highest": "#e1e3e4",
+                        "tertiary-fixed-dim": "#f2bc82",
+                        "on-primary-container": "#86a0cd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "48px",
+                        "container-max": "1440px",
+                        "unit": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "caption-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "caption-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface" dir="rtl">
+<!-- Top Navigation Bar (shared) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface border-b border-outline-variant">
+    <div class="flex items-center gap-8">
+        <a href="index.html" class="text-headline-md font-headline-md font-bold text-primary">Bayan University</a>
+        <nav class="hidden md:flex items-center gap-6">
+            <a class="text-primary border-b-2 border-primary pb-1 font-bold font-label-md text-label-md" href="index.html">Dashboard</a>
+            <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors" href="reqstat.html">My Requests</a>
+        </nav>
+        <!-- Mobile nav toggle -->
+        <button id="mobileNavToggle" class="md:hidden p-2 rounded-lg bg-surface/90 text-slate-700">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+        <!-- Mobile nav menu -->
+        <nav id="mobileNav" class="hidden md:hidden absolute top-16 right-4 left-4 bg-surface rounded-lg p-4 shadow-lg z-50 space-y-2">
+            <a class="block text-slate-700 font-label-md" href="index.html">Dashboard</a>
+            <a class="block text-slate-700 font-label-md" href="reqstat.html">My Requests</a>
+        </nav>
+    </div>
+    <div class="flex items-center gap-4">
+        <div class="hidden md:flex items-center bg-surface-container-high px-4 py-1.5 rounded-full gap-2 border border-outline-variant">
+            <span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+            <input id="docSearchInput" class="bg-transparent border-none focus:ring-0 text-body-md placeholder:text-on-surface-variant w-48" placeholder="بحث عن وثيقة..." type="text"/>
+        </div>
+        <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+        <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">help</button>
+        <button id="headerNewRequestBtn" class="bg-primary text-on-primary px-6 py-2 rounded-xl font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">New Request</button>
+    </div>
+</header>
+<main class="pt-24 pb-12 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col lg:flex-row gap-gutter">
+<!-- SideNavBar Placeholder for context (Suppressed for focused task, but following layout logic for desktop view) -->
+<aside class="hidden lg:flex flex-col w-80 shrink-0 gap-6">
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl">
+<div class="flex items-center gap-4 mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">account_balance</span>
+<div>
+<h2 class="font-headline-md text-label-md text-primary font-bold">بوابة الأكاديمية</h2>
+<script src="libs/responsive-nav.js"></script>
+<p class="text-caption-sm font-caption-sm text-on-surface-variant">قسم السجلات الرقمية</p>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-4 text-on-surface-variant px-4 py-3 font-label-md text-label-md"><span class="material-symbols-outlined">dashboard</span> نظرة عامة</div>
+<div class="flex items-center gap-4 bg-primary-container text-on-primary-container rounded-xl px-4 py-3 font-label-md text-label-md"><span class="material-symbols-outlined">description</span> طلب جديد</div>
+<div class="flex items-center gap-4 text-on-surface-variant px-4 py-3 font-label-md text-label-md"><span class="material-symbols-outlined">history</span> سجل الطلبات</div>
+</div>
+</div>
+</aside>
+<!-- Main Form Canvas -->
+<section class="flex-1">
+<!-- Stepper -->
+<div class="mb-10">
+<div class="flex items-center justify-between w-full max-w-3xl mx-auto">
+<!-- Step 1: Complete -->
+<div class="flex flex-col items-center gap-2 flex-1">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-secondary-fixed">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<span class="font-label-md text-caption-sm text-primary font-bold">اختيار الوثيقة</span>
+</div>
+<div class="h-[2px] bg-primary flex-1 -mt-6"></div>
+<!-- Step 2: Active -->
+<div class="flex flex-col items-center gap-2 flex-1">
+<div class="w-10 h-10 rounded-full border-2 border-secondary bg-surface-container-lowest flex items-center justify-center text-primary font-bold">
+                                2
+                            </div>
+<span class="font-label-md text-caption-sm text-primary font-bold">البيانات الشخصية</span>
+</div>
+<div class="h-[2px] bg-outline-variant flex-1 -mt-6"></div>
+<!-- Step 3: Pending -->
+<div class="flex flex-col items-center gap-2 flex-1">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-outline font-bold">
+                                3
+                            </div>
+<span class="font-label-md text-caption-sm text-on-surface-variant">التحقق</span>
+</div>
+<div class="h-[2px] bg-outline-variant flex-1 -mt-6"></div>
+<!-- Step 4: Pending -->
+<div class="flex flex-col items-center gap-2 flex-1">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-outline font-bold">
+                                4
+                            </div>
+<span class="font-label-md text-caption-sm text-on-surface-variant">الدفع والتصدير</span>
+</div>
+</div>
+</div>
+<!-- Form Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<div class="bg-primary-container px-8 py-6">
+<h1 class="font-headline-lg text-headline-md text-on-primary-container">الخطوة 2: البيانات الشخصية</h1>
+<p class="font-body-md text-body-md text-on-primary-container opacity-80">يرجى التأكد من مطابقة جميع التفاصيل الأكاديمية لسجلات الجامعة الرسمية.</p>
+</div>
+<form class="p-8 space-y-8">
+<!-- Arabic Name (Quadruplet) -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Full Name in Arabic (Quadruplet) / الاسم الكامل باللغة العربية (الرباعي)</label>
+<input id="arabic_name" class="w-full h-12 px-4 border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" dir="rtl" placeholder="أدخل اسمك الكامل الرباعي هنا" type="text" required/>
+</div>
+<!-- English Name -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">الاسم الكامل باللغة الإنجليزية</label>
+<input id="english_name" class="w-full h-12 px-4 border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" placeholder="أدخل اسمك الكامل كما يظهر في جواز السفر" type="text" required/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Nationality -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">الجنسية</label>
+<select id="nationality" class="w-full h-12 px-4 border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md appearance-none bg-surface" required>
+<option disabled="" value="">اختر الجنسية</option>
+<option value="sudanese" selected="">سوداني</option>
+<option value="egyptian">مصري</option>
+<option value="syrian">سوري</option>
+<option value="iraqi">عراقي</option>
+<option value="jordanian">أردني</option>
+<option value="lebanese">لبناني</option>
+<option value="other">أخرى</option>
+</select>
+</div>
+<!-- University ID -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">الرقم الجامعي</label>
+<input id="university_id" class="w-full h-12 px-4 border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" placeholder="مثلاً: 2024-XXXXX" type="text"/>
+</div>
+<!-- Phone (optional) -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">رقم الهاتف (للاتصال)</label>
+<input id="phone" class="w-full h-12 px-4 border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" placeholder="مثلاً: +249912345678" type="tel" required/>
+</div>
+</div>
+<!-- Graduation Year -->
+<div class="max-w-xs">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">سنة التخرج</label>
+<input id="graduation_year" class="w-full h-12 px-4 border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" type="number" inputmode="numeric" min="1900" max="2100" step="1" placeholder="أدخل سنة التخرج" required/>
+</div>
+<!-- Info Alert -->
+<div class="flex gap-4 p-4 bg-surface-container-high rounded-lg border-secondary border-r-4">
+<span class="material-symbols-outlined text-secondary">info</span>
+<p class="text-caption-sm font-caption-sm text-on-surface-variant">ملاحظة: إذا كان اسمك باللغة الإنجليزية يختلف عن سجل التسجيل الخاص بك، فقد يطلب منك تحميل نسخة من جواز سفرك في خطوة التحقق التالية.</p>
+</div>
+<!-- Form Actions -->
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+<button class="flex items-center gap-2 px-6 py-3 border border-primary text-primary rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors active:opacity-80" type="button">الخطوة السابقة <span class="material-symbols-outlined">arrow_forward</span></button>
+<button id="nextStep2" class="flex items-center gap-2 px-10 py-3 bg-secondary text-white rounded-lg font-label-md text-label-md hover:brightness-110 transition-all active:scale-95 shadow-sm" type="submit"><span class="material-symbols-outlined">arrow_back</span> الخطوة التالية</button>
+</div>
+</form>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-primary border-t border-primary-container">
+<div class="flex flex-col gap-2">
+<span class="font-headline-md text-headline-md text-on-primary">جامعة البيان</span>
+<p class="font-caption-sm text-caption-sm text-on-primary-container">© 2024 جامعة البيان. جميع الحقوق محفوظة. قسم السجلات الرقمية.</p>
+</div>
+<div class="flex gap-6">
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">سياسة الخصوصية</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">شروط الخدمة</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">الاتصال بالدعم</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">الرئيسية</a>
+</div>
+</footer>
+<script>
+document.getElementById('nextStep2').addEventListener('click', function(e) {
+    e.preventDefault();
+    const arabic_name = document.getElementById('arabic_name').value;
+    const english_name = document.getElementById('english_name').value;
+    const nationality = document.getElementById('nationality').value;
+    const university_id = document.getElementById('university_id').value;
+    const phone = document.getElementById('phone') ? document.getElementById('phone').value : '';
+    const graduation_year = document.getElementById('graduation_year').value;
+
+    if (!arabic_name || !english_name || !nationality || !phone) {
+        alert('يرجى ملء جميع الحقول المطلوبة.');
+        return;
+    }
+
+    const data = {
+        arabic_name,
+        english_name,
+        nationality,
+        university_id,
+        phone,
+        graduation_year
+    };
+
+    localStorage.setItem('personalData', JSON.stringify(data));
+    window.location.href = 'attch.html';
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    const input = document.getElementById('docSearchInput');
+    if(input){
+        input.addEventListener('keydown', async function(e){
+            if(e.key === 'Enter'){
+                const q = input.value.trim();
+                if(!q) return;
+                try{
+                    const res = await fetch('http://lo !graduation_yearcalhost:3000/track-request?reqrev=' + encodeURIComponent(q));
+                    if(res.ok){
+                        const data = await res.json();
+                        if(data && data.success){ window.location.href = 'reqstat.html?request=' + encodeURIComponent(q); }
+                        else alert(data.message || 'لم يتم العثور على الطلب.');
+                    } else if(res.status === 404){ const data = await res.json().catch(()=>({})); alert(data.message || 'لم يتم العثور على الطلب.'); }
+                    else { const data = await res.json().catch(()=>({})); alert(data.message || 'حدث خطأ أثناء البحث.'); }
+                }catch(err){ console.error(err); alert('فشل الاتصال بالخادم. تأكد أن الخادم يعمل على http://localhost:3000'); }
+            }
+        });
+    }
+    const headerNew = document.getElementById('headerNewRequestBtn');
+    if(headerNew) headerNew.addEventListener('click', function(){ window.location.href = 'req1.html'; });
+});
+</script>
+</body></html>

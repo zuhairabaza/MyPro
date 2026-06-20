@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e1e3e4",
+                    "on-tertiary-fixed": "#2b1700",
+                    "secondary": "#7b5800",
+                    "surface-container-low": "#f3f4f5",
+                    "tertiary": "#321b00",
+                    "primary-fixed": "#d6e3ff",
+                    "on-background": "#191c1d",
+                    "surface-variant": "#e1e3e4",
+                    "surface-bright": "#f8f9fa",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#ffdea6",
+                    "background": "#f8f9fa",
+                    "on-surface-variant": "#43474e",
+                    "on-primary-container": "#86a0cd",
+                    "surface-dim": "#d9dadb",
+                    "outline-variant": "#c4c6cf",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#001b3c",
+                    "on-tertiary-container": "#c6955e",
+                    "inverse-surface": "#2e3132",
+                    "on-secondary-fixed": "#271900",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#f2bc82",
+                    "tertiary-fixed": "#ffddba",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#633f0f",
+                    "on-primary-fixed-variant": "#2d476f",
+                    "outline": "#74777f",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#fdc34d",
+                    "tertiary-container": "#4f2e00",
+                    "surface-tint": "#455f88",
+                    "on-secondary-fixed-variant": "#5d4200",
+                    "inverse-primary": "#adc7f7",
+                    "on-error": "#ffffff",
+                    "surface-container": "#edeeef",
+                    "secondary-fixed-dim": "#f7bd48",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#adc7f7",
+                    "primary": "#002045",
+                    "surface": "#f8f9fa",
+                    "surface-container-high": "#e7e8e9",
+                    "primary-container": "#1a365d",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-surface": "#191c1d",
+                    "on-secondary-container": "#715000",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "48px",
+                    "gutter": "24px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "caption-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "caption-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { border-color: #7b5800; color: #7b5800; }
+        .step-complete { background-color: #002045; color: white; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md">
+<!-- Top Navigation Bar (shared) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline">
+    <div class="flex items-center gap-8">
+        <a href="index.html" class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Bayan University</a>
+    <script src="libs/responsive-nav.js"></script>
+        <nav class="hidden md:flex items-center gap-6">
+            <a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-bold font-label-md text-label-md" href="index.html">Dashboard</a>
+            <a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md" href="reqstat.html">My Requests</a>
+        </nav>
+        <!-- Mobile nav toggle -->
+        <button id="mobileNavToggle" class="md:hidden p-2 rounded-lg bg-surface/90 text-slate-700">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+        <!-- Mobile nav menu -->
+        <nav id="mobileNav" class="hidden md:hidden absolute top-16 right-4 left-4 bg-surface rounded-lg p-4 shadow-lg z-50 space-y-2">
+            <a class="block text-slate-700 font-label-md" href="index.html">Dashboard</a>
+            <a class="block text-slate-700 font-label-md" href="reqstat.html">My Requests</a>
+        </nav>
+    </div>
+    <div class="flex items-center gap-4">
+        <div class="hidden md:flex items-center bg-surface-container-high px-4 py-1.5 rounded-full gap-2 border border-outline-variant">
+            <span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+            <input id="docSearchInput" class="bg-transparent border-none focus:ring-0 text-body-md placeholder:text-on-surface-variant w-48" placeholder="بحث عن وثيقة..." type="text"/>
+        </div>
+        <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+        <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">help</button>
+        <button id="headerNewRequestBtn" class="bg-primary text-on-primary px-6 py-2 rounded-xl font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">New Request</button>
+    </div>
+</header>
+<main class="pt-24 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Progress Stepper -->
+<section class="mb-12">
+<div class="flex items-center justify-between max-w-4xl mx-auto">
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full border-2 flex items-center justify-center step-active bg-surface-container-lowest"><span class="font-bold">4</span></div>
+<span class="font-label-md text-label-md text-secondary font-bold">المراجعة</span>
+</div>
+<div class="flex-1 h-0.5 bg-outline-variant mx-4"></div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full flex items-center justify-center step-complete"><span class="material-symbols-outlined text-white" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check</span></div>
+<span class="font-label-md text-label-md text-on-surface">المرفقات</span>
+</div>
+<div class="flex-1 h-0.5 bg-primary mx-4"></div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full flex items-center justify-center step-complete"><span class="material-symbols-outlined text-white" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check</span></div>
+<span class="font-label-md text-label-md text-on-surface">المعلومات الشخصية</span>
+</div>
+<div class="flex-1 h-0.5 bg-primary mx-4"></div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full flex items-center justify-center step-complete"><span class="material-symbols-outlined text-white" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check</span></div>
+<span class="font-label-md text-label-md text-on-surface">المعلومات الأكاديمية</span>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Review Content -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<div class="flex flex-col gap-2">
+<h1 class="font-headline-lg text-headline-lg text-primary">مراجعة وإرسال الطلب</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">يرجى مراجعة كافة المعلومات بعناية قبل الإرسال النهائي إلى قسم السجلات الرقمية.</p>
+</div>
+<!-- Section 1: Academic & Personal Summary -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="px-6 py-4 bg-surface-container-low border-b border-outline-variant flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-primary flex items-center gap-2"><span class="material-symbols-outlined">person</span> ملخص المعلومات الشخصية والأكاديمية</h2>
+<button class="text-primary font-label-md text-label-md hover:underline">تعديل</button>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8">
+<div>
+<span class="font-caption-sm text-caption-sm text-on-surface-variant block mb-1">الاسم الكامل (بالإنجليزية)</span>
+<span id="reviewEnglishName" class="font-body-md text-body-md font-medium">---</span>
+</div>
+<div>
+<span class="font-caption-sm text-caption-sm text-on-surface-variant block mb-1">الاسم الكامل (بالعربية)</span>
+<span id="reviewArabicName" class="font-body-md text-body-md font-medium">---</span>
+</div>
+<div>
+<span class="font-caption-sm text-caption-sm text-on-surface-variant block mb-1">الجنسية</span>
+<span id="reviewNationality" class="font-body-md text-body-md font-medium">---</span>
+</div>
+<div>
+<span class="font-caption-sm text-caption-sm text-on-surface-variant block mb-1">الرقم الجامعي</span>
+<span id="reviewUniversityId" class="font-body-md text-body-md font-medium">---</span>
+</div>
+<div>
+<span class="font-caption-sm text-caption-sm text-on-surface-variant block mb-1">رقم الهاتف</span>
+<span id="reviewPhone" class="font-body-md text-body-md font-medium">---</span>
+</div>
+<div>
+<span class="font-caption-sm text-caption-sm text-on-surface-variant block mb-1">سنة التخرج</span>
+<span id="reviewGraduationYear" class="font-body-md text-body-md font-medium">---</span>
+</div>
+<div>
+<span class="font-caption-sm text-caption-sm text-on-surface-variant block mb-1">الكلية</span>
+<span id="reviewFaculty" class="font-body-md text-body-md font-medium">---</span>
+</div>
+<div>
+<span class="font-caption-sm text-caption-sm text-on-surface-variant block mb-1">القسم</span>
+<span id="reviewDepartment" class="font-body-md text-body-md font-medium">---</span>
+</div>
+<div>
+<span class="font-caption-sm text-caption-sm text-on-surface-variant block mb-1">نوع الوثيقة</span>
+<span id="reviewDocType" class="font-body-md text-body-md font-medium">---</span>
+</div>
+<div>
+<span class="font-caption-sm text-caption-sm text-on-surface-variant block mb-1">لغة الوثيقة</span>
+<span id="reviewLanguage" class="font-body-md text-body-md font-medium">---</span>
+</div>
+<div>
+<span class="font-caption-sm text-caption-sm text-on-surface-variant block mb-1">عدد النسخ</span>
+<span id="reviewCopies" class="font-body-md text-body-md font-medium">---</span>
+</div>
+</div>
+</div>
+<!-- Section 3: Attachments Preview -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="px-6 py-4 bg-surface-container-low border-b border-outline-variant flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">attach_file</span> معاينة المرفقات
+                        </h2>
+<button id="manageAttachmentsBtn" class="text-primary font-label-md text-label-md hover:underline">إدارة</button>
+</div>
+<div class="p-6 flex flex-wrap gap-6">
+<input type="file" id="reviewIdentityInput" accept=".pdf,.jpg,.jpeg,.png" style="display: none;">
+<input type="file" id="reviewPhotoInput" accept=".jpg,.jpeg,.png" style="display: none;">
+<input type="file" id="reviewBillInput" accept=".pdf,.jpg,.jpeg,.png" style="display: none;">
+<div class="w-full mb-4 text-on-surface-variant font-caption-sm">إذا كنت قد اخترت الملفات مسبقًا في صفحة المرفقات، لا حاجة لإرفاقها مرة أخرى. يمكنك فقط تغيير الملف هنا إذا أردت.</div>
+<div class="w-full md:w-1/2 flex flex-col gap-4">
+<div class="bg-surface-container border border-outline-variant rounded-xl p-4">
+<div class="flex items-center justify-between gap-4">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2">إثبات الهوية</h3>
+<p class="font-caption-sm text-caption-sm text-on-surface-variant">يمكنك رفع ملف PDF أو صورة واضحة من بطاقة الهوية أو جواز السفر.</p>
+</div>
+<!-- Attachments Modal -->
+<div id="attachmentsModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;z-index:60;padding:20px">
+    <div style="background:#fff;border-radius:8px;max-width:1100px;width:100%;max-height:90vh;overflow:auto;padding:18px;position:relative">
+        <button id="attachmentsModalClose" style="position:absolute;top:10px;left:10px;background:transparent;border:none;font-size:18px">إغلاق ✖</button>
+        <h3 style="margin-top:0">معاينة المرفقات</h3>
+        <div id="attachmentsModalLoader" style="display:none">تحميل...</div>
+        <div style="display:flex;gap:12px;flex-direction:column">
+            <div>
+                <h4>الصورة الشخصية</h4>
+                <div id="modalPhotoPreview">لا يوجد ملف</div>
+            </div>
+            <div>
+                <h4>إثبات الهوية</h4>
+                <div id="modalIdentityPreview">لا يوجد ملف</div>
+            </div>
+            <div>
+                <h4>إشعار الدفع</h4>
+                <div id="modalBillPreview">لا يوجد ملف</div>
+            </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+            <button id="attachmentsPrintBtn" class="px-4 py-2 bg-primary text-white rounded">طباعة المرفقات</button>
+        </div>
+    </div>
+</div>
+<button type="button" id="chooseIdentity" class="px-4 py-2 bg-secondary text-white rounded-lg">اختر ملف الهوية</button>
+</div>
+<div id="reviewIdentityName" class="font-body-md text-body-md font-medium text-on-surface-variant mt-3">لم يتم اختيار ملف بعد</div>
+</div>
+</div>
+<div class="w-full md:w-1/2 flex flex-col gap-4">
+<div class="bg-surface-container border border-outline-variant rounded-xl p-4">
+<div class="flex items-center justify-between gap-4">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2">إشعار الدفع</h3>
+<p class="font-caption-sm text-caption-sm text-on-surface-variant">رفع صورة أو نسخة من إشعار الدفع.</p>
+</div>
+<button type="button" id="chooseBill" class="px-4 py-2 bg-secondary text-white rounded-lg">اختر إشعار الدفع</button>
+</div>
+<div id="reviewBillName" class="font-body-md text-body-md font-medium text-on-surface-variant mt-3">لم يتم اختيار ملف بعد</div>
+</div>
+</div>
+<div class="w-full md:w-1/2 flex flex-col gap-4">
+<div class="bg-surface-container border border-outline-variant rounded-xl p-4">
+<div class="flex items-center justify-between gap-4">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2">الصورة الشخصية</h3>
+<p class="font-caption-sm text-caption-sm text-on-surface-variant">رفع صورة شخصية حديثة بخلفية بيضاء.</p>
+</div>
+<button type="button" id="choosePhoto" class="px-4 py-2 bg-secondary text-white rounded-lg">اختر الصورة</button>
+</div>
+<div id="reviewPhotoName" class="font-body-md text-body-md font-medium text-on-surface-variant mt-3">لم يتم اختيار ملف بعد</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Declaration -->
+<div class="p-4 bg-surface-container-high rounded-xl border-l-4 border-secondary">
+<label class="flex items-start gap-3 cursor-pointer">
+<input class="mt-1 w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">أصادق على أن جميع المعلومات الواردة في هذا الطلب دقيقة وكاملة. أدرك أن تقديم معلومات غير صحيحة قد يؤدي إلى إلغاء هذا الطلب واتخاذ إجراءات تأديبية أكاديمية من قبل جامعة البيان.</span>
+</label>
+</div>
+<!-- Navigation Actions -->
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 mt-4">
+<button id="backToAttachments" class="w-full md:w-auto px-8 py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">arrow_forward</span> الخطوة السابقة
+                    </button>
+<button id="submitReview" class="w-full md:w-auto px-10 py-3 bg-secondary text-white font-bold rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-lg">
+<span class="material-symbols-outlined">check_circle</span> تأكيد وإرسال الطلب
+                    </button>
+</div>
+</div>
+<!-- Side Summary Sidebar -->
+<aside class="lg:col-span-4 flex flex-col gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<div class="px-6 py-4 bg-primary-container border-b border-outline-variant">
+<h3 class="font-headline-md text-headline-md text-on-primary-container">جدول الأسعار</h3>
+<p class="font-caption-sm text-caption-sm text-on-primary-container/80 mt-1">لا توجد رسوم دفع في هذه المرحلة، إليك أسعار الوثائق المتاحة.</p>
+</div>
+<div class="p-6 space-y-4">
+<div class="rounded-xl border border-outline-variant bg-surface-container-low p-4">
+<div class="flex justify-between items-start gap-4">
+<div>
+<p class="font-label-md text-label-md font-bold text-primary">شهادة التخرج</p>
+<p class="font-caption-sm text-caption-sm text-on-surface-variant mt-1">وثيقة التخرج الرسمية للطالب.</p>
+</div>
+<span class="font-headline-md text-headline-md text-secondary">120,000 ج.س</span>
+</div>
+</div>
+<div class="rounded-xl border border-outline-variant bg-surface-container-low p-4">
+<div class="flex justify-between items-start gap-4">
+<div>
+<p class="font-label-md text-label-md font-bold text-primary">شهادة تفاصيل التخرج</p>
+<p class="font-caption-sm text-caption-sm text-on-surface-variant mt-1">تفاصيل الدرجات والشروط الأكاديمية.</p>
+</div>
+<span class="font-headline-md text-headline-md text-secondary">200,000 ج.س </span>
+</div>
+</div>
+<div class="rounded-xl border border-outline-variant bg-surface-container-low p-4">
+<div class="flex justify-between items-start gap-4">
+<div>
+<p class="font-label-md text-label-md font-bold text-primary">الوثائق الجامعية الأخرى</p>
+<p class="font-caption-sm text-caption-sm text-on-surface-variant mt-1">إفادة تخرج
+<span class="font-headline-md text-headline-md text-secondary">20,000 ج.س</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant">
+<h3 class="font-label-md text-label-md text-primary font-bold mb-4 uppercase tracking-widest">الخطوات التالية</h3>
+<ul class="flex flex-col gap-4">
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-secondary">history_edu</span>
+<div>
+<p class="font-label-md text-label-md font-bold">المراجعة الأكاديمية</p>
+<p class="font-caption-sm text-caption-sm text-on-surface-variant">سيقوم مكتب المسجل بالتحقق من سجلاتك الأكاديمية.</p>
+</div>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-secondary">verified</span>
+<div>
+<p class="font-label-md text-label-md font-bold">الأرشفة الرقمية</p>
+<p class="font-caption-sm text-caption-sm text-on-surface-variant">بمجرد الموافقة، سيتم توقيع مستندك رقمياً.</p>
+</div>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-secondary">schedule</span>
+<div>
+<p class="font-label-md text-label-md font-bold">مراجعة نهائية</p>
+<p class="font-caption-sm text-caption-sm text-on-surface-variant">سيتم إعلامك عند اكتمال الطلب واستلام الوثيقة.</p>
+</div>
+</li>
+</ul>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-primary dark:bg-on-background border-t border-primary-container text-on-primary">
+<div class="flex flex-col gap-2">
+<span class="font-headline-md text-headline-md text-on-primary">جامعة البيان</span>
+<p class="font-caption-sm text-caption-sm opacity-80">© 2024 جامعة البيان. جميع الحقوق محفوظة. قسم السجلات الرقمية.</p>
+</div>
+<nav class="flex flex-wrap justify-center gap-6">
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">سياسة الخصوصية</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">شروط الخدمة</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">دعم العملاء</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">الرئيسية للجامعة</a>
+</nav>
+</footer>
+<script>
+function formatDocType(code) {
+    
+      
+            return code || '---';
+   
+}
+function normalizeDocTypeCode(code) {
+    
+            return code || 'graduation';
+
+}
+function formatLanguage(code) {
+    switch (code) {
+        case 'arabic': return 'العربية';
+        case 'english': return 'الإنجليزية';
+        case 'both': return 'العربية والإنجليزية';
+        default: return code || '---';
+    }
+}
+function setText(id, text) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text || '---';
+}
+function updateAttachmentName(id, file) {
+    setText(id, file ? file.name : 'لم يتم اختيار ملف بعد');
+}
+async function loadReviewLookups() {
+    const empty = { colleges: {}, departments: {} };
+    try {
+        const [collegesResponse, departmentsResponse] = await Promise.all([
+            fetch('http://localhost:3000/admin/colleges'),
+            fetch('http://localhost:3000/admin/departments')
+        ]);
+
+        const collegesData = collegesResponse.ok ? await collegesResponse.json() : {};
+        const departmentsData = departmentsResponse.ok ? await departmentsResponse.json() : {};
+
+        const colleges = Array.isArray(collegesData.colleges) ? collegesData.colleges : [];
+        const departments = Array.isArray(departmentsData.departments) ? departmentsData.departments : [];
+
+        return {
+            colleges: colleges.reduce((acc, college) => {
+                acc[String(college.id)] = college.name;
+                return acc;
+            }, {}),
+            departments: departments.reduce((acc, department) => {
+                acc[String(department.id)] = department.name;
+                return acc;
+            }, {})
+        };
+    } catch (error) {
+        console.warn('تعذّر تحميل بيانات الكليات والأقسام لصفحة المراجعة:', error);
+        return empty;
+    }
+}
+window.addEventListener('DOMContentLoaded', async () => {
+    const academicData = JSON.parse(localStorage.getItem('academicData'));
+    const personalData = JSON.parse(localStorage.getItem('personalData'));
+    const attachmentData = JSON.parse(localStorage.getItem('attachmentData') || 'null');
+
+    console.log('=== REVIEW.HTML LOADED ===');
+    console.log('Full academicData from localStorage:', JSON.stringify(academicData, null, 2));
+    console.log('academicData.doc_type:', academicData?.doc_type);
+    console.log('Type:', typeof academicData?.doc_type);
+    console.log('========================');
+
+    if (!academicData || !personalData) {
+        alert('البيانات ناقصة. الرجاء العودة إلى الصفحة السابقة لإكمال الطلب.');
+        window.location.href = 'req1.html';
+        return;
+    }
+
+    // academicData.doc_type now contains the precise subtype selected by the user.
+    const selectedDocSubtype = academicData.doc_type;
+    console.log('review.html DOMContentLoaded: academicData.doc_type =', selectedDocSubtype);
+    const reviewLookups = await loadReviewLookups();
+    const facultyName = reviewLookups.colleges[String(academicData.faculty)] || academicData.faculty || '---';
+    const departmentName = reviewLookups.departments[String(academicData.department)] || academicData.department || '---';
+
+    setText('reviewArabicName', personalData.arabic_name);
+    setText('reviewEnglishName', personalData.english_name);
+    setText('reviewNationality', personalData.nationality);
+    setText('reviewUniversityId', personalData.university_id || '---');
+    setText('reviewPhone', personalData.phone || '---');
+    setText('reviewGraduationYear', personalData.graduation_year || '---');
+    setText('reviewFaculty', facultyName);
+    setText('reviewDepartment', departmentName);
+    setText('reviewDocType', selectedDocSubtype || '---');
+    setText('reviewLanguage', formatLanguage(academicData.language));
+    setText('reviewCopies', academicData.copies || '---');
+
+    if (attachmentData) {
+        setText('reviewIdentityName', attachmentData.identityName || 'لم يتم اختيار ملف بعد');
+        setText('reviewPhotoName', attachmentData.photoName || 'لم يتم اختيار ملف بعد');
+        setText('reviewBillName', attachmentData.billName || 'لم يتم اختيار ملف بعد');
+    }
+
+    document.getElementById('chooseIdentity').addEventListener('click', () => {
+        document.getElementById('reviewIdentityInput').click();
+    });
+    document.getElementById('choosePhoto').addEventListener('click', () => {
+        document.getElementById('reviewPhotoInput').click();
+    });
+    document.getElementById('chooseBill').addEventListener('click', () => {
+        document.getElementById('reviewBillInput').click();
+    });
+
+    document.getElementById('reviewIdentityInput').addEventListener('change', function() {
+        updateAttachmentName('reviewIdentityName', this.files[0]);
+    });
+    document.getElementById('reviewPhotoInput').addEventListener('change', function() {
+        updateAttachmentName('reviewPhotoName', this.files[0]);
+    });
+
+    document.getElementById('reviewBillInput').addEventListener('change', function() {
+        updateAttachmentName('reviewBillName', this.files[0]);
+    });
+
+    // Manage Attachments Modal and Print
+    const manageBtn = document.getElementById('manageAttachmentsBtn');
+    if (manageBtn) manageBtn.addEventListener('click', openAttachmentsModal);
+
+    function getStoredAttachmentData() {
+        try {
+            return JSON.parse(localStorage.getItem('attachmentData') || 'null') || {};
+        } catch (e) { return {}; }
+    }
+
+    async function fileToDataUrl(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    }
+
+    async function resolveAttachmentSource(type) {
+        const input = document.getElementById('review' + capitalize(type) + 'Input');
+        const stored = getStoredAttachmentData();
+        if (input && input.files && input.files[0]) {
+            const f = input.files[0];
+            const dataUrl = await fileToDataUrl(f);
+            return { src: dataUrl, name: f.name, isDataUrl: true, ext: getExt(f.name) };
+        }
+        const serverNames = [
+            (stored && stored[type + 'ServerName']) || null,
+            (stored && stored[type + 'File']) || null,
+            (stored && stored[type + 'Serverfile']) || null,
+            (stored && stored[type + 'Server']) || null,
+            null
+        ];
+        for (const nm of serverNames) {
+            if (nm) return { src: '/uploaded/' + nm, name: nm, isDataUrl: false, ext: getExt(nm) };
+        }
+        const displayEl = document.getElementById('review' + capitalize(type) + 'Name');
+        if (displayEl && displayEl.textContent && displayEl.textContent !== 'لم يتم اختيار ملف بعد') {
+            return { src: null, name: displayEl.textContent, isDataUrl: false, ext: getExt(displayEl.textContent) };
+        }
+        return null;
+    }
+
+    function capitalize(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+    function getExt(name){ if(!name) return ''; const m = name.split('.'); return m.length>1? m.pop().toLowerCase():''; }
+
+    async function openAttachmentsModal(){
+        const modal = document.getElementById('attachmentsModal');
+        const loader = document.getElementById('attachmentsModalLoader');
+        if (!modal) return;
+        loader.style.display = 'block';
+
+        const types = ['identity','photo','bill'];
+        const slots = {
+            identity: document.getElementById('modalIdentityPreview'),
+            photo: document.getElementById('modalPhotoPreview'),
+            bill: document.getElementById('modalBillPreview')
+        };
+
+        const results = await Promise.all(types.map(t => resolveAttachmentSource(t)));
+
+        const usedSrcs = new Set();
+        for (let i = 0; i < types.length; i++){
+            const t = types[i];
+            const info = results[i];
+            const container = slots[t];
+            container.innerHTML = '';
+            if (!info || !info.src) {
+                container.textContent = info && info.name ? info.name : 'لا يوجد ملف متاح';
+                continue;
+            }
+            if (usedSrcs.has(info.src)) continue;
+            usedSrcs.add(info.src);
+
+            if (info.isDataUrl) {
+                if (info.ext === 'pdf') {
+                    const embed = document.createElement('embed');
+                    embed.src = info.src;
+                    embed.type = 'application/pdf';
+                    embed.style.width = '100%'; embed.style.height = '400px';
+                    container.appendChild(embed);
+                } else {
+                    const img = document.createElement('img');
+                    img.src = info.src; img.alt = info.name; img.style.maxWidth='100%'; img.style.height='auto';
+                    container.appendChild(img);
+                }
+            } else {
+                if (info.ext === 'pdf') {
+                    const embed = document.createElement('embed');
+                    embed.src = info.src; embed.type = 'application/pdf'; embed.style.width = '100%'; embed.style.height = '400px';
+                    container.appendChild(embed);
+                } else {
+                    const img = document.createElement('img');
+                    img.src = info.src; img.alt = info.name; img.style.maxWidth='100%'; img.style.height='auto';
+                    container.appendChild(img);
+                }
+            }
+        }
+
+        loader.style.display = 'none';
+        modal.style.display = 'flex';
+    }
+
+    async function printAttachments(){
+        const types = ['identity','photo','bill'];
+        const resolved = await Promise.all(types.map(t => resolveAttachmentSource(t)));
+        const unique = [];
+        const seen = new Set();
+        for (const info of resolved) {
+            if (!info) continue;
+            const key = info.src || info.name || JSON.stringify(info);
+            if (seen.has(key)) continue;
+            seen.add(key);
+            unique.push(info);
+        }
+        if (unique.length === 0) { alert('لا توجد مرفقات للطباعة.'); return; }
+
+        const htmlParts = [];
+        for (const u of unique) {
+            if (!u.src) {
+                htmlParts.push(`<div style="page-break-after:always;font-family:Arial,sans-serif;margin:40px"><h2>${escapeHtml(u.name || '')}</h2><p>ملف غير متاح للعرض.</p></div>`);
+                continue;
+            }
+            if (u.isDataUrl || /^(data:|\/uploaded\/|https?:\/\/)/.test(u.src)){
+                if (u.ext === 'pdf') {
+                    htmlParts.push(`<div style="page-break-after:always;margin:10mm"><h2 style="font-family:Arial,sans-serif">${escapeHtml(u.name||'')}</h2><embed src="${u.src}" type="application/pdf" width="100%" height="1100"></div>`);
+                } else {
+                    htmlParts.push(`<div style="page-break-after:always;margin:10mm;text-align:center"><h2 style="font-family:Arial,sans-serif">${escapeHtml(u.name||'')}</h2><img src="${u.src}" style="max-width:100%;height:auto;"/></div>`);
+                }
+            } else {
+                htmlParts.push(`<div style="page-break-after:always;font-family:Arial,sans-serif;margin:40px"><h2>${escapeHtml(u.name||'')}</h2><p>لا يمكن عرض الملف.</p></div>`);
+            }
+        }
+
+        const printWindow = window.open('', '_blank');
+        if (!printWindow) { alert('فشل في فتح نافذة الطباعة. تأكد من أن المنبّهات غير محجوبة.'); return; }
+        const doc = printWindow.document;
+        doc.open();
+        doc.write(`<!doctype html><html><head><meta charset="utf-8"><title>طباعة المرفقات</title><style>body{margin:0;padding:10mm} h2{font-size:18px;margin-bottom:8px} img{display:block;margin:0 auto}</style></head><body>${htmlParts.join('')}</body></html>`);
+        doc.close();
+        setTimeout(()=>{ printWindow.focus(); printWindow.print(); }, 800);
+    }
+
+    function escapeHtml(s){ return String(s||'').replace(/[&<>\"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+    document.addEventListener('click', function(e){
+        if (e.target && e.target.id === 'attachmentsModalClose') {
+            const modal = document.getElementById('attachmentsModal'); if (modal) modal.style.display = 'none';
+        }
+        if (e.target && e.target.id === 'attachmentsPrintBtn') { printAttachments(); }
+    });
+
+    document.getElementById('backToAttachments').addEventListener('click', () => {
+        window.location.href = 'attch.html';
+    });
+
+    document.getElementById('submitReview').addEventListener('click', async () => {
+        const identityFile = document.getElementById('reviewIdentityInput').files[0];
+        const photoFile = document.getElementById('reviewPhotoInput').files[0];
+        const storedAttachment = attachmentData || {};
+        const checkbox = document.querySelector('input[type="checkbox"]');
+
+        if (!checkbox || !checkbox.checked) {
+            alert('يرجى الموافقة على الشروط والأحكام قبل الإرسال.');
+            return;
+        }
+
+        // Check if we have identity file (either new or stored)
+        if (!identityFile && !storedAttachment.identityServerName) {
+            alert('يرجى رفع أو تحديد ملف الهوية قبل الإرسال.');
+            return;
+        }
+
+        // Check if we have photo file (either new or stored)
+        if (!photoFile && !storedAttachment.photoServerName) {
+            alert('يرجى رفع أو تحديد الصورة الشخصية قبل الإرسال.');
+            return;
+        }
+
+        const billFile = document.getElementById('reviewBillInput').files[0];
+        if (!billFile && !storedAttachment.billServerName) {
+            alert('يرجى رفع أو تحديد إشعار الدفع قبل الإرسال.');
+            return;
+        }
+
+        const formData = new FormData();
+        // keep the raw subtype (Arabic label) as doc_type to send to server
+        const normalizedDocType = academicData.doc_type;
+        
+        console.log('review.html submitReview: sending doc_type =', normalizedDocType);
+
+        formData.append('arabic_name', personalData.arabic_name);
+        formData.append('english_name', personalData.english_name);
+        formData.append('nationality', personalData.nationality);
+        formData.append('university_id', personalData.university_id || '');
+        formData.append('phone', personalData.phone || '');
+        formData.append('graduation_year', personalData.graduation_year || '');
+        formData.append('faculty', academicData.faculty || '');
+        formData.append('department', academicData.department || '');
+        formData.append('doc_type', normalizedDocType || '');
+        formData.append('language', academicData.language || 'arabic');
+        formData.append('copies', academicData.copies || 1);
+
+        // Add photo file
+        if (photoFile) {
+            formData.append('photo', photoFile);
+        } else if (storedAttachment.photoServerName) {
+            formData.append('photoFile', storedAttachment.photoServerName);
+        }
+
+        if (billFile) {
+            formData.append('bill', billFile);
+        } else if (storedAttachment.billServerName) {
+            formData.append('billFile', storedAttachment.billServerName);
+        }
+
+        // Add identity file
+        if (identityFile) {
+            formData.append('identity', identityFile);
+        } else if (storedAttachment.identityServerName) {
+            formData.append('identityFile', storedAttachment.identityServerName);
+        }
+
+        try {
+            const response = await fetch('http://localhost:3000/submit-request', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                let errorMessage = 'خطأ غير معروف';
+                try {
+                    const errorData = await response.json();
+                    errorMessage = errorData.message || errorMessage;
+                } catch (e) {
+                    errorMessage = `خطأ من الخادم (${response.status}): ${response.statusText}`;
+                }
+                alert('فشل في حفظ الطلب: ' + errorMessage);
+                return;
+            }
+
+            const result = await response.json();
+            if (result.success) {
+                alert('تم حفظ الطلب بنجاح. رقم التتبع: ' + result.reqrev);
+                localStorage.clear();
+                window.location.href = 'index.html';
+            } else {
+                alert('فشل في حفظ الطلب: ' + (result.message || 'خطأ غير معروف'));
+            }
+        } catch (error) {
+            console.error('Connection Error:', error);
+            alert('حدث خطأ في الاتصال بالخادم. تأكد من أن الخادم يعمل على http://localhost:3000\n\nالخطأ: ' + error.message);
+        }
+    });
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    const input = document.getElementById('docSearchInput');
+    if(input){ input.addEventListener('keydown', async function(e){ if(e.key==='Enter'){ const q = input.value.trim(); if(!q) return; try{ const res = await fetch('http://localhost:3000/track-request?reqrev='+encodeURIComponent(q)); if(res.ok){ const data = await res.json(); if(data && data.success) window.location.href='reqstat.html?request='+encodeURIComponent(q); else alert(data.message||'لم يتم العثور على الطلب.'); } else if(res.status===404){ const data = await res.json().catch(()=>({})); alert(data.message||'لم يتم العثور على الطلب.'); } else { const data = await res.json().catch(()=>({})); alert(data.message||'حدث خطأ أثناء البحث.'); } }catch(err){ console.error(err); alert('فشل الاتصال بالخادم. تأكد أن الخادم يعمل على http://localhost:3000'); } } }); }
+    const headerNew = document.getElementById('headerNewRequestBtn'); if(headerNew) headerNew.addEventListener('click', function(){ window.location.href='req1.html'; });
+});
+</script>
+</body></html>

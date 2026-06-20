@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>معاينة المرفقات</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+    body { margin: 0; min-height: 100vh; font-family: 'Cairo', sans-serif; background: #eef2f7; color: #0f172a; }
+    .page-shell { max-width: 1200px; margin: 0 auto; padding: 1rem; }
+    .page-header { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+    .page-header h1 { margin: 0; font-size: clamp(1.5rem, 2vw, 2rem); }
+    .page-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .button { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1rem; border-radius: 0.85rem; border: 1px solid #cbd5e1; background: #ffffff; color: #0f172a; cursor: pointer; transition: background-color 150ms ease, transform 150ms ease; text-decoration: none; }
+    .button:hover { background-color: #f8fafc; transform: translateY(-1px); }
+    /* Vertical (stacked) layout for attachments */
+    .attachment-grid { display: flex; flex-direction: column; gap: 1.25rem; }
+    .attachment-card { background: #ffffff; border-radius: 1.5rem; padding: 1rem; box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08); display: flex; flex-direction: column; gap: 0.75rem; max-width: 900px; margin: 0 auto; }
+    .card-title { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+    .card-title span { font-weight: 700; font-size: 0.95rem; color: #1e293b; }
+    .attachment-preview { min-height: 320px; border-radius: 1.5rem; border: 1px solid #e2e8f0; background: #f8fafc; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .attachment-preview img { display:block; width:100%; height:auto; max-height:75vh; object-fit:contain; border-radius:0.75rem; }
+    .attachment-preview img.personal-photo { max-width: 100%; }
+    .attachment-preview embed,
+    .attachment-preview iframe { width: 100%; min-height: 420px; border: none; }
+    .attachment-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+    .attachment-actions button { flex: 0 1 auto; padding: 0.65rem 0.9rem; font-size: 0.95rem; min-width: 120px; }
+    .attachment-actions .material-symbols-outlined { font-size: 18px; }
+    .placeholder { padding: 1.5rem; color: #475569; text-align: center; }
+    .note { padding: 0.85rem 1rem; border-radius: 1rem; background: #f1f5f9; color: #475569; font-size: 0.95rem; }
+    @page { size: A4 portrait; margin: 12mm; }
+    @media print {
+        html, body { background: #fff !important; color: #000 !important; }
+        .page-header, .page-actions, .button, .note, .attachment-actions { display: none !important; }
+        .page-shell { padding: 0; max-width: 100%; }
+        .attachment-card { box-shadow: none !important; border: 1px solid #e2e8f0 !important; background: #fff !important; border-radius: 0.75rem; margin: 0 0 16px !important; page-break-inside: avoid; break-inside: avoid; }
+        .attachment-card:last-child { page-break-after: auto; }
+        .attachment-grid { gap: 0.75rem; }
+        .attachment-preview { display: block !important; border: none !important; background: transparent !important; min-height: auto !important; }
+        .attachment-preview img, .attachment-preview embed, .attachment-preview iframe { display: block !important; margin: 0 auto !important; max-width: 100% !important; max-height: 210mm !important; height: auto !important; }
+        .attachment-preview img.personal-photo { width: auto !important; max-width: none !important; max-height: none !important; height: auto !important; }
+        .attachment-preview embed, .attachment-preview iframe { min-height: 120mm !important; }
+        .page-shell { margin: 0; padding: 0; }
+        .attachment-card .card-title { margin-bottom: 0.5rem; }
+        .card-title span { font-size: 1rem; }
+    }
+</style>
+</head>
+<body>
+<div class="page-shell">
+    <div class="page-header">
+        <div>
+            <p class="text-muted" style="margin:0; color:#475569; letter-spacing:0.14em; text-transform:uppercase; font-size:0.75rem;">عرض مستقل للمرفقات</p>
+            <h1>معاينة الملفات والصور</h1>
+        </div>
+        <div class="page-actions">
+            <button id="printPage" class="button"><span class="material-symbols-outlined">print</span>طباعة الصفحة</button>
+            <button id="backButton" class="button"><span class="material-symbols-outlined">arrow_back</span>العودة</button>
+        </div>
+    </div>
+    <div id="attachmentInfo" class="note">يتم عرض المرفقات الخاصة بالطلب هنا. استخدم أزرار التنزيل أسفل كل ملف.</div>
+    <div id="attachmentGrid" class="attachment-grid"></div>
+</div>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const attachments = [
+        { key: 'photoUrl', label: 'الصورة الشخصية' },
+        { key: 'identityUrl', label: 'إثبات الهوية' },
+        { key: 'billUrl', label: 'إشعار الدفع' }
+    ];
+
+    function formatUrl(value) {
+        if (!value) return '';
+        let v = String(value);
+        try { v = decodeURIComponent(v); } catch (e) { /* ignore */ }
+        v = v.trim();
+
+        // If value still looks percent-encoded for a leading slash (%2F...), try decoding again
+        if (/^%2F/i.test(v)) {
+            try { v = decodeURIComponent(v); } catch (e) { /* ignore */ }
+        }
+
+        // If the URL is an absolute-path on the server (starts with '/'), convert to a relative
+        // path when running from file:// or unknown origin so the browser can resolve it.
+        if (v.startsWith('/')) {
+            try {
+                if (location && (location.protocol === 'http:' || location.protocol === 'https:')) {
+                    // keep server-rooted path when served over HTTP/S
+                    return v;
+                }
+            } catch (e) { }
+            // use a relative path instead (./uploaded/...) so it resolves from the current file
+            return '.' + v;
+        }
+
+        return v;
+    }
+
+    function buildAttachmentCard(url, label) {
+        if (!url) {
+            return `
+                <div class="attachment-card">
+                    <div class="card-title"><span>${label}</span></div>
+                    <div class="attachment-preview"><div class="placeholder">لا يوجد ${label.toLowerCase()} مرفوع.</div></div>
+                </div>
+            `;
+        }
+
+        const normalizedUrl = url.trim();
+        const isImage = /\.(png|jpe?g|gif|webp)$/i.test(normalizedUrl);
+        const isPdf = /\.(pdf)$/i.test(normalizedUrl);
+        const imageClass = isImage && label === 'الصورة الشخصية' ? 'personal-photo' : '';
+        const previewHtml = isImage
+            ? `<img class="${imageClass}" src="${normalizedUrl}" alt="${label}" />`
+            : isPdf
+                ? `<embed src="${normalizedUrl}" type="application/pdf" />`
+                : `<iframe src="${normalizedUrl}" title="${label}"></iframe>`;
+
+        return `
+            <div class="attachment-card">
+                <div class="card-title"><span>${label}</span></div>
+                <div class="attachment-preview">${previewHtml}</div>
+                <div class="attachment-actions">
+                    <button type="button" class="button download-button" data-url="${normalizedUrl}" data-label="${label}">
+                        تحميل ${label}
+                    </button>
+                    ${isImage ? `<button type="button" class="button print-button" data-label="${label}">طباعة ${label}</button>` : ''}
+                </div>
+            </div>
+        `;
+    }
+
+    function downloadAttachment(url, label) {
+        const fileName = `${label}.${String(url).split('.').pop().split('?')[0]}`;
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = fileName;
+        anchor.target = '_blank';
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+    }
+
+    function renderAttachments() {
+        const grid = document.getElementById('attachmentGrid');
+        const htmlParts = [];
+        const logs = [];
+        attachments.forEach((attachment) => {
+            const raw = params.get(attachment.key) || '';
+            const url = formatUrl(raw);
+            logs.push({ key: attachment.key, raw, url });
+            htmlParts.push(buildAttachmentCard(url, attachment.label));
+        });
+        console.log('attachment-preview: attachment URLs', logs);
+        grid.innerHTML = htmlParts.join('');
+
+        document.querySelectorAll('.download-button').forEach((button) => {
+            button.addEventListener('click', () => {
+                downloadAttachment(button.dataset.url, button.dataset.label);
+            });
+        });
+
+        document.querySelectorAll('.print-button').forEach((button) => {
+            button.addEventListener('click', () => {
+                window.print();
+            });
+        });
+    }
+
+    document.getElementById('printPage').addEventListener('click', () => window.print());
+    document.getElementById('backButton').addEventListener('click', () => window.history.back());
+
+    renderAttachments();
+</script>
+</body>
+</html>

@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bayan University - Admin Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "secondary": "#7b5800",
+                    "background": "#f8f9fa",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#c6955e",
+                    "primary": "#002045",
+                    "on-primary-container": "#86a0cd",
+                    "primary-fixed": "#d6e3ff",
+                    "tertiary-container": "#4f2e00",
+                    "on-tertiary-fixed": "#2b1700",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-variant": "#e1e3e4",
+                    "tertiary": "#321b00",
+                    "inverse-primary": "#adc7f7",
+                    "on-background": "#191c1d",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#adc7f7",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "on-secondary-fixed-variant": "#5d4200",
+                    "surface-bright": "#f8f9fa",
+                    "on-surface-variant": "#43474e",
+                    "tertiary-fixed": "#ffddba",
+                    "on-primary-fixed": "#001b3c",
+                    "on-secondary-fixed": "#271900",
+                    "primary-container": "#1a365d",
+                    "surface-container-high": "#e7e8e9",
+                    "on-primary-fixed-variant": "#2d476f",
+                    "on-surface": "#191c1d",
+                    "surface-container-highest": "#e1e3e4",
+                    "secondary-fixed-dim": "#f7bd48",
+                    "outline": "#74777f",
+                    "tertiary-fixed-dim": "#f2bc82",
+                    "surface-tint": "#455f88",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#633f0f",
+                    "secondary-fixed": "#ffdea6",
+                    "secondary-container": "#fdc34d",
+                    "surface-dim": "#d9dadb",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#c4c6cf",
+                    "on-secondary-container": "#715000",
+                    "surface-container": "#edeeef",
+                    "surface": "#f8f9fa"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "unit": "4px",
+                    "container-max": "1440px",
+                    "margin-desktop": "48px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "caption-sm": ["Cairo", "Inter", "sans-serif"],
+                    "label-md": ["Cairo", "Inter", "sans-serif"],
+                    "headline-md": ["Cairo", "Inter", "sans-serif"],
+                    "display-lg": ["Cairo", "Inter", "sans-serif"],
+                    "body-md": ["Cairo", "Inter", "sans-serif"],
+                    "headline-lg": ["Cairo", "Inter", "sans-serif"],
+                    "body-lg": ["Cairo", "Inter", "sans-serif"]
+            },
+            "fontSize": {
+                    "caption-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Cairo', 'Inter', sans-serif; background: radial-gradient(circle at top, #ffffff 0%, #f4f7fb 40%, #ebeff5 100%); }
+        h1, h2, h3, h4, button, select, input, textarea { font-family: 'Cairo', 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .card-elevated { box-shadow: 0 18px 48px -32px rgba(0, 32, 69, 0.28); }
+        .nav-link { transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+        .nav-link:hover { transform: translateX(-1px); box-shadow: 0 14px 30px -24px rgba(0, 32, 69, 0.4); }
+        .surface-panel { background: rgba(255,255,255,0.84); backdrop-filter: blur(8px); border-color: rgba(196, 198, 207, 0.72); }
+        .btn-primary-soft { transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease; }
+        .btn-primary-soft:hover { transform: translateY(-1px); box-shadow: 0 18px 30px -18px rgba(0, 32, 69, 0.55); }
+        .btn-secondary-soft { transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease; }
+        .btn-secondary-soft:hover { transform: translateY(-1px); box-shadow: 0 18px 28px -20px rgba(0, 32, 69, 0.3); }
+        .icon-btn-soft { transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+        .icon-btn-soft:hover { transform: translateY(-1px); box-shadow: 0 14px 28px -18px rgba(0, 32, 69, 0.28); }
+        .tooltip-group { position: relative; }
+        .tooltip-text {
+            position: absolute;
+            bottom: 110%;
+            right: 50%;
+            transform: translateX(50%) translateY(8px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 150ms ease, transform 150ms ease;
+            padding: 0.35rem 0.65rem;
+            border-radius: 9999px;
+            background: rgba(15, 23, 42, 0.95);
+            color: #ffffff;
+            font-size: 11px;
+            white-space: nowrap;
+            z-index: 20;
+        }
+        .tooltip-group:hover .tooltip-text { opacity: 1; transform: translateX(50%) translateY(0); }
+        .request-table-row td { vertical-align: middle; }
+        .request-table-row td > div { min-width: 0; }
+        .request-row-label { display: block; margin-bottom: 0.25rem; font-size: 10px; letter-spacing: 0.12em; color: #687082; text-transform: uppercase; }
+        .request-row-value { font-size: 13px; line-height: 1.4; color: #111827; }
+        #requestsTableBody .text-wrap { white-space: normal; word-break: break-word; overflow-wrap: anywhere; }
+        .filter-group { background: rgba(255,255,255,0.92); }
+        #requestsTableHead th { position: sticky; top: 0; z-index: 10; }
+        #requestsTableHead th { background: rgba(248,249,250,0.96); }
+        #requestsTableBody tr:hover { background: rgba(249,250,251,0.95); }
+        #requestsTableBody td { padding-top: 1rem; padding-bottom: 1rem; }
+        .auth-card { box-shadow: 0 30px 90px -35px rgba(0, 32, 69, 0.45); }
+        .auth-input {
+            transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+        }
+        .auth-input:focus {
+            box-shadow: 0 0 0 4px rgba(173, 199, 247, 0.3);
+        }
+        .attachment-print-sheet {
+            width: 210mm;
+            min-height: 297mm;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 1rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+        }
+        .attachment-print-image {
+            display: block;
+            max-width: 100%;
+            max-height: calc(297mm - 4rem);
+            margin: 0 auto;
+            object-fit: contain;
+        }
+        .attachment-preview-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .attachment-preview-actions button {
+            min-width: 120px;
+        }
+        @media print {
+            body * {
+                visibility: hidden !important;
+            }
+            #attachmentPreviewModal, #attachmentPreviewModal * {
+                visibility: visible !important;
+            }
+            #attachmentPreviewModal {
+                position: static !important;
+                inset: auto !important;
+                width: auto !important;
+                min-height: auto !important;
+                max-width: 100% !important;
+                background: #ffffff !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+            }
+            .attachment-print-sheet {
+                box-shadow: none !important;
+                border: none !important;
+                page-break-after: always;
+                width: 210mm !important;
+                min-height: 297mm !important;
+            }
+            .attachment-preview-actions,
+            #closeAttachmentPreview,
+            #printAttachmentPreview {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-transparent text-on-surface">
+<div id="authOverlay" class="fixed inset-0 z-[60] hidden items-center justify-center px-4 py-8">
+    <div class="auth-card w-full max-w-md rounded-[28px] border border-white/70 bg-white p-6 shadow-[0_30px_90px_-35px_rgba(0,32,69,0.45)]">
+        <div class="flex items-center gap-3">
+            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-fixed text-primary">
+                <span class="material-symbols-outlined">shield_person</span>
+            </div>
+            <div>
+                <p class="text-caption-sm font-bold uppercase tracking-[0.2em] text-on-surface-variant">تسجيل الدخول</p>
+                <h2 class="mt-1 font-headline-md text-headline-md text-primary">لوحة التحكم الإدارية</h2>
+            </div>
+        </div>
+        <p class="mt-4 text-sm leading-6 text-on-surface-variant">يرجى إدخال بيانات الدخول الخاصة بك للتمكن من الوصول إلى لوحة التحكم.</p>
+        <form id="authForm" class="mt-5 space-y-4">
+            <div>
+                <label for="username" class="mb-2 block text-sm font-bold text-on-surface">اسم المستخدم</label>
+                <input id="username" name="username" type="text" autocomplete="username" required class="auth-input w-full rounded-2xl border border-outline-variant bg-surface-container-low px-4 py-3 text-sm text-on-surface focus:border-primary focus:outline-none" placeholder="ادخل اسم المستخدم" />
+            </div>
+            <div>
+                <label for="password" class="mb-2 block text-sm font-bold text-on-surface">كلمة المرور</label>
+                <input id="password" name="password" type="password" autocomplete="current-password" required class="auth-input w-full rounded-2xl border border-outline-variant bg-surface-container-low px-4 py-3 text-sm text-on-surface focus:border-primary focus:outline-none" placeholder="ادخل كلمة المرور" />
+            </div>
+            <p id="authError" class="min-h-[1.5rem] text-sm text-error"></p>
+            <button type="submit" class="w-full rounded-2xl bg-primary px-4 py-3 text-sm font-bold text-on-primary shadow-[0_18px_40px_-20px_rgba(0,32,69,0.55)]">دخول لوحة التحكم</button>
+        </form>
+    </div>
+</div>
+<!-- SideNavBar (Authority: JSON) -->
+<aside class="hidden lg:flex flex-col h-screen fixed right-0 top-0 pt-20 pb-8 px-2 z-40 w-60">
+<div class="mx-2 mb-5 rounded-[22px] border border-white/60 bg-white/80 p-3 backdrop-blur-xl card-elevated">
+<div class="flex items-center gap-2.5">
+<div class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-fixed text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="shield_person">shield_person</span>
+</div>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Admin Portal</h2>
+</div>
+</div>
+<nav class="flex-1 space-y-1.5 px-2">
+<div class="px-2 pb-1">
+<p class="text-caption-sm font-bold uppercase tracking-[0.2em] text-on-surface-variant">لوحة التحكم</p>
+</div>
+<a class="nav-link flex items-center gap-3 bg-primary-container text-on-primary-container rounded-2xl px-3 py-2.5 shadow-[0_16px_34px_-24px_rgba(0,32,69,0.45)]" href="admincp.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">إدارة الطلبات</span>
+</a>
+<a class="nav-link flex items-center gap-3 text-on-surface-variant px-3 py-2.5 hover:bg-surface-container-high rounded-2xl transition-all" href="admindept.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="apartment">apartment</span>
+<span class="font-label-md text-label-md">إدارة الأقسام</span>
+</a>
+<a class="nav-link flex items-center gap-3 text-on-surface-variant px-3 py-2.5 hover:bg-surface-container-high rounded-2xl transition-all" href="adminusr.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="group">group</span>
+<span class="font-label-md text-label-md">إدارة المستخدمين</span>
+</a>
+
+<div class="mt-auto px-2 pt-5 border-t border-outline-variant">
+<div class="mt-2 space-y-1">
+
+<a id="logoutBtn" class="nav-link flex items-center gap-3 text-error px-3 py-2.5 hover:bg-error-container rounded-2xl transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">تسجيل الخروج</span>
+</a>
+</div>
+</div>
+</nav>
+</aside>
+<!-- TopAppBar (Authority: JSON) -->
+<header class="fixed top-0 right-0 w-full z-50 border-b border-outline-variant bg-white/90 backdrop-blur-xl lg:pr-60">
+<div class="flex h-18 items-center justify-between px-margin-mobile md:px-margin-desktop">
+<div class="flex items-center gap-3">
+<span class="lg:hidden material-symbols-outlined text-primary">menu</span>
+<div>
+<p class="text-caption-sm uppercase tracking-[0.3em] text-on-surface-variant">Bayan University</p>
+<h1 class="text-lg font-bold text-primary sm:text-xl">لوحة الإدارة المركزية</h1>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2 rounded-full border border-outline-variant bg-surface-container-high px-4 py-2 shadow-[0_12px_30px_-20px_rgba(0,32,69,0.28)]">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+<input class="w-64 bg-transparent border-none text-sm focus:ring-0" placeholder="ابحث في السجلات..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="rounded-full bg-surface-container-high p-2 text-on-surface-variant transition-colors hover:text-primary">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="rounded-full bg-surface-container-high p-2 text-on-surface-variant transition-colors hover:text-primary">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="flex items-center gap-3 rounded-full border border-outline-variant bg-surface-container-low px-2 py-1">
+<div class="h-9 w-9 overflow-hidden rounded-full border border-white">
+<img alt="User profile avatar" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx8k4lvM2Ze2VSBrtJ6OriVdnC8YNp7DMKSQkvAo9VcfC8ycZLPqaSeSQBZ2wGgqkOrnRA1sYWtAzT-qtHp7GQbydnb1lqyAZ2GvFw470B4NmLLPqYR42J0Gb3UGxg-KnZPI9GcA2cPqVHy0OWPIRYJUwJnYWU1we46RdYN36fi7qDaeYYzvsOkSwJprYWIOrGnn8ecJcWehWDem6jzQCiYwSRgD1SgGKT4zc85lyJWM_CIHR9WmROTPb-L77nwhSq1mV5xTvG5Uo"/>
+</div>
+<div class="hidden sm:block">
+<p id="currentUserName" class="text-sm font-bold text-on-surface">مدير النظام</p>
+<p id="currentUserRole" class="text-caption-sm text-on-surface-variant">متصل الآن</p>
+</div>
+<button id="headerLogoutBtn" type="button" class="inline-flex items-center gap-2 rounded-full border border-error/20 bg-error-container px-3 py-2 text-xs font-bold text-error hover:bg-error/10 transition-colors">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span>تسجيل الخروج</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="pt-24 pb-16 px-margin-mobile md:px-margin-desktop lg:mr-60 min-h-screen">
+<!-- Header Section -->
+<div class="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+<div class="max-w-3xl">
+<div class="inline-flex items-center gap-2 rounded-full bg-primary-fixed px-3 py-1 text-[10px] font-bold text-primary">
+<span class="material-symbols-outlined text-base">insights</span>
+تحديثات النظام الفورية
+</div>
+<h2 class="mt-4 text-[28px] font-bold leading-tight text-primary">لوحة التحكم الإدارية</h2>
+<p class="mt-2 text-sm leading-6 text-on-surface-variant">مرحباً بك، مدير السجلات الأكاديمية. راقب الطلبات، حالات التحقق، وأداء النظام من مكان واحد.</p>
+</div>
+<div class="flex flex-wrap gap-2.5">
+<button id="addRequestBtn" class="btn-primary-soft inline-flex items-center gap-2 rounded-2xl bg-primary px-4 py-2.5 text-sm font-bold text-on-primary shadow-[0_16px_36px_-22px_rgba(0,32,69,0.55)]">
+<span class="material-symbols-outlined text-base">add</span>
+إضافة طلب جديد
+</button>
+<button class="btn-secondary-soft inline-flex items-center gap-2 rounded-2xl border border-outline-variant bg-white/90 px-4 py-2.5 text-sm font-bold text-on-surface-variant">
+<span class="material-symbols-outlined text-base">download</span>
+تصدير البيانات
+</button>
+</div>
+</div>
+<!-- Bento Grid Statistics -->
+<div class="grid grid-cols-4 gap-4 mb-6">
+<div class="surface-panel card-elevated rounded-[20px] border border-white/70 p-3 min-h-[112px]">
+<div class="flex items-start justify-between gap-3">
+<div class="rounded-2xl bg-primary-fixed p-2.5 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="folder_open">folder_open</span>
+</div>
+<span class="rounded-full bg-primary-fixed px-2 py-0.5 text-[10px] font-bold text-primary">+12%</span>
+</div>
+<div class="mt-2">
+<p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-on-surface-variant">إجمالي الطلبات</p>
+<h3 id="totalRequests" class="mt-1 text-[22px] font-bold text-primary">0</h3>
+</div>
+</div>
+<div class="surface-panel card-elevated rounded-[20px] border border-white/70 p-3 min-h-[112px]">
+<div class="flex items-start justify-between gap-3">
+<div class="rounded-2xl bg-secondary-container p-2.5 text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]" data-icon="new_releases">new_releases</span>
+</div>
+<span class="rounded-full bg-secondary-fixed px-2 py-0.5 text-[10px] font-bold text-secondary">نشط</span>
+</div>
+ <div class="mt-2">
+<p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-on-surface-variant">الطلبات الجديدة</p>
+<h3 id="newRequests" class="mt-1 text-[22px] font-bold text-primary">0</h3>
+</div> 
+</div>
+<div class="surface-panel card-elevated rounded-[20px] border border-white/70 p-3 min-h-[112px]">
+<div class="flex items-start justify-between gap-3">
+<div class="rounded-2xl bg-tertiary-fixed p-2.5 text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-[18px]" data-icon="task_alt">task_alt</span>
+</div>
+<span class="rounded-full bg-tertiary-fixed px-2 py-0.5 text-[10px] font-bold text-tertiary">0%</span>
+</div>
+<div class="mt-2">
+<p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-on-surface-variant">الطلبات المكتملة</p>
+<h3 id="completedRequests" class="mt-1 text-[22px] font-bold text-primary">0</h3>
+</div>
+</div>
+<div class="surface-panel card-elevated rounded-[20px] border border-white/70 p-3 min-h-[112px]">
+<div class="flex items-start justify-between gap-3">
+<div class="rounded-2xl bg-error-container p-2.5 text-on-error-container">
+<span class="material-symbols-outlined text-[18px]" data-icon="warning">warning</span>
+</div>
+<span class="rounded-full bg-error-container px-2 py-0.5 text-[10px] font-bold text-error">هام</span>
+</div>
+<div class="mt-2">
+<p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-on-surface-variant">قيد الاجراء</p>
+<h3 id="pendingRequests" class="mt-1 text-[22px] font-bold text-primary">0</h3>
+</div>
+</div>
+</div>
+<!-- Latest Orders Table (Data Table Component) -->
+<div class="surface-panel card-elevated rounded-[28px] border border-white/70 overflow-hidden">
+<div class="px-6 py-5 border-b border-outline-variant bg-white/80 backdrop-blur-sm">
+<div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+<div>
+<p class="text-caption-sm font-bold uppercase tracking-[0.2em] text-on-surface-variant">آخر الطلبات الواردة</p>
+<h4 class="mt-2 font-headline-md text-headline-md text-primary">جدول المراجعة السريعة</h4>
+</div>
+<button class="btn-secondary-soft inline-flex items-center gap-2 rounded-2xl border border-outline-variant bg-white px-4 py-2 text-primary font-label-md text-label-md">
+عرض الكل
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="mt-5 grid gap-3 sm:grid-cols-[1.6fr_1fr_1fr_1fr_auto] items-end filter-group p-4 border-y border-outline-variant">
+<div class="space-y-2">
+<label for="filterSearch" class="block text-[10px] font-bold uppercase tracking-[0.18em] text-on-surface-variant">بحث</label>
+<input id="filterSearch" type="text" placeholder="بحث برقم الطلب أو اسم الطالب" class="w-full rounded-2xl border border-outline-variant bg-surface-container-low px-3 py-2 text-[12px] text-on-surface focus:border-primary focus:ring-primary/20" />
+</div>
+<div class="space-y-2">
+<label for="filterStatus" class="block text-[10px] font-bold uppercase tracking-[0.18em] text-on-surface-variant">الحالة</label>
+<select id="filterStatus" class="w-full rounded-2xl border border-outline-variant bg-surface-container-low px-3 py-2 text-[12px] text-on-surface focus:border-primary focus:ring-primary/20">
+<option value="">الكل</option>
+</select>
+</div>
+<div class="space-y-2">
+<label for="filterDocType" class="block text-[10px] font-bold uppercase tracking-[0.18em] text-on-surface-variant">نوع المستند</label>
+<select id="filterDocType" class="w-full rounded-2xl border border-outline-variant bg-surface-container-low px-3 py-2 text-[12px] text-on-surface focus:border-primary focus:ring-primary/20">
+<option value="">الكل</option>
+</select>
+</div>
+<div class="space-y-2">
+<label for="filterDate" class="block text-[10px] font-bold uppercase tracking-[0.18em] text-on-surface-variant">تاريخ الطلب</label>
+<input id="filterDate" type="date" class="w-full rounded-2xl border border-outline-variant bg-surface-container-low px-3 py-2 text-[12px] text-on-surface focus:border-primary focus:ring-primary/20" />
+</div>
+<div class="flex items-center justify-end">
+<button id="resetFiltersBtn" type="button" class="h-11 rounded-2xl border border-outline-variant bg-white px-4 text-[12px] font-bold text-primary hover:bg-surface-container-low">إعادة الضبط</button>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full table-auto border-collapse text-right">
+<thead id="requestsTableHead" class="bg-surface-container-low">
+<tr>
+<th class="px-3 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-on-surface-variant">رقم الطلب</th>
+<th class="px-3 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-on-surface-variant">اسم الطالب</th>
+<th class="px-3 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-on-surface-variant">النوع</th>
+<th class="px-3 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-on-surface-variant">التاريخ</th>
+<th class="px-3 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-on-surface-variant">الحالة</th>
+<th class="px-3 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-on-surface-variant">الإجراءات</th>
+</tr>
+</thead>
+<tbody id="requestsTableBody" class="divide-y divide-outline-variant bg-white/60 text-[12px]">
+<tr>
+<td colspan="6" class="px-4 py-4 text-center text-on-surface-variant">جارٍ تحميل الطلبات...</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</main>
+<!-- Footer (Authority: JSON) -->
+<footer class="w-full py-8 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-primary text-on-primary lg:pr-[240px]">
+<div class="flex flex-col gap-2">
+<h3 class="font-headline-md text-headline-md text-on-primary">Bayan University</h3>
+<p class="font-caption-sm text-caption-sm opacity-80">© 2024 Bayan University. All Rights Reserved. Digital Records Division.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">Contact Support</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">University Home</a>
+</div>
+</footer>
+<div id="attachmentPreviewModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 px-4 py-6" aria-hidden="true">
+    <div class="w-full max-w-6xl rounded-[30px] bg-white p-5 shadow-2xl ring-1 ring-black/10">
+        <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+                <p class="text-caption-sm font-bold uppercase tracking-[0.2em] text-on-surface-variant">مراجعة المرفقات</p>
+                <h4 class="mt-1 font-headline-md text-headline-md text-primary">الصورة الشخصية، إثبات الهوية، وإشعار الدفع</h4>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+                <button type="button" id="printAttachmentPreview" class="inline-flex items-center gap-2 rounded-2xl border border-outline-variant bg-white px-4 py-2 text-sm font-bold text-primary hover:bg-surface-container-low transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">print</span>
+                    <span>طباعة المرفقات</span>
+                </button>
+                <button type="button" id="closeAttachmentPreview" class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high">
+                    <span class="material-symbols-outlined text-[20px]">close</span>
+                </button>
+            </div>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+            <section class="rounded-3xl border border-outline-variant bg-surface-container-low p-3">
+                <div class="mb-2 flex items-center justify-between">
+                    <p class="font-label-md text-label-md text-primary">الصورة الشخصية</p>
+                    <span class="rounded-full bg-primary/10 px-2 py-1 text-caption-sm font-bold text-primary">1</span>
+                </div>
+                <div id="personalAttachmentPreview" class="min-h-[320px] rounded-3xl bg-white p-2">لا توجد صورة مرفوعة.</div>
+            </section>
+            <section class="rounded-3xl border border-outline-variant bg-surface-container-low p-3">
+                <div class="mb-2 flex items-center justify-between">
+                    <p class="font-label-md text-label-md text-primary">إثبات الهوية</p>
+                    <span class="rounded-full bg-primary/10 px-2 py-1 text-caption-sm font-bold text-primary">2</span>
+                </div>
+                <div id="identityAttachmentPreview" class="min-h-[320px] rounded-3xl bg-white p-2">لا يوجد إثبات هوية.</div>
+            </section>
+            <section class="rounded-3xl border border-outline-variant bg-surface-container-low p-3">
+                <div class="mb-2 flex items-center justify-between">
+                    <p class="font-label-md text-label-md text-primary">إشعار الدفع</p>
+                    <span class="rounded-full bg-primary/10 px-2 py-1 text-caption-sm font-bold text-primary">3</span>
+                </div>
+                <div id="billAttachmentPreview" class="min-h-[320px] rounded-3xl bg-white p-2">لا يوجد إشعار دفع مرفوع.</div>
+            </section>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', async function() {
+    const sessionKey = 'adminSession';
+    const authOverlay = document.getElementById('authOverlay');
+    const authForm = document.getElementById('authForm');
+    const authError = document.getElementById('authError');
+    const currentUserName = document.getElementById('currentUserName');
+    const currentUserRole = document.getElementById('currentUserRole');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const headerLogoutBtn = document.getElementById('headerLogoutBtn');
+    const addRequestButton = document.getElementById('addRequestBtn');
+    const adminOnlyLinks = document.querySelectorAll('a[href="admindept.html"], a[href="adminusr.html"]');
+    const uiBlocks = document.querySelectorAll('aside, header, main, footer');
+    const attachmentPreviewModal = document.getElementById('attachmentPreviewModal');
+    const closeAttachmentPreviewButton = document.getElementById('closeAttachmentPreview');
+    const printAttachmentPreviewButton = document.getElementById('printAttachmentPreview');
+    const personalAttachmentPreview = document.getElementById('personalAttachmentPreview');
+    
+    if (addRequestButton) {
+        addRequestButton.addEventListener('click', () => {
+            window.open('req1.html', '_blank');
+        });
+    }
+    const identityAttachmentPreview = document.getElementById('identityAttachmentPreview');
+    const filterStatus = document.getElementById('filterStatus');
+    const filterDocType = document.getElementById('filterDocType');
+    const filterSearch = document.getElementById('filterSearch');
+    const filterDate = document.getElementById('filterDate');
+    const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+    const exportDataBtn = document.getElementById('exportDataBtn');
+    let currentSession = null;
+    let allRequestsData = [];
+
+    function exportToExcel() {
+        console.log('🔍 تم استدعاء دالة التصدير');
+        try {
+            if (!window.XLSX) {
+                alert('مكتبة Excel غير متاحة حالياً. يرجى إعادة المحاولة.');
+                console.warn('❌ XLSX library not found');
+                return;
+            }
+            console.log('✓ مكتبة XLSX متاحة');
+
+            const tbody = document.getElementById('requestsTableBody');
+            if (!tbody) {
+                alert('لم يتم العثور على جدول البيانات.');
+                console.error('❌ requestsTableBody not found');
+                return;
+            }
+            console.log('✓ جدول البيانات موجود');
+
+            const visibleRows = Array.from(tbody.querySelectorAll('tr'));
+            console.log(`📊 عدد الصفوف المتاحة: ${visibleRows.length}`);
+            
+            if (visibleRows.length === 0) {
+                alert('لا توجد بيانات لتصديرها.');
+                console.warn('❌ No rows found');
+                return;
+            }
+
+            const exportData = visibleRows.map((row) => {
+                const cells = row.querySelectorAll('td');
+                if (cells.length < 5) {
+                    console.log('⚠️ صف بعدد خلايا أقل من 5');
+                    return null;
+                }
+
+                try {
+                    const reqrev = cells[0]?.textContent?.trim() || '';
+                    if (!reqrev) return null;
+
+                    const studentNameCell = cells[1];
+                    let studentName = '';
+                    if (studentNameCell) {
+                        const valueEl = studentNameCell.querySelector('.request-row-value');
+                        studentName = (valueEl?.textContent || studentNameCell.textContent)?.trim() || '';
+                    }
+
+                    const docType = cells[2]?.textContent?.trim() || '';
+                    const date = cells[3]?.textContent?.trim() || '';
+                    const status = cells[4]?.textContent?.trim() || '';
+
+                    return {
+                        'رقم الطلب': reqrev,
+                        'اسم الطالب': studentName,
+                        'نوع المستند': docType,
+                        'التاريخ': date,
+                        'الحالة': status
+                    };
+                } catch (e) {
+                    console.error('❌ خطأ في معالجة الصف:', e);
+                    return null;
+                }
+            }).filter(item => item !== null);
+
+            console.log(`✓ تم استخراج ${exportData.length} صف من البيانات`);
+
+            if (exportData.length === 0) {
+                alert('فشل استخراج البيانات من الجدول.');
+                console.error('❌ No valid data extracted');
+                return;
+            }
+
+            const ws = XLSX.utils.json_to_sheet(exportData);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'المراجعة السريعة');
+
+            const range = XLSX.utils.decode_range(ws['!ref']);
+            for (let C = range.s.c; C <= range.e.c; ++C) {
+                const headerCell = XLSX.utils.encode_col(C) + '1';
+                if (ws[headerCell]) {
+                    ws[headerCell].font = { bold: true, color: { rgb: 'FFFFFF' } };
+                    ws[headerCell].fill = { fgColor: { rgb: '002045' } };
+                }
+            }
+
+            ws['!cols'] = [
+                { wch: 15 },
+                { wch: 25 },
+                { wch: 20 },
+                { wch: 15 },
+                { wch: 15 }
+            ];
+
+            const fileName = `المراجعة_السريعة_${new Date().toLocaleDateString('ar-EG').replace(/\//g, '-')}.xlsx`;
+            XLSX.writeFile(wb, fileName);
+            console.log(`✅ تم تصدير الملف: ${fileName}`);
+            alert('✅ تم تصدير البيانات بنجاح');
+        } catch (error) {
+            console.error('❌ خطأ في التصدير:', error);
+            alert('حدث خطأ أثناء تصدير البيانات:\n' + error.message);
+        }
+    }
+
+    // Make function globally available
+    window.exportToExcel = exportToExcel;
+
+    if (exportDataBtn) {
+        exportDataBtn.addEventListener('click', exportToExcel);
+        console.log('✓ تم تعليق المستمع على الزر (المرة الأولى)');
+    } else {
+        console.error('❌ لم يتم العثور على زر التصدير عند التحميل الأولي');
+    }
+
+
+    function renderFilterControls(rows) {
+        if (!filterStatus || !filterDocType) return;
+        const statuses = new Set(['']);
+        const docTypes = new Set(['']);
+        rows.forEach((row) => {
+            statuses.add(String(row.Status || '').trim() || 'غير محدد');
+            docTypes.add(String(row.Certype || '').trim() || 'غير محدد');
+        });
+        filterStatus.innerHTML = [...statuses].map((value) => `<option value="${value}">${value || 'الكل'}</option>`).join('');
+        filterDocType.innerHTML = [...docTypes].map((value) => `<option value="${value}">${value || 'الكل'}</option>`).join('');
+    }
+
+    function getActiveFilters() {
+        return {
+            status: filterStatus?.value || '',
+            docType: filterDocType?.value || '',
+            date: filterDate?.value || '',
+            search: filterSearch?.value.trim().toLowerCase() || ''
+        };
+    }
+
+    function parseRowDate(row) {
+        if (!row.Reqdate) return '';
+        const date = new Date(row.Reqdate);
+        if (Number.isNaN(date.getTime())) return '';
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
+        const dd = String(date.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function applyRequestFilters() {
+        if (!allRequestsData.length) return;
+        const { status, docType, date, search } = getActiveFilters();
+        const filtered = allRequestsData.filter((row) => {
+            const rowStatus = String(row.Status || 'غير محدد').trim();
+            const rowType = String(row.Certype || 'غير محدد').trim();
+            const rowDate = parseRowDate(row);
+            const matchesStatus = !status || rowStatus === status;
+            const matchesDocType = !docType || rowType === docType;
+            const matchesDate = !date || rowDate === date;
+            const haystack = [row.Reqrev, row.Astdname, row.Certype, row.Status].join(' ').toLowerCase();
+            const matchesSearch = !search || haystack.includes(search);
+            return matchesStatus && matchesDocType && matchesDate && matchesSearch;
+        });
+        renderRequestRows(filtered);
+    }
+
+    function bindRequestFilters() {
+        [filterStatus, filterDocType, filterDate].forEach((select) => {
+            if (!select) return;
+            select.addEventListener('change', applyRequestFilters);
+        });
+        if (filterSearch) {
+            filterSearch.addEventListener('input', applyRequestFilters);
+        }
+        if (resetFiltersBtn) {
+            resetFiltersBtn.addEventListener('click', () => {
+                if (filterStatus) filterStatus.value = '';
+                if (filterDocType) filterDocType.value = '';
+                if (filterDate) filterDate.value = '';
+                if (filterSearch) filterSearch.value = '';
+                applyRequestFilters();
+            });
+        }
+    }
+
+    function renderRequestRows(rows) {
+        const tbody = document.getElementById('requestsTableBody');
+        if (!tbody) return;
+        if (!rows || rows.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" class="px-4 py-4 text-center text-on-surface-variant">لا توجد طلبات مطابقة حالياً.</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = rows.map((row) => {
+            const status = row.Status || 'غير محدد';
+            const badgeClass = getRequestBadgeClass(status);
+            const date = row.Reqdate ? new Date(row.Reqdate).toLocaleDateString('ar-EG') : '-';
+            const initials = (row.Astdname || '--').split(' ').map((part) => part[0] || '').slice(0, 2).join('').toUpperCase();
+            const normalizedStatus = String(status || '').trim();
+            const canPause = normalizedStatus.includes('قيد');
+            const canComplete = normalizedStatus.includes('قيد') || normalizedStatus.includes('إيقاف') || normalizedStatus.includes('مؤقت');
+            const { photoUrl, identityUrl, billUrl } = getRequestAttachmentUrls(row);
+            return `
+                <tr class="request-table-row">
+                    <td class="px-3 py-3 text-[12px] font-semibold text-primary text-wrap">
+                        <div class="request-row-value">${row.Reqrev || '--'}</div>
+                    </td>
+                    <td class="px-3 py-3 text-wrap">
+                        <div class="flex items-center gap-2 min-w-0">
+                            <div class="w-8 h-8 min-w-[32px] rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-[11px]">${initials}</div>
+                            <div class="min-w-0 request-row-value">${row.Astdname || 'غير معروف'}</div>
+                        </div>
+                    </td>
+                    <td class="px-3 py-3 text-wrap">
+                        <span class="request-row-value">${row.Certype || 'غير محدد'}</span>
+                    </td>
+                    <td class="px-3 py-3 text-wrap">
+                        <span class="request-row-value">${date}</span>
+                    </td>
+                    <td class="px-3 py-3 text-wrap">
+                        <span class="${badgeClass} px-2.5 py-1 rounded-full text-[10px] font-bold">${status}</span>
+                    </td>
+                    <td class="px-3 py-3 text-wrap">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button type="button" class="view-attachments-btn icon-btn-soft tooltip-group inline-flex h-9 w-9 items-center justify-center rounded-xl border border-outline-variant bg-surface-container-low text-primary" data-photo-url="${photoUrl}" data-identity-url="${identityUrl}" data-bill-url="${billUrl}" title="عرض المرفقات">
+                                <span class="material-symbols-outlined text-[18px]">collections</span>
+                                <span class="tooltip-text">عرض المرفقات</span>
+                            </button>
+                            <button type="button" class="open-request-btn icon-btn-soft tooltip-group inline-flex h-9 w-9 items-center justify-center rounded-xl border border-outline-variant bg-surface-container-low text-primary" data-reqrev="${row.Reqrev || ''}" title="فتح الطلب">
+                                <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                                <span class="tooltip-text">فتح الطلب</span>
+                            </button>
+                            <button type="button" class="action-btn pause-action icon-btn-soft tooltip-group inline-flex h-9 w-9 items-center justify-center rounded-xl border border-amber-200 bg-amber-50 text-amber-700 ${canPause ? '' : 'opacity-50 cursor-not-allowed'}" data-reqrev="${row.Reqrev || ''}" data-action="pause" title="إيقاف" ${canPause ? '' : 'disabled'}>
+                                <span class="material-symbols-outlined text-[17px]">pause_circle</span>
+                                <span class="tooltip-text">إيقاف</span>
+                            </button>
+                            <button type="button" class="action-btn complete-action icon-btn-soft tooltip-group inline-flex h-9 w-9 items-center justify-center rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-700 ${canComplete ? '' : 'opacity-50 cursor-not-allowed'}" data-reqrev="${row.Reqrev || ''}" data-action="complete" title="إكمال" ${canComplete ? '' : 'disabled'}>
+                                <span class="material-symbols-outlined text-[17px]">task_alt</span>
+                                <span class="tooltip-text">إكمال</span>
+                            </button>
+                        </div>
+                        <div class="note-panel hidden rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 mt-3 w-full">
+                            <p class="text-[10px] font-bold text-amber-800 mb-1">سبب الإيقاف المؤقت</p>
+                            <input type="text" class="note-input w-full border-0 bg-transparent text-[11px] text-on-surface placeholder:text-on-surface-variant focus:outline-none" data-reqrev="${row.Reqrev || ''}" placeholder="اكتب سبب الإيقاف هنا" disabled />
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }).join('');
+
+        document.querySelectorAll('.view-attachments-btn').forEach((button) => {
+            button.addEventListener('click', () => {
+                const photoUrl = button.getAttribute('data-photo-url') || '';
+                const identityUrl = button.getAttribute('data-identity-url') || '';
+                const billUrl = button.getAttribute('data-bill-url') || '';
+                if (!photoUrl && !identityUrl && !billUrl) {
+                    alert('لا توجد مرفقات لعرضها لهذا الطلب.');
+                    return;
+                }
+                const previewUrl = `attachment-preview.html?photoUrl=${encodeURI(photoUrl)}&identityUrl=${encodeURI(identityUrl)}&billUrl=${encodeURI(billUrl)}`;
+                window.open(previewUrl, '_blank', 'noopener');
+            });
+        });
+
+        document.querySelectorAll('.open-request-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const reqrev = btn.getAttribute('data-reqrev');
+                if (!reqrev) {
+                    alert('رقم الطلب غير متوفر لهذا السجل.');
+                    return;
+                }
+                const url = `/stdreq.html?reqrev=${encodeURIComponent(reqrev)}`;
+                window.open(url, '_blank', 'noopener');
+            });
+        });
+
+        const submitStatus = async (reqrev, status, notes) => {
+            try {
+                const res = await fetch('/admin/update-request-status', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ reqrev, status, notes })
+                });
+                const data = await res.json().catch(() => ({}));
+                if (!res.ok) {
+                    throw new Error(data.message || 'تعذّر تحديث الحالة.');
+                }
+                alert(data.message || 'تم تحديث الحالة بنجاح.');
+                await refreshDashboard();
+            } catch (error) {
+                console.error(error);
+                alert(error.message || 'حدث خطأ أثناء تحديث الحالة.');
+            }
+        };
+
+        document.querySelectorAll('.action-btn').forEach((button) => {
+            button.addEventListener('click', () => {
+                const row = button.closest('tr');
+                if (!row) return;
+
+                const notePanel = row.querySelector('.note-panel');
+                const noteInput = row.querySelector('.note-input');
+                if (!notePanel || !noteInput) return;
+
+                row.querySelectorAll('.action-btn').forEach((actionButton) => {
+                    actionButton.classList.remove('bg-primary-fixed', 'text-primary', 'ring-2', 'ring-primary');
+                    actionButton.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+                });
+
+                button.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+                button.classList.add('bg-primary-fixed', 'text-primary', 'ring-2', 'ring-primary');
+
+                if (button.dataset.action === 'pause') {
+                    const reason = noteInput.value.trim();
+                    if (row.dataset.awaitingNote === 'true' && reason) {
+                        submitStatus(button.getAttribute('data-reqrev'), 'إيقاف مؤقت', reason);
+                        return;
+                    }
+
+                    const shouldPause = window.confirm('هل تريد إيقاف هذا الطلب مؤقتاً؟');
+                    if (!shouldPause) {
+                        button.classList.remove('bg-primary-fixed', 'text-primary', 'ring-2', 'ring-primary');
+                        button.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+                        return;
+                    }
+
+                    notePanel.classList.remove('hidden');
+                    noteInput.disabled = false;
+                    noteInput.focus();
+                    row.dataset.selectedAction = 'pause';
+                    row.dataset.awaitingNote = 'true';
+                    return;
+                }
+
+                const shouldComplete = window.confirm('هل تريد إكمال هذا الطلب؟');
+                if (!shouldComplete) {
+                    button.classList.remove('bg-primary-fixed', 'text-primary', 'ring-2', 'ring-primary');
+                    button.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+                    return;
+                }
+
+                noteInput.value = '';
+                notePanel.classList.add('hidden');
+                noteInput.disabled = true;
+                row.dataset.selectedAction = 'complete';
+                row.dataset.awaitingNote = 'false';
+                submitStatus(button.getAttribute('data-reqrev'), 'مكتمل', '');
+            });
+        });
+
+        document.querySelectorAll('.note-input').forEach((noteInput) => {
+            noteInput.addEventListener('keydown', (event) => {
+                if (event.key !== 'Enter') return;
+                event.preventDefault();
+                const row = noteInput.closest('tr');
+                if (!row) return;
+                const reqrev = noteInput.getAttribute('data-reqrev');
+                const reason = noteInput.value.trim();
+                if (!reason) {
+                    alert('يرجى إدخال سبب الإيقاف المؤقت قبل المتابعة.');
+                    return;
+                }
+                submitStatus(reqrev, 'إيقاف مؤقت', reason);
+            });
+        });
+    }
+
+    function renderRequests(rows) {
+        const tbody = document.getElementById('requestsTableBody');
+        if (!tbody) return;
+        if (!rows || rows.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" class="px-4 py-4 text-center text-on-surface-variant">لا توجد طلبات حالياً.</td></tr>';
+            return;
+        }
+        allRequestsData = rows;
+        renderFilterControls(rows);
+        renderRequestRows(rows);
+    }
+
+    if (closeAttachmentPreviewButton) {
+        closeAttachmentPreviewButton.addEventListener('click', closeAttachmentPreview);
+    }
+    if (printAttachmentPreviewButton) {
+        printAttachmentPreviewButton.addEventListener('click', () => {
+            window.print();
+        });
+    }
+    if (attachmentPreviewModal) {
+        attachmentPreviewModal.addEventListener('click', (event) => {
+            if (event.target === attachmentPreviewModal) {
+                closeAttachmentPreview();
+            }
+        });
+    }
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && attachmentPreviewModal && !attachmentPreviewModal.classList.contains('hidden')) {
+            closeAttachmentPreview();
+        }
+    });
+
+    function setVisibleState(visible) {
+        uiBlocks.forEach((el) => {
+            if (!el) return;
+            el.style.display = visible ? '' : 'none';
+        });
+        if (authOverlay) {
+            authOverlay.style.display = visible ? 'none' : 'flex';
+        }
+    }
+
+    function loadSession() {
+        try {
+            const raw = localStorage.getItem(sessionKey);
+            if (!raw) return null;
+            const parsed = JSON.parse(raw);
+            if (!parsed || !parsed.username || !parsed.role) {
+                localStorage.removeItem(sessionKey);
+                return null;
+            }
+            return parsed;
+        } catch (error) {
+            console.error(error);
+            localStorage.removeItem(sessionKey);
+            return null;
+        }
+    }
+
+    function clearSession() {
+        currentSession = null;
+        localStorage.removeItem(sessionKey);
+    }
+
+    function applyRoleAccess(session) {
+        currentSession = session;
+        if (currentUserName) {
+            currentUserName.textContent = session.username || 'مستخدم';
+        }
+        if (currentUserRole) {
+            currentUserRole.textContent = session.role === 'admin' ? 'مدير النظام' : 'مستخدم';
+        }
+        if (session.role !== 'admin') {
+            adminOnlyLinks.forEach((link) => {
+                if (link) {
+                    link.style.display = 'none';
+                }
+            });
+            if (addRequestButton) {
+                addRequestButton.classList.add('hidden');
+            }
+        }
+    }
+
+    function showAuth(message) {
+        if (authError) {
+            authError.textContent = message || '';
+        }
+        setVisibleState(false);
+    }
+
+    function hideAuth() {
+        if (authError) {
+            authError.textContent = '';
+        }
+        setVisibleState(true);
+    }
+
+    async function fetchSummary() {
+        try {
+            const res = await fetch('/admin/summary');
+            if (!res.ok) throw new Error('Failed to load summary');
+            return await res.json();
+        } catch (err) {
+            console.error(err);
+            return null;
+        }
+    }
+
+    async function fetchRequests(limit = 12) {
+        try {
+            const res = await fetch('/admin/requests?limit=' + limit);
+            if (!res.ok) throw new Error('Failed to load requests');
+            return await res.json();
+        } catch (err) {
+            console.error(err);
+            return null;
+        }
+    }
+
+    function renderStatusChart(summary) {
+        const chart = document.getElementById('statusChart');
+        if (!chart) return;
+        const entries = Object.entries(summary || {});
+        if (entries.length === 0) {
+            chart.innerHTML = '<div class="text-body-md text-on-surface-variant">لا توجد بيانات للتقارير حالياً.</div>';
+            return;
+        }
+        const data = entries.map(([status, count]) => ({ label: status || 'غير معروف', value: count }));
+        const maxValue = Math.max(1, ...data.map(d => d.value));
+        chart.innerHTML = data.map(item => `
+            <div>
+                <div class="flex items-center justify-between mb-2">
+                    <span class="font-label-md text-label-md text-on-surface-variant">${item.label}</span>
+                    <span class="font-headline-sm text-headline-sm text-primary">${item.value}</span>
+                </div>
+                <div class="h-3 bg-surface-container-low rounded-full overflow-hidden">
+                    <div class="h-full bg-primary" style="width: ${Math.round((item.value / maxValue) * 100)}%"></div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function getRequestBadgeClass(status) {
+        const normalized = String(status || '').trim();
+        if (normalized.includes('مكتمل')) {
+            return 'bg-primary-fixed text-primary';
+        }
+        if (normalized.includes('إيقاف') || normalized.includes('مؤقت')) {
+            return 'bg-amber-100 text-amber-800';
+        }
+        if (normalized.includes('قيد')) {
+            return 'bg-secondary-container text-on-secondary-container';
+        }
+        if (normalized.includes('مرفوض')) {
+            return 'bg-error-container text-error';
+        }
+        return 'bg-surface-container-low text-on-surface-variant';
+    }
+
+    function getRequestAttachmentUrl(row, fieldName) {
+        const fileName = String(row[fieldName] || '').trim();
+        if (!fileName) return '';
+        return '/uploaded/' + encodeURIComponent(fileName);
+    }
+
+    function getRequestAttachmentUrls(row) {
+        return {
+            photoUrl: getRequestAttachmentUrl(row, 'Pic'),
+            identityUrl: getRequestAttachmentUrl(row, 'ident'),
+            billUrl: getRequestAttachmentUrl(row, 'bill')
+        };
+    }
+
+    function downloadAttachment(url, label) {
+        if (!url) {
+            alert('لا يوجد ملف للتنزيل.');
+            return;
+        }
+        const fileName = label ? `${label}.${String(url).split('.').pop().split('?')[0]}` : '';
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = fileName;
+        anchor.target = '_blank';
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+    }
+
+    function setupAttachmentActions() {
+        document.querySelectorAll('.download-attachment-btn').forEach((button) => {
+            button.addEventListener('click', () => {
+                const url = button.dataset.url;
+                const label = button.dataset.label || 'attachment';
+                downloadAttachment(url, label);
+            });
+        });
+
+        document.querySelectorAll('.print-attachment-btn').forEach((button) => {
+            button.addEventListener('click', () => {
+                window.print();
+            });
+        });
+    }
+
+    function renderAttachmentPreview(photoUrl, identityUrl, billUrl) {
+        const buildPreview = (url, label, placeholderText) => {
+            const normalizedUrl = String(url || '').trim();
+            const isImage = /\.(png|jpe?g|gif|webp)$/i.test(normalizedUrl);
+            const isPdf = /\.(pdf)$/i.test(normalizedUrl);
+            const previewContent = !normalizedUrl
+                ? `<div class="flex h-full items-center justify-center rounded-3xl border border-dashed border-outline-variant bg-surface-container-low px-4 text-center text-on-surface-variant">${placeholderText}</div>`
+                : isImage
+                    ? `<img src="${normalizedUrl}" alt="${label}" class="attachment-print-image rounded-3xl bg-white" />`
+                    : isPdf
+                        ? `<div class="flex h-full flex-col gap-3 rounded-3xl border border-outline-variant bg-surface-container-low p-3">
+                            <div class="rounded-2xl bg-white px-3 py-2 text-sm font-bold text-on-surface">${label} — معاينة PDF</div>
+                            <div class="rounded-2xl bg-white px-3 py-2 text-sm text-primary">
+                                <a href="${normalizedUrl}" target="_blank" rel="noopener noreferrer" class="font-bold underline decoration-2 underline-offset-2">اضغط هنا لفتح ملف PDF للمعاينة</a>
+                            </div>
+                            <embed src="${normalizedUrl}" type="application/pdf" class="w-full flex-1 rounded-2xl border-0 bg-white" style="min-height:420px;" />
+                        </div>`
+                        : `<div class="flex h-full flex-col gap-3 rounded-3xl border border-outline-variant bg-surface-container-low p-3">
+                            <div class="rounded-2xl bg-white px-3 py-2 text-sm font-bold text-on-surface">${label} — ملف غير قابل للمعاينة المباشرة</div>
+                            <iframe src="${normalizedUrl}" class="min-h-[280px] w-full flex-1 rounded-2xl border-0 bg-white" title="${label}"></iframe>
+                            <a href="${normalizedUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-2xl bg-primary px-4 py-2 text-sm font-bold text-on-primary">فتح الملف</a>
+                        </div>`;
+
+            return `
+                <div class="attachment-print-sheet">
+                    ${previewContent}
+                    <div class="attachment-preview-actions">
+                        <button type="button" class="download-attachment-btn inline-flex items-center justify-center rounded-2xl border border-outline-variant bg-white px-4 py-2 text-sm font-bold text-primary hover:bg-surface-container-low transition-colors" data-url="${normalizedUrl}" data-label="${label}">
+                            <span class="material-symbols-outlined text-[18px]">download</span>
+                            تحميل ${label}
+                        </button>
+                        ${isImage && normalizedUrl ? `<button type="button" class="print-attachment-btn inline-flex items-center justify-center rounded-2xl border border-outline-variant bg-white px-4 py-2 text-sm font-bold text-primary hover:bg-surface-container-low transition-colors" data-url="${normalizedUrl}">
+                            <span class="material-symbols-outlined text-[18px]">print</span>
+                            طباعة ${label}
+                        </button>` : ''}
+                    </div>
+                </div>
+            `;
+        };
+
+        if (personalAttachmentPreview) {
+            personalAttachmentPreview.innerHTML = buildPreview(photoUrl, 'الصورة الشخصية', 'لا توجد صورة شخصية مرفوعة.');
+        }
+        if (identityAttachmentPreview) {
+            identityAttachmentPreview.innerHTML = buildPreview(identityUrl, 'إثبات الهوية', 'لا يوجد إثبات هوية مرفوع.');
+        }
+        const billAttachmentPreview = document.getElementById('billAttachmentPreview');
+        if (billAttachmentPreview) {
+            billAttachmentPreview.innerHTML = buildPreview(billUrl, 'إشعار الدفع', 'لا يوجد إشعار دفع مرفوع.');
+        }
+
+        setupAttachmentActions();
+    }
+
+    function openAttachmentPreview(photoUrl, identityUrl, billUrl) {
+        if (!attachmentPreviewModal) return;
+        renderAttachmentPreview(photoUrl, identityUrl, billUrl);
+        attachmentPreviewModal.classList.remove('hidden');
+        attachmentPreviewModal.classList.add('flex');
+        document.body.classList.add('overflow-hidden');
+    }
+
+    function closeAttachmentPreview() {
+        if (!attachmentPreviewModal) return;
+        attachmentPreviewModal.classList.add('hidden');
+        attachmentPreviewModal.classList.remove('flex');
+        document.body.classList.remove('overflow-hidden');
+    }
+
+    async function refreshDashboard() {
+        const [summaryData, requestsData] = await Promise.all([
+            fetchSummary(),
+            fetchRequests(12)
+        ]);
+
+        if (summaryData && summaryData.success) {
+            document.getElementById('totalRequests').textContent = summaryData.total || '0';
+            document.getElementById('newRequests').textContent = summaryData.newRequests || '0';
+            document.getElementById('completedRequests').textContent = summaryData.completedRequests || '0';
+            document.getElementById('pendingRequests').textContent = summaryData.pendingRequests || '0';
+            renderStatusChart(summaryData.summary || {});
+        }
+
+        if (requestsData && requestsData.success) {
+            renderRequests(requestsData.requests);
+        }
+    }
+
+    if (authForm) {
+        authForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const username = document.getElementById('username')?.value.trim() || '';
+            const password = document.getElementById('password')?.value || '';
+            if (!username || !password) {
+                if (authError) authError.textContent = 'يرجى إدخال اسم المستخدم وكلمة المرور.';
+                return;
+            }
+
+            try {
+                const res = await fetch('/admin/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await res.json().catch(() => ({}));
+                if (!res.ok || !data.success) {
+                    throw new Error(data.message || 'فشل تسجيل الدخول.');
+                }
+
+                localStorage.setItem(sessionKey, JSON.stringify({
+                    username: data.username,
+                    role: data.role,
+                    loggedInAt: Date.now()
+                }));
+                applyRoleAccess({ username: data.username, role: data.role });
+                hideAuth();
+                await refreshDashboard();
+            } catch (error) {
+                if (authError) {
+                    authError.textContent = error.message || 'تعذّر تسجيل الدخول.';
+                }
+            }
+        });
+    }
+
+    const logoutHandler = (event) => {
+        if (event) {
+            event.preventDefault();
+        }
+        clearSession();
+        showAuth('تم تسجيل الخروج بنجاح.');
+        if (authForm) {
+            authForm.reset();
+        }
+    };
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', logoutHandler);
+    }
+
+    if (headerLogoutBtn) {
+        headerLogoutBtn.addEventListener('click', logoutHandler);
+    }
+
+    const session = loadSession();
+    if (!session) {
+        showAuth('يرجى تسجيل الدخول للوصول إلى لوحة التحكم.');
+        return;
+    }
+
+    applyRoleAccess(session);
+    hideAuth();
+    bindRequestFilters();
+    await refreshDashboard();
+});
+</script>
+</body></html>

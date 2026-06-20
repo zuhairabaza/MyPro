@@ -1,0 +1,226 @@
+<!DOCTYPE html><html dir="rtl" lang="ar"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>البوابة الإلكترونية لمصادقة الوثائق الجامعية</title>
+<!-- Tailwind CSS v3 CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter and Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error": "#ba1a1a",
+                      "on-primary": "#ffffff",
+                      "secondary": "#7b5800",
+                      "background": "#f8f9fa",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-container": "#c6955e",
+                      "primary": "#002045",
+                      "on-primary-container": "#86a0cd",
+                      "primary-fixed": "#d6e3ff",
+                      "tertiary-container": "#4f2e00",
+                      "on-tertiary-fixed": "#2b1700",
+                      "on-secondary": "#ffffff",
+                      "surface-container-low": "#f3f4f5",
+                      "surface-variant": "#e1e3e4",
+                      "tertiary": "#321b00",
+                      "inverse-primary": "#adc7f7",
+                      "on-background": "#191c1d",
+                      "on-error-container": "#93000a",
+                      "primary-fixed-dim": "#adc7f7",
+                      "on-error": "#ffffff",
+                      "inverse-surface": "#2e3132",
+                      "on-secondary-fixed-variant": "#5d4200",
+                      "surface-bright": "#f8f9fa",
+                      "on-surface-variant": "#43474e",
+                      "tertiary-fixed": "#ffddba",
+                      "on-primary-fixed": "#001b3c",
+                      "on-secondary-fixed": "#271900",
+                      "primary-container": "#1a365d",
+                      "surface-container-high": "#e7e8e9",
+                      "on-primary-fixed-variant": "#2d476f",
+                      "on-surface": "#191c1d",
+                      "surface-container-highest": "#e1e3e4",
+                      "secondary-fixed-dim": "#f7bd48",
+                      "outline": "#74777f",
+                      "tertiary-fixed-dim": "#f2bc82",
+                      "surface-tint": "#455f88",
+                      "inverse-on-surface": "#f0f1f2",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#633f0f",
+                      "secondary-fixed": "#ffdea6",
+                      "secondary-container": "#fdc34d",
+                      "surface-dim": "#d9dadb",
+                      "surface-container-lowest": "#ffffff",
+                      "outline-variant": "#c4c6cf",
+                      "on-secondary-container": "#715000",
+                      "surface-container": "#edeeef",
+                      "surface": "#f8f9fa"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "unit": "4px",
+                      "container-max": "1440px",
+                      "margin-desktop": "48px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "caption-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "caption-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-8">
+    <a href="index.html" class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim">Bayan University</a>
+    <nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md" href="index.html">Dashboard</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md" href="reqstat.html">My Requests</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md" href="vereq.html">Verify Document</a>
+</nav>
+    <!-- Mobile nav toggle -->
+    <button id="mobileNavToggle" class="md:hidden p-2 rounded-lg bg-surface/90 text-slate-700">
+        <span class="material-symbols-outlined">menu</span>
+    </button>
+    <!-- Mobile nav menu -->
+    <nav id="mobileNav" class="hidden md:hidden absolute top-16 right-4 left-4 bg-surface rounded-lg p-4 shadow-lg z-50 space-y-2">
+        <a class="block text-slate-700 font-label-md" href="index.html">Dashboard</a>
+        <a class="block text-slate-700 font-label-md" href="reqstat.html">My Requests</a>
+        <a class="block text-slate-700 font-label-md" href="vereq.html">Verify Document</a>
+    </nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center bg-surface-container-high px-4 py-1.5 rounded-full gap-2 border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md placeholder:text-on-surface-variant w-48" placeholder="بحث عن وثيقة..." type="text">
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">help</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-xl font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">New Request</button>
+</div>
+</header>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden bg-primary px-6 md:px-margin-desktop">
+<div class="absolute inset-0 opacity-15">
+<img class="w-full h-full object-cover" data-alt="A prestigious university verification center with secure document authentication systems" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASTaNsfHxuRP4rQwp0S4GYCngsfP54xzGSTbPghvjFWzJr5mmAMjTNi0AqN1EkEywF9dqkzWD_1tpXFW_EV9LrxehBUXP592tIzTqQcHxpv-bJ9DRZkLaKZ6Sg8gt-twuNVyYgLovm1-tUfrXGVq1OpKpWKeTL6_9WOmNFxTl5rIeyLmkzZZQY_VcWK9vLl229N2k4xdm1t1H7MX7B6Ri0r-v1Ixbo6KH4J4QplkD3apk3Bu03XAspiBf9kMDpFUl_0tSVUDIZ39w">
+</div>
+<div class="relative z-10 max-w-4xl w-full">
+<div class="text-center mb-6 md:mb-8">
+<p class="text-body-md text-on-primary-container mb-4 max-w-2xl mx-auto">
+                        نظام آمن وموثوق للتحقق من أصالة الوثائق والشهادات الجامعية من جامعة البيان
+                    </p>
+</div>
+
+<!-- Verification Form Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-lg p-4 md:p-6 border border-outline-variant/30 backdrop-blur-sm">
+<!-- Form Header -->
+<div class="text-center mb-6">
+<h2 class="text-headline-md font-headline-md text-primary mb-1">
+                        البوابة الإلكترونية لمصادقة الوثائق
+                    </h2>
+<p class="text-caption-sm text-on-surface-variant">
+                        أدخل الرقم الجامعي للتحقق من صحة الوثيقة
+                    </p>
+</div>
+
+<!-- Verification Form Section -->
+<section data-purpose="verification-form" class="mb-5">
+<!-- Input Group -->
+<form class="space-y-6" action="veres.html" method="get">
+<div class="mb-4">
+<label class="block text-right text-label-md font-label-md text-on-surface-variant mb-2" for="university-id">
+                        الرقم الجامعي للتحقق*
+                    </label>
+<input class="w-full p-3 border border-outline-variant rounded-xl text-right focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-body-md bg-surface-container-lowest transition-all" id="university-id" name="university-id" placeholder="أدخل الرقم الجامعي هنا" type="text" required>
+</div>
+
+<!-- Verification Button -->
+<div class="flex justify-center mb-5">
+<button class="bg-primary hover:opacity-90 text-on-primary font-label-md text-label-md py-3 px-12 rounded-xl transition-all duration-200 shadow-sm active:scale-95 flex items-center justify-center gap-2" data-purpose="submit-verification">
+                        <span>تحقق الآن</span>
+                        <span class="material-symbols-outlined text-[20px]">verified_user</span>
+                    </button>
+</div>
+</form>
+</section>
+
+<!-- Divider -->
+<div class="flex items-center gap-3 my-5">
+<div class="flex-grow h-px bg-outline-variant"></div>
+<span class="text-on-surface-variant text-caption-sm">أو</span>
+<div class="flex-grow h-px bg-outline-variant"></div>
+</div>
+
+<!-- Alternative Action Section -->
+<div class="bg-surface-container-low rounded-xl p-4">
+<p class="text-right text-on-surface-variant text-caption-sm leading-relaxed mb-3">
+                        يمكنك أيضاً تقديم طلب مصادقة وثيقة مباشرة عبر نموذج الطلب المتخصص لتلقي الوثيقة الموثقة رسمياً
+                    </p>
+<!-- Secondary Action Button -->
+<div class="flex justify-center">
+<button type="button" onclick="window.location.href='sndml.html'" class="bg-secondary-container text-on-secondary-container border border-secondary-container text-label-md font-label-md py-2 px-8 rounded-xl transition-all duration-200 shadow-sm hover:brightness-110 active:scale-95 flex items-center justify-center gap-2 text-sm" data-purpose="request-authentication">
+                        <span>طلب مصادقة وثيقة</span>
+                        <span class="material-symbols-outlined text-[18px]">mail</span>
+                    </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BEGIN: Footer -->
+<footer class="bg-primary text-on-primary border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop py-8 max-w-container-max mx-auto gap-6">
+<div class="flex flex-col items-center md:items-start gap-1">
+<span class="font-headline-md text-headline-md font-bold text-on-primary">جامعة البيان</span>
+<span class="font-caption-sm text-xs text-on-primary/80">© 2024 Bayan University. All Rights Reserved. Document Verification System v1.0</span>
+</div>
+<div class="flex gap-6 text-sm">
+<a class="text-on-primary hover:text-secondary-fixed transition-opacity opacity-90 hover:opacity-100" href="privacypolicy.html">Privacy Policy</a>
+<a class="text-on-primary hover:text-secondary-fixed transition-opacity opacity-90 hover:opacity-100" href="termofservice.html">Terms of Service</a>
+<a class="text-on-primary hover:text-secondary-fixed transition-opacity opacity-90 hover:opacity-100" href="#">Support</a>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
+<script src="libs/responsive-nav.js"></script>
+</body></html>

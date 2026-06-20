@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bayan University - Request Form</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="libs/responsive-nav.js"></script>
+
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "secondary": "#7b5800",
+                        "background": "#f8f9fa",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#c6955e",
+                        "primary": "#002045",
+                        "on-primary-container": "#86a0cd",
+                        "primary-fixed": "#d6e3ff",
+                        "tertiary-container": "#4f2e00",
+                        "on-tertiary-fixed": "#2b1700",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-variant": "#e1e3e4",
+                        "tertiary": "#321b00",
+                        "inverse-primary": "#adc7f7",
+                        "on-background": "#191c1d",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#adc7f7",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "on-secondary-fixed-variant": "#5d4200",
+                        "surface-bright": "#f8f9fa",
+                        "on-surface-variant": "#43474e",
+                        "tertiary-fixed": "#ffddba",
+                        "on-primary-fixed": "#001b3c",
+                        "on-secondary-fixed": "#271900",
+                        "primary-container": "#1a365d",
+                        "surface-container-high": "#e7e8e9",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "on-surface": "#191c1d",
+                        "surface-container-highest": "#e1e3e4",
+                        "secondary-fixed-dim": "#f7bd48",
+                        "outline": "#74777f",
+                        "tertiary-fixed-dim": "#f2bc82",
+                        "surface-tint": "#455f88",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#633f0f",
+                        "secondary-fixed": "#ffdea6",
+                        "secondary-container": "#fdc34d",
+                        "surface-dim": "#d9dadb",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c4c6cf",
+                        "on-secondary-container": "#715000",
+                        "surface-container": "#edeeef",
+                        "surface": "#f8f9fa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "unit": "4px",
+                        "container-max": "1440px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "caption-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "caption-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation Bar (shared) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline">
+    <div class="flex items-center gap-8">
+        <a href="index.html" class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Bayan University</a>
+        <nav class="hidden md:flex items-center gap-6">
+            <a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-bold font-label-md text-label-md" href="index.html">Dashboard</a>
+            <a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md" href="reqstat.html">My Requests</a>
+        </nav>
+        <!-- Mobile nav toggle -->
+        <button id="mobileNavToggle" class="md:hidden p-2 rounded-lg bg-surface/90 text-slate-700">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+        <!-- Mobile nav menu -->
+        <nav id="mobileNav" class="hidden md:hidden absolute top-16 right-4 left-4 bg-surface rounded-lg p-4 shadow-lg z-50 space-y-2">
+            <a class="block text-slate-700 font-label-md" href="index.html">Dashboard</a>
+            <a class="block text-slate-700 font-label-md" href="reqstat.html">My Requests</a>
+        </nav>
+    </div>
+    <div class="flex items-center gap-4">
+        <div class="hidden md:flex items-center bg-surface-container-high px-4 py-1.5 rounded-full gap-2 border border-outline-variant">
+            <span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+            <input id="docSearchInput" class="bg-transparent border-none focus:ring-0 text-body-md placeholder:text-on-surface-variant w-48" placeholder="بحث عن وثيقة..." type="text"/>
+        </div>
+        <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+        <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">help</button>
+        <button id="headerNewRequestBtn" class="bg-primary text-on-primary px-6 py-2 rounded-xl font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">New Request</button>
+    </div>
+</header>
+<div class="pt-24 pb-16 px-margin-desktop max-w-container-max mx-auto flex gap-gutter">
+<!-- SideNavBar - Suppressed for focused Task-flow as per UX Goal -->
+<!-- Main Form Canvas -->
+<main class="w-full max-w-4xl mx-auto">
+<div class="mb-12 text-center">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">طلب وثيقة أكاديمية</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">يرجى إكمال الخطوات أدناه لتقديم طلبك الجديد</p>
+</div>
+<!-- Stepper Component -->
+<div class="flex items-center justify-between mb-12 relative px-4">
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-outline-variant -translate-y-1/2 -z-10"></div>
+<!-- Step 1: Active -->
+<div class="flex flex-col items-center gap-2 bg-background px-4">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold ring-4 ring-primary-fixed">1</div>
+<span class="font-label-md text-label-md text-primary font-bold">البيانات الأكاديمية</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-2 bg-background px-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-bold border border-outline-variant">2</div>
+<span class="font-label-md text-label-md text-on-surface-variant">البيانات الشخصية</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-2 bg-background px-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-bold border border-outline-variant">3</div>
+<span class="font-label-md text-label-md text-on-surface-variant">المرفقات</span>
+</div>
+</div>
+<!-- Form Content -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 shadow-sm">
+<form class="space-y-8">
+<!-- Section: Academic Data (Step 1 View) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">الكلية</label>
+<select id="faculty" class="h-12 px-4 border border-outline rounded-lg focus:border-primary focus:ring-1 focus:ring-primary bg-surface transition-all" required>
+    <option value="">اختر الكلية...</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">القسم</label>
+<select id="department" class="h-12 px-4 border border-outline rounded-lg focus:border-primary focus:ring-1 focus:ring-primary bg-surface transition-all" required>
+    <option value="">اختر القسم...</option>
+</select>
+</div>
+<div class="flex flex-col md:col-span-2 gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">نوع الوثيقة المطلوبة</label>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<label data-doc-type-card class="flex items-center gap-3 p-4 border border-primary bg-primary-fixed/30 rounded-xl cursor-pointer">
+<input checked class="text-primary focus:ring-primary" name="doc_type" type="radio" value="graduation"/>
+<span class="font-body-md text-body-md text-primary font-bold">وثيقة تخرج</span>
+</label>
+<label data-doc-type-card class="flex items-center gap-3 p-4 border border-outline-variant hover:border-primary rounded-xl cursor-pointer transition-all">
+<input class="text-primary focus:ring-primary" name="doc_type" type="radio" value="enrollment"/>
+<span class="font-body-md text-body-md text-on-surface">إفادة</span>
+</label>
+</div>
+<div id="graduationOptions" class="mt-4">
+<label class="font-label-md text-label-md text-on-surface-variant">نوع وثيقة التخرج</label>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<label class="flex items-center gap-3 p-4 border border-outline-variant hover:border-primary rounded-xl cursor-pointer transition-all">
+<input class="text-primary focus:ring-primary" name="doc_subtype" type="radio" value="شهادة عامة + تفاصيل"/>
+<span class="font-body-md text-body-md text-on-surface">شهادة عامة + تفاصيل</span>
+</label>
+<label class="flex items-center gap-3 p-4 border border-outline-variant hover:border-primary rounded-xl cursor-pointer transition-all">
+<input class="text-primary focus:ring-primary" name="doc_subtype" type="radio" value="شهادة عامة فقط"/>
+<span class="font-body-md text-body-md text-on-surface">شهادة عامة فقط</span>
+</label>
+<label class="flex items-center gap-3 p-4 border border-outline-variant hover:border-primary rounded-xl cursor-pointer transition-all">
+<input class="text-primary focus:ring-primary" name="doc_subtype" type="radio" value="شهادة تفاصيل فقط"/>
+<span class="font-body-md text-body-md text-on-surface">شهادة تفاصيل فقط</span>
+</label>
+</div>
+</div>
+<div id="efadaOptions" class="mt-4 hidden">
+<label class="font-label-md text-label-md text-on-surface-variant">نوع الإفادة</label>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<label class="flex items-center gap-3 p-4 border border-outline-variant hover:border-primary rounded-xl cursor-pointer transition-all">
+<input class="text-primary focus:ring-primary" name="doc_subtype" type="radio" value="إفادة إكمال"/>
+<span class="font-body-md text-body-md text-on-surface">إفادة إكمال</span>
+</label>
+<label class="flex items-center gap-3 p-4 border border-outline-variant hover:border-primary rounded-xl cursor-pointer transition-all">
+<input class="text-primary focus:ring-primary" name="doc_subtype" type="radio" value="إفادة تخرج أو إفادة محتوى"/>
+<span class="font-body-md text-body-md text-on-surface">إفادة تخرج أو إفادة محتوى</span>
+</label>
+<label class="flex items-center gap-3 p-4 border border-outline-variant hover:border-primary rounded-xl cursor-pointer transition-all">
+<input class="text-primary focus:ring-primary" name="doc_subtype" type="radio" value="إفادة دراسة باللغة الإنجليزية"/>
+<span class="font-body-md text-body-md text-on-surface">إفادة دراسة باللغة الإنجليزية</span>
+</label>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">لغة الوثيقة *(االلغة العربية متاحة فقط للشهادة العامة)</label>
+<select id="language" class="h-12 px-4 border border-outline rounded-lg focus:border-primary focus:ring-1 focus:ring-primary bg-surface transition-all" required>
+<option value="العربية">العربية (الشهادة العامة)</option>
+<option value="الإنجليزية">اللغة الإنجليزية</option>
+<option value="العربية والإنجليزية معا (Bilingual)">العربية والإنجليزية معا (Bilingual)</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">عدد النسخ المطلوبة</label>
+<input id="copies" class="h-12 px-4 border border-outline rounded-lg focus:border-primary focus:ring-1 focus:ring-primary bg-surface" min="1" type="number" value="1" required/>
+</div>
+</div>
+<!-- Layout for Personal Data (Visible in Step 2) - Simulation -->
+<div class="hidden opacity-0 space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">الاسم الكامل</label>
+<input class="h-12 px-4 border border-outline rounded-lg focus:border-primary focus:ring-1 focus:ring-primary bg-surface" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">الرقم الجامعي</label>
+<input class="h-12 px-4 border border-outline rounded-lg focus:border-primary focus:ring-1 focus:ring-primary bg-surface" type="text"/>
+</div>
+</div>
+</div>
+<!-- Navigation Buttons -->
+<div class="flex justify-between items-center pt-8 border-t border-outline-variant">
+<button class="px-8 h-12 border border-primary text-primary font-label-md text-label-md rounded-lg hover:bg-primary-fixed transition-colors active:scale-95" type="button">إلغاء الطلب</button>
+<div class="flex gap-4">
+<button id="nextStep" class="px-8 h-12 bg-secondary text-on-primary font-label-md text-label-md rounded-lg hover:opacity-90 transition-opacity active:scale-95 flex items-center gap-2" type="button">
+                                الخطوة التالية
+                                <span class="material-symbols-outlined text-sm">arrow_back</span>
+</button>
+</div>
+</div>
+</form>
+</div>
+<!-- Guidelines Sidebar / Contextual Info -->
+<div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="p-6 bg-surface-container-low rounded-xl flex gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">info</span>
+<div>
+<h3 class="font-label-md text-label-md text-primary font-bold mb-1">تعليمات هامة</h3>
+<p class="font-caption-sm text-caption-sm text-on-surface-variant">يرجى التأكد من صحة البيانات المدخلة لتجنب تأخير معالجة الطلب.</p>
+</div>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl flex gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">schedule</span>
+<div>
+<h3 class="font-label-md text-label-md text-primary font-bold mb-1">وقت المعالجة</h3>
+<p class="font-caption-sm text-caption-sm text-on-surface-variant">يستغرق إصدار الوثيقة عادةً من 3 إلى 5 أيام عمل أكاديمية.</p>
+</div>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl flex gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">verified</span>
+<div>
+<h3 class="font-label-md text-label-md text-primary font-bold mb-1">التدقيق الرقمي</h3>
+<p class="font-caption-sm text-caption-sm text-on-surface-variant">تخضع جميع الوثائق لنظام التحقق الرقمي المعتمد في الجامعة.</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full py-8 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-primary dark:bg-on-background border-t border-primary-container">
+<div class="flex flex-col gap-2">
+<span class="font-headline-md text-headline-md text-on-primary">Bayan University</span>
+<p class="font-caption-sm text-caption-sm text-on-primary-container">© 2024 Bayan University. All Rights Reserved. Digital Records Division.</p>
+</div>
+<div class="flex gap-6">
+<a class="text-on-primary-container font-caption-sm text-caption-sm hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-primary-container font-caption-sm text-caption-sm hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="text-on-primary-container font-caption-sm text-caption-sm hover:text-white transition-colors" href="#">Contact Support</a>
+<a class="text-on-primary-container font-caption-sm text-caption-sm hover:text-white transition-colors" href="#">University Home</a>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    const facultySelect = document.getElementById('faculty');
+    const departmentSelect = document.getElementById('department');
+    let departments = [];
+
+    async function loadFacultyAndDepartmentLists(){
+        try{
+            const [collegeRes, deptRes] = await Promise.all([
+                fetch('/admin/colleges'),
+                fetch('/admin/departments')
+            ]);
+
+            if(!collegeRes.ok || !deptRes.ok){
+                throw new Error('فشل في تحميل بيانات الكليات أو الأقسام من السيرفر.');
+            }
+
+            const collegesData = await collegeRes.json();
+            const deptData = await deptRes.json();
+
+            if(collegesData.success && facultySelect){
+                facultySelect.innerHTML = '<option value="">اختر الكلية...</option>' + collegesData.colleges.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+            }
+
+            if(deptData.success){
+                departments = (deptData.departments || []).map(d => ({
+                    id: d.id,
+                    name: d.name,
+                    collegeId: d.college_id
+                }));
+                updateDepartmentOptions();
+            } else {
+                throw new Error(deptData.message || 'تعذّر تحميل بيانات الأقسام.');
+            }
+        }catch(err){
+            console.error('Error loading colleges or departments:', err);
+            if(facultySelect){
+                facultySelect.innerHTML = '<option value="">تعذّر تحميل الكليات</option>';
+            }
+            if(departmentSelect){
+                departmentSelect.innerHTML = '<option value="">تعذّر تحميل الأقسام</option>';
+            }
+        }
+    }
+
+    function updateDepartmentOptions(){
+        const collegeId = facultySelect ? facultySelect.value : '';
+        const filtered = collegeId
+            ? departments.filter(d => String(d.collegeId) === String(collegeId))
+            : departments;
+                    
+        if(departmentSelect){
+            departmentSelect.innerHTML = '<option value="">اختر القسم...</option>' + filtered.map(d => `<option value="${d.id}">${d.name}</option>`).join('');
+        }
+    }
+
+    if(facultySelect){
+        facultySelect.addEventListener('change', updateDepartmentOptions);
+    }
+
+    const docTypeRadios = Array.from(document.querySelectorAll('input[name="doc_type"]'));
+    const efadaOptions = document.getElementById('efadaOptions');
+    const graduationOptions = document.getElementById('graduationOptions');
+    const docTypeCards = document.querySelectorAll('[data-doc-type-card]');
+
+    function updateDocTypeSections() {
+        const selected = document.querySelector('input[name="doc_type"]:checked');
+        if (!selected) return;
+        const isGraduation = selected.value === 'graduation';
+
+        graduationOptions.classList.toggle('hidden', !isGraduation);
+        efadaOptions.classList.toggle('hidden', isGraduation);
+
+        docTypeCards.forEach(card => {
+            const input = card.querySelector('input[name="doc_type"]');
+            if (input && input.checked) {
+                card.classList.add('border-primary', 'bg-primary-fixed/30');
+            } else {
+                card.classList.remove('border-primary', 'bg-primary-fixed/30');
+            }
+        });
+
+        // Only clear doc_subtype options if doc_type is being changed
+        // Don't clear on initial page load to preserve user selections
+        if (selected.hasAttribute('data-doc-type-changed')) {
+            document.querySelectorAll('input[name="doc_subtype"]').forEach(r => r.checked = false);
+        }
+        selected.setAttribute('data-doc-type-changed', 'true');
+    }
+
+    docTypeRadios.forEach(radio => radio.addEventListener('change', updateDocTypeSections));
+    updateDocTypeSections();
+
+    document.getElementById('nextStep').addEventListener('click', function() {
+        const faculty = facultySelect ? facultySelect.value : '';
+        const department = departmentSelect ? departmentSelect.value : '';
+        const doc_type = document.querySelector('input[name="doc_type"]:checked').value;
+        const language = document.getElementById('language').value;
+        const copies = document.getElementById('copies').value;
+        const doc_subtype = document.querySelector('input[name="doc_subtype"]:checked') ? document.querySelector('input[name="doc_subtype"]:checked').value : '';
+
+        console.log('nextStep clicked - Read values:', {faculty, department, doc_type, language, copies, doc_subtype});
+
+        if (!faculty || !department || !doc_type || !language || !copies || !doc_subtype) {
+            console.error('Validation failed:', {faculty: !faculty, department: !department, doc_type: !doc_type, language: !language, copies: !copies, doc_subtype: !doc_subtype});
+            alert('يرجى ملء جميع الحقول المطلوبة واختيار تفاصيل النوع الفرعي.');
+            return;
+        }
+
+        // Save only the selected subtype as the document type
+        const data = {
+            faculty,
+            department,
+            doc_type: doc_subtype,
+            language,
+            copies
+        };
+
+        console.log('req1.html: saving academicData with doc_type (subtype):', doc_subtype);
+        console.log('req1.html: full data:', JSON.stringify(data, null, 2));
+        localStorage.setItem('academicData', JSON.stringify(data));
+        window.location.href = 'info.html';
+    });
+
+    loadFacultyAndDepartmentLists();
+
+    const input = document.getElementById('docSearchInput');
+    if(input){ input.addEventListener('keydown', async function(e){ if(e.key==='Enter'){ const q = input.value.trim(); if(!q) return; try{ const res = await fetch('http://localhost:3000/track-request?reqrev='+encodeURIComponent(q)); if(res.ok){ const data = await res.json(); if(data && data.success) window.location.href='reqstat.html?request='+encodeURIComponent(q); else alert(data.message||'لم يتم العثور على الطلب.'); } else if(res.status===404){ const data = await res.json().catch(()=>({})); alert(data.message||'لم يتم العثور على الطلب.'); } else { const data = await res.json().catch(()=>({})); alert(data.message||'حدث خطأ أثناء البحث.'); } }catch(err){ console.error(err); alert('فشل الاتصال بالخادم. تأكد أن الخادم يعمل على http://localhost:3000'); } } }); }
+    const headerNew = document.getElementById('headerNewRequestBtn'); if(headerNew) headerNew.addEventListener('click', function(){ window.location.href='req1.html'; });
+});
+</script>
+</body></html>

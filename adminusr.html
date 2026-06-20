@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#715000",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "primary-fixed": "#d6e3ff",
+                        "outline": "#74777f",
+                        "on-tertiary-fixed-variant": "#633f0f",
+                        "tertiary": "#321b00",
+                        "secondary-fixed-dim": "#f7bd48",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#5d4200",
+                        "on-tertiary-container": "#c6955e",
+                        "tertiary-container": "#4f2e00",
+                        "on-tertiary-fixed": "#2b1700",
+                        "background": "#f8f9fa",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "outline-variant": "#c4c6cf",
+                        "surface": "#f8f9fa",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-variant": "#e1e3e4",
+                        "inverse-on-surface": "#f0f1f2",
+                        "primary-container": "#1a365d",
+                        "on-surface": "#191c1d",
+                        "primary": "#002045",
+                        "surface-container": "#edeeef",
+                        "on-primary-fixed": "#001b3c",
+                        "surface-dim": "#d9dadb",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#86a0cd",
+                        "tertiary-fixed-dim": "#f2bc82",
+                        "inverse-primary": "#adc7f7",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#43474e",
+                        "secondary-fixed": "#ffdea6",
+                        "on-secondary-fixed": "#271900",
+                        "surface-bright": "#f8f9fa",
+                        "surface-tint": "#455f88",
+                        "primary-fixed-dim": "#adc7f7",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-background": "#191c1d",
+                        "tertiary-fixed": "#ffddba",
+                        "secondary": "#7b5800",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f3f4f5",
+                        "secondary-container": "#fdc34d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Cairo", "Inter", "sans-serif"],
+                        "label-md": ["Cairo", "Inter", "sans-serif"],
+                        "body-lg": ["Cairo", "Inter", "sans-serif"],
+                        "caption-sm": ["Cairo", "Inter", "sans-serif"],
+                        "display-lg": ["Cairo", "Inter", "sans-serif"],
+                        "body-md": ["Cairo", "Inter", "sans-serif"],
+                        "headline-lg": ["Cairo", "Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "caption-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Cairo', 'Inter', sans-serif; background: radial-gradient(circle at top, #ffffff 0%, #f4f7fb 40%, #ebeff5 100%); }
+        h1, h2, h3, h4, button, select, input, textarea { font-family: 'Cairo', 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .card-elevated { box-shadow: 0 18px 48px -32px rgba(0, 32, 69, 0.28); }
+        .nav-link { transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+        .nav-link:hover { transform: translateX(-1px); box-shadow: 0 14px 30px -24px rgba(0, 32, 69, 0.4); }
+        .surface-panel { background: rgba(255,255,255,0.84); backdrop-filter: blur(8px); border-color: rgba(196, 198, 207, 0.72); }
+        .btn-primary-soft { transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease; }
+        .btn-primary-soft:hover { transform: translateY(-1px); box-shadow: 0 18px 30px -18px rgba(0, 32, 69, 0.55); }
+        .btn-secondary-soft { transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease; }
+        .btn-secondary-soft:hover { transform: translateY(-1px); box-shadow: 0 18px 28px -20px rgba(0, 32, 69, 0.3); }
+        .icon-btn-soft { transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+        .icon-btn-soft:hover { transform: translateY(-1px); box-shadow: 0 14px 28px -18px rgba(0, 32, 69, 0.28); }
+    </style>
+</head>
+<body class="bg-transparent text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 w-full z-50 border-b border-outline-variant bg-white/90 backdrop-blur-xl lg:pr-60">
+<div class="flex h-18 items-center justify-between px-margin-mobile md:px-margin-desktop">
+<div class="flex items-center gap-3">
+<span class="lg:hidden material-symbols-outlined text-primary">menu</span>
+<div>
+<p class="text-caption-sm uppercase tracking-[0.3em] text-on-surface-variant">Bayan University</p>
+<h1 class="text-lg font-bold text-primary sm:text-xl">لوحة الإدارة المركزية</h1>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2 rounded-full border border-outline-variant bg-surface-container-high px-4 py-2 shadow-[0_12px_30px_-20px_rgba(0,32,69,0.28)]">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+<input class="w-64 bg-transparent border-none text-sm focus:ring-0" placeholder="ابحث في السجلات..." type="text"/>
+</div>
+<button class="rounded-full bg-surface-container-high p-2 text-on-surface-variant transition-colors hover:text-primary">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="rounded-full bg-surface-container-high p-2 text-on-surface-variant transition-colors hover:text-primary">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="flex items-center gap-3 rounded-full border border-outline-variant bg-surface-container-low px-2 py-1">
+<div class="h-9 w-9 overflow-hidden rounded-full border border-white">
+<img alt="User avatar" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl-QjqGz8NAWLF-s0e46zvmYd5NSjEP2TqpQrNcQvcLt6j52CcbeXicP0xxJjhtwI0dHjzK1U4hfwCK8PZjAyAb5QD-2sWAikpLZRCTMkmcLgMrFBeGeS-AWg_MCl73Wbkpmz4YDss9WBAReRvv2Wstm6XcatU1vVNpuuwGVMX3r9q99h3oa_PHY0QcLRQEl2GJhucq4hnw1tIVWbgAUPksXaUOhzIupA6KOfe86I7XjDfphOdAIrJLekFPoa4EWEGmr5yT1XmgNA"/>
+</div>
+<div class="hidden sm:block">
+<p class="text-sm font-bold text-on-surface">مدير النظام</p>
+<p class="text-caption-sm text-on-surface-variant">متصل الآن</p>
+</div>
+<button id="logoutBtn" type="button" class="inline-flex items-center gap-2 rounded-full border border-error/20 bg-error-container px-3 py-2 text-xs font-bold text-error hover:bg-error/10 transition-colors">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span>تسجيل الخروج</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Side Navigation Bar -->
+<aside class="hidden lg:flex flex-col h-screen fixed right-0 top-0 pt-20 pb-8 px-2 z-40 w-60">
+<div class="mx-2 mb-5 rounded-[22px] border border-white/60 bg-white/80 p-3 backdrop-blur-xl card-elevated">
+<div class="flex items-center gap-2.5">
+<div class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-fixed text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="shield_person">shield_person</span>
+</div>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Admin Portal</h2>
+</div>
+</div>
+<nav class="flex-1 space-y-1.5 px-2">
+<div class="px-2 pb-1">
+<p class="text-caption-sm font-bold uppercase tracking-[0.2em] text-on-surface-variant">لوحة التحكم</p>
+</div>
+<a class="nav-link flex items-center gap-3 bg-primary-container text-on-primary-container rounded-2xl px-3 py-2.5 shadow-[0_16px_34px_-24px_rgba(0,32,69,0.45)]" href="admincp.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">إدارة الطلبات</span>
+</a>
+<a class="nav-link flex items-center gap-3 text-on-surface-variant px-3 py-2.5 hover:bg-surface-container-high rounded-2xl transition-all" href="admindept.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="apartment">apartment</span>
+<span class="font-label-md text-label-md">إدارة الأقسام</span>
+</a>
+<a class="nav-link flex items-center gap-3 text-on-surface-variant px-3 py-2.5 hover:bg-surface-container-high rounded-2xl transition-all" href="adminusr.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="group">group</span>
+<span class="font-label-md text-label-md">إدارة المستخدمين</span>
+</a>
+
+<div class="mt-auto px-2 pt-5 border-t border-outline-variant">
+<div class="mt-2 space-y-1">
+
+<a id="logoutBtn" class="nav-link flex items-center gap-3 text-error px-3 py-2.5 hover:bg-error-container rounded-2xl transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">تسجيل الخروج</span>
+</a>
+</div>
+</div>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="pt-24 pb-16 px-margin-mobile md:px-margin-desktop lg:mr-60 min-h-screen">
+<div class="max-w-[1200px] mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary">إدارة المستخدمين</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">إدارة حسابات الموظفين وتخصيص مستويات الوصول للمنظومة</p>
+</div>
+<div class="flex items-center gap-3">
+<button id="addUserBtn" class="bg-secondary text-on-secondary px-6 py-3 rounded-xl flex items-center gap-2 font-label-md text-label-md shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined">person_add</span>
+                    إضافة مستخدم جديد
+                </button>
+</div>
+</div>
+<div id="statusMessage" class="hidden mb-4 rounded-xl border border-outline-variant bg-surface-container-low px-4 py-3 text-sm text-on-surface-variant"></div>
+<!-- Filters and Search -->
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl mb-6 flex flex-wrap gap-4 items-center">
+<div class="flex-1 min-w-[300px] relative">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pr-10 pl-4 py-2 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-body-md" placeholder="البحث بالاسم، البريد الإلكتروني أو الدور..." type="text"/>
+</div>
+<div class="flex gap-2">
+<select class="bg-surface border border-outline-variant rounded-lg px-4 py-2 text-label-md outline-none focus:ring-2 focus:ring-primary">
+<option>كل الكليات</option>
+<option>كلية الهندسة</option>
+<option>كلية الطب</option>
+<option>كلية العلوم</option>
+</select>
+<select class="bg-surface border border-outline-variant rounded-lg px-4 py-2 text-label-md outline-none focus:ring-2 focus:ring-primary">
+<option>كل الأدوار</option>
+<option>مدير النظام</option>
+<option>مدير كلية</option>
+<option>موظف معالجة</option>
+</select>
+</div>
+</div>
+<!-- Main Layout with Table and Side Panel -->
+<div class="flex flex-col xl:flex-row gap-gutter">
+<!-- Table Section -->
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<table class="w-full text-right border-collapse">
+<thead class="bg-surface-container-high">
+<tr>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">المستخدم</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">الدور الوظيفي</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">الكلية المعينة</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">الحالة</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">الإجراءات</th>
+</tr>
+</thead>
+<tbody id="usersTableBody" class="divide-y divide-outline-variant">
+<tr>
+<td colspan="5" class="px-6 py-8 text-center text-sm text-on-surface-variant">جارٍ تحميل المستخدمين...</td>
+</tr>
+</tbody>
+</table>
+<div class="px-6 py-4 bg-surface-container border-t border-outline-variant flex justify-between items-center">
+<span class="text-caption-sm font-caption-sm text-on-surface-variant">عرض 1-3 من أصل 24 مستخدم</span>
+<div class="flex gap-2">
+<button class="px-3 py-1 border border-outline-variant rounded-lg hover:bg-surface text-label-md">التالي</button>
+<button class="px-3 py-1 bg-primary text-white rounded-lg text-label-md">1</button>
+<button class="px-3 py-1 border border-outline-variant rounded-lg hover:bg-surface text-label-md">السابق</button>
+</div>
+</div>
+</div>
+<!-- Side Panel: Permissions Overview -->
+<div class="w-full xl:w-96 flex flex-col gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-2 mb-4 text-primary border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined">security</span>
+<h3 class="font-headline-md text-headline-md">نظرة عامة على الصلاحيات</h3>
+</div>
+<div class="space-y-4">
+<!-- Admin Role -->
+<div class="p-3 bg-primary-container/10 border-r-4 border-primary rounded-lg">
+<h4 class="font-label-md text-label-md font-bold text-primary mb-1">مدير النظام</h4>
+<ul class="space-y-1">
+<li class="flex items-center gap-2 text-caption-sm font-caption-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">check_circle</span>
+                                        تحكم كامل بالمستخدمين والصلاحيات
+                                    </li>
+<li class="flex items-center gap-2 text-caption-sm font-caption-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">check_circle</span>
+                                        الوصول إلى جميع سجلات الكليات
+                                    </li>
+<li class="flex items-center gap-2 text-caption-sm font-caption-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">check_circle</span>
+                                        تصدير التقارير الإحصائية المتقدمة
+                                    </li>
+</ul>
+</div>
+<!-- College Admin -->
+<div class="p-3 bg-secondary-container/10 border-r-4 border-secondary rounded-lg">
+<h4 class="font-label-md text-label-md font-bold text-secondary mb-1">مدير كلية</h4>
+<ul class="space-y-1">
+<li class="flex items-center gap-2 text-caption-sm font-caption-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span>
+                                        إدارة مستخدمي الكلية المحددة
+                                    </li>
+<li class="flex items-center gap-2 text-caption-sm font-caption-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span>
+                                        المصادقة على طلبات الوثائق
+                                    </li>
+<li class="flex items-center gap-2 text-caption-sm font-caption-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span>
+                                        عرض أرشيف الكلية فقط
+                                    </li>
+</ul>
+</div>
+<!-- Staff -->
+<div class="p-3 bg-surface-container-high border-r-4 border-outline-variant rounded-lg">
+<h4 class="font-label-md text-label-md font-bold text-on-surface-variant mb-1">موظف معالجة</h4>
+<ul class="space-y-1">
+<li class="flex items-center gap-2 text-caption-sm font-caption-sm">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">check_circle</span>
+                                        إدخال ومعالجة البيانات
+                                    </li>
+<li class="flex items-center gap-2 text-caption-sm font-caption-sm">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">check_circle</span>
+                                        رفع الوثائق الرقمية للأرشفة
+                                    </li>
+</ul>
+</div>
+</div>
+<button class="w-full mt-6 py-2 border border-primary text-primary font-label-md text-label-md rounded-lg hover:bg-primary-container/5 transition-colors">تعديل قوالب الصلاحيات</button>
+</div>
+<!-- Additional Info Card -->
+<div class="bg-primary text-on-primary p-6 rounded-xl shadow-md relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md mb-2">تأمين الحسابات</h3>
+<p class="font-body-md text-body-md opacity-90 mb-4">يُنصح بتفعيل خاصية التحقق بخطوتين لجميع حسابات مديري النظام لضمان سلامة السجلات الأكاديمية.</p>
+<button class="bg-secondary text-on-secondary px-4 py-2 rounded-lg font-label-md text-label-md">إعدادات الأمان</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -left-4 text-white/10 text-[120px]">verified_user</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 px-margin-desktop bg-primary text-on-primary border-t border-primary-container flex flex-col md:flex-row justify-between items-center gap-gutter">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-headline-md text-headline-md text-on-primary mb-2">جامعة البيان</span>
+<p class="font-caption-sm text-caption-sm opacity-80">© 2024 جامعة البيان. جميع الحقوق محفوظة. قسم السجلات الرقمية.</p>
+</div>
+<div class="flex gap-6">
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">سياسة الخصوصية</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">شروط الخدمة</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">الدعم الفني</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">الرئيسية</a>
+</div>
+</footer>
+<script>
+async function renderUsers() {
+    const tbody = document.getElementById('usersTableBody');
+    const statusMessage = document.getElementById('statusMessage');
+    if (!tbody) return;
+
+    try {
+        const response = await fetch('/admin/users');
+        const payload = await response.json();
+
+        if (!response.ok || !payload.success) {
+            throw new Error(payload.message || 'فشل تحميل المستخدمين.');
+        }
+
+        const users = Array.isArray(payload.users) ? payload.users : [];
+
+        if (!users.length) {
+            tbody.innerHTML = '<tr><td colspan="5" class="px-6 py-8 text-center text-sm text-on-surface-variant">لا يوجد مستخدمون بعد.</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = users.map(user => {
+            const userInitial = String(user.username || '').trim().charAt(0).toUpperCase() || 'U';
+            const statusBadgeClass = 'bg-secondary-container text-secondary';
+
+            return `
+                <tr class="hover:bg-surface-container-low transition-colors" data-user-id="${user.id}">
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="h-10 w-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">${userInitial}</div>
+                            <div>
+                                <div class="font-body-md text-body-md font-bold text-on-surface">${user.username}</div>
+                                <div class="font-caption-sm text-caption-sm text-on-surface-variant">ID: ${user.id}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <select data-role-select="${user.id}" class="rounded-lg border border-outline-variant bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option value="user" ${user.role === 'admin' ? '' : 'selected'}>مستخدم</option>
+                            <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>مدير النظام</option>
+                        </select>
+                    </td>
+                    <td class="px-6 py-4 font-body-md text-body-md">${user.role === 'admin' ? 'إدارة الجامعة' : 'غير محدد'}</td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                            <span class="inline-flex items-center rounded-full px-3 py-1 text-xs font-bold ${statusBadgeClass}">نشط</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex gap-2">
+                            <button data-delete-id="${user.id}" class="p-2 hover:bg-error-container rounded-lg text-error material-symbols-outlined" title="حذف المستخدم">delete</button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }).join('');
+
+        attachUserActions();
+        if (statusMessage) {
+            statusMessage.textContent = `تم تحميل ${users.length} مستخدمًا.`;
+            statusMessage.className = 'hidden';
+        }
+    } catch (error) {
+        console.error(error);
+        tbody.innerHTML = `<tr><td colspan="5" class="px-6 py-8 text-center text-sm text-error">${error.message}</td></tr>`;
+        if (statusMessage) {
+            statusMessage.textContent = error.message;
+            statusMessage.className = 'mb-4 rounded-xl border border-error/20 bg-error-container px-4 py-3 text-sm text-error';
+        }
+    }
+}
+
+function attachUserActions() {
+    document.querySelectorAll('[data-role-select]').forEach(select => {
+        select.addEventListener('change', async function() {
+            const userId = this.getAttribute('data-role-select');
+            const role = this.value;
+            try {
+                const response = await fetch(`/admin/users/${userId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ role })
+                });
+                const payload = await response.json();
+                if (!payload.success) {
+                    throw new Error(payload.message || 'فشل تحديث الصلاحية');
+                }
+                await renderUsers();
+            } catch (error) {
+                console.error(error);
+                alert(error.message);
+            }
+        });
+    });
+
+    document.querySelectorAll('[data-delete-id]').forEach(button => {
+        button.addEventListener('click', async function() {
+            const userId = this.getAttribute('data-delete-id');
+            if (!confirm('هل أنت متأكد من حذف هذا المستخدم؟')) return;
+
+            try {
+                const response = await fetch(`/admin/users/${userId}`, { method: 'DELETE' });
+                const payload = await response.json();
+                if (!response.ok || !payload.success) {
+                    throw new Error(payload.message || 'فشل حذف المستخدم');
+                }
+                await renderUsers();
+            } catch (error) {
+                console.error(error);
+                alert(error.message);
+            }
+        });
+    });
+}
+
+async function addUser() {
+    const username = window.prompt('اسم المستخدم:', '');
+    if (!username) return;
+
+    const password = window.prompt('كلمة المرور:', '');
+    if (!password) return;
+
+    const role = window.prompt('الدور (user/admin):', 'user');
+    if (!role) return;
+
+    try {
+        const response = await fetch('/admin/users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: username.trim(), password, role })
+        });
+        const payload = await response.json();
+        if (!response.ok || !payload.success) {
+            throw new Error(payload.message || 'فشل إضافة المستخدم');
+        }
+        await renderUsers();
+        alert(payload.message || 'تمت إضافة المستخدم');
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
+}
+
+function handleLogout(event) {
+    if (event) event.preventDefault();
+    localStorage.removeItem('adminSession');
+    window.location.href = 'admincp.html';
+}
+
+window.addEventListener('DOMContentLoaded', async function() {
+    const session = localStorage.getItem('adminSession');
+    if (!session) {
+        window.location.href = 'admincp.html';
+        return;
+    }
+
+    try {
+        const parsed = JSON.parse(session);
+        if (parsed.role !== 'admin') {
+            window.location.href = 'admincp.html';
+            return;
+        }
+    } catch (error) {
+        localStorage.removeItem('adminSession');
+        window.location.href = 'admincp.html';
+        return;
+    }
+
+    const logoutBtn = document.getElementById('logoutBtn');
+    const sidebarLogoutBtn = document.getElementById('sidebarLogoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', handleLogout);
+    }
+    if (sidebarLogoutBtn) {
+        sidebarLogoutBtn.addEventListener('click', handleLogout);
+    }
+
+    document.getElementById('addUserBtn')?.addEventListener('click', addUser);
+    await renderUsers();
+});
+</script>
+</body></html>

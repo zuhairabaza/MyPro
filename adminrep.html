@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#001b3c",
+                    "on-background": "#191c1d",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-container-highest": "#e1e3e4",
+                    "secondary-fixed-dim": "#f7bd48",
+                    "outline": "#74777f",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#633f0f",
+                    "on-secondary-fixed": "#271900",
+                    "on-error": "#ffffff",
+                    "primary-container": "#1a365d",
+                    "on-surface": "#191c1d",
+                    "tertiary-container": "#4f2e00",
+                    "secondary-fixed": "#ffdea6",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#ffddba",
+                    "on-secondary-fixed-variant": "#5d4200",
+                    "on-primary-fixed-variant": "#2d476f",
+                    "surface-tint": "#455f88",
+                    "primary-fixed": "#d6e3ff",
+                    "on-surface-variant": "#43474e",
+                    "tertiary": "#321b00",
+                    "inverse-primary": "#adc7f7",
+                    "on-secondary-container": "#715000",
+                    "on-tertiary-container": "#c6955e",
+                    "tertiary-fixed-dim": "#f2bc82",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#f8f9fa",
+                    "surface-dim": "#d9dadb",
+                    "error-container": "#ffdad6",
+                    "primary": "#002045",
+                    "error": "#ba1a1a",
+                    "inverse-surface": "#2e3132",
+                    "surface-container-high": "#e7e8e9",
+                    "secondary-container": "#fdc34d",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e1e3e4",
+                    "surface": "#f8f9fa",
+                    "outline-variant": "#c4c6cf",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-primary-container": "#86a0cd",
+                    "secondary": "#7b5800",
+                    "surface-container": "#edeeef",
+                    "background": "#f8f9fa",
+                    "primary-fixed-dim": "#adc7f7",
+                    "on-tertiary-fixed": "#2b1700",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "container-max": "1440px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "48px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter", "sans-serif"],
+                    "label-md": ["Inter", "sans-serif"],
+                    "body-lg": ["Inter", "sans-serif"],
+                    "headline-md": ["Inter", "sans-serif"],
+                    "display-lg": ["Inter", "sans-serif"],
+                    "caption-sm": ["Inter", "sans-serif"],
+                    "body-md": ["Inter", "sans-serif"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "fontWeight": "700"}],
+                    "caption-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Cairo', 'Inter', sans-serif; background: radial-gradient(circle at top, #ffffff 0%, #f4f7fb 40%, #ebeff5 100%); }
+        h1, h2, h3, h4, button, select, input, textarea { font-family: 'Cairo', 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-elevated { box-shadow: 0 18px 48px -32px rgba(0, 32, 69, 0.28); }
+        .nav-link { transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+        .nav-link:hover { transform: translateX(-1px); box-shadow: 0 14px 30px -24px rgba(0, 32, 69, 0.4); }
+        .surface-panel { background: rgba(255,255,255,0.84); backdrop-filter: blur(8px); border-color: rgba(196, 198, 207, 0.72); }
+        .btn-primary-soft { transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease; }
+        .btn-primary-soft:hover { transform: translateY(-1px); box-shadow: 0 18px 30px -18px rgba(0, 32, 69, 0.55); }
+        .btn-secondary-soft { transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease; }
+        .btn-secondary-soft:hover { transform: translateY(-1px); box-shadow: 0 18px 28px -20px rgba(0, 32, 69, 0.3); }
+        .icon-btn-soft { transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+        .icon-btn-soft:hover { transform: translateY(-1px); box-shadow: 0 14px 28px -18px rgba(0, 32, 69, 0.28); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #1a365d; }
+    </style>
+</head>
+<body class="bg-transparent text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 w-full z-50 border-b border-outline-variant bg-white/90 backdrop-blur-xl lg:pr-60">
+<div class="flex h-18 items-center justify-between px-margin-mobile md:px-margin-desktop">
+<div class="flex items-center gap-3">
+<span class="lg:hidden material-symbols-outlined text-primary">menu</span>
+<div>
+<p class="text-caption-sm uppercase tracking-[0.3em] text-on-surface-variant">Bayan University</p>
+<h1 class="text-lg font-bold text-primary sm:text-xl">لوحة الإدارة المركزية</h1>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2 rounded-full border border-outline-variant bg-surface-container-high px-4 py-2 shadow-[0_12px_30px_-20px_rgba(0,32,69,0.28)]">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+<input class="w-64 bg-transparent border-none text-sm focus:ring-0" placeholder="ابحث في السجلات..." type="text"/>
+</div>
+<button class="rounded-full bg-surface-container-high p-2 text-on-surface-variant transition-colors hover:text-primary">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="rounded-full bg-surface-container-high p-2 text-on-surface-variant transition-colors hover:text-primary">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="flex items-center gap-3 rounded-full border border-outline-variant bg-surface-container-low px-2 py-1">
+<div class="h-9 w-9 overflow-hidden rounded-full border border-white">
+<img alt="User Profile" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9Lt0WvEc-ItjgWSrKH2YsAGCU-tVqxcGwcK26Bj8DetgBgQ_jcNnmWI4cQjDiP5XucdmJQHyjBPAFQFW5CECj1LPnkY01_bxXKMtafOUp7f3w2vrdKGTbxRtUop_lhu8SGZoxcgdvlB1DLN77IBMx1TD9MQRIegvhibRCMdgZguyRbZAsfTfx4KCHk3Tdk0J8-AfhZLkvmH-WO4A4bfMo3tvpN0YsJhlRXQ0Xkgx6sJz281OtLs-zIszgK8ovYsc3QSvot0GCex8"/>
+</div>
+<div class="hidden sm:block">
+<p class="text-sm font-bold text-on-surface">مدير النظام</p>
+<p class="text-caption-sm text-on-surface-variant">متصل الآن</p>
+</div>
+<button id="logoutBtn" type="button" class="inline-flex items-center gap-2 rounded-full border border-error/20 bg-error-container px-3 py-2 text-xs font-bold text-error hover:bg-error/10 transition-colors">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span>تسجيل الخروج</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col h-screen fixed right-0 top-0 pt-20 pb-8 px-2 z-40 w-60">
+<div class="mx-2 mb-5 rounded-[22px] border border-white/60 bg-white/80 p-3 backdrop-blur-xl card-elevated">
+<div class="flex items-center gap-2.5">
+<div class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-fixed text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="shield_person">shield_person</span>
+</div>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Admin Portal</h2>
+</div>
+</div>
+<nav class="flex-1 space-y-1.5 px-2">
+<div class="px-2 pb-1">
+<p class="text-caption-sm font-bold uppercase tracking-[0.2em] text-on-surface-variant">لوحة التحكم</p>
+</div>
+<a class="nav-link flex items-center gap-3 rounded-2xl px-3 py-2.5 text-on-surface-variant hover:bg-surface-container-high" href="admincp.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">إدارة الطلبات</span>
+</a>
+<a class="nav-link flex items-center gap-3 rounded-2xl px-3 py-2.5 text-on-surface-variant hover:bg-surface-container-high" href="admindept.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="apartment">apartment</span>
+<span class="font-label-md text-label-md">إدارة الأقسام</span>
+</a>
+<a class="nav-link flex items-center gap-3 rounded-2xl px-3 py-2.5 bg-primary-container text-on-primary-container shadow-[0_16px_34px_-24px_rgba(0,32,69,0.45)]" href="adminusr.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="group">group</span>
+<span class="font-label-md text-label-md">إدارة المستخدمين</span>
+</a>
+
+<div class="mt-auto px-2 pt-5 border-t border-outline-variant">
+<div class="mt-2 space-y-1">
+
+<a id="sidebarLogoutBtn" class="nav-link flex items-center gap-3 rounded-2xl px-3 py-2.5 text-error hover:bg-error-container" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">تسجيل الخروج</span>
+</a>
+</div>
+</div>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-16 px-margin-mobile md:px-margin-desktop lg:mr-60 min-h-screen">
+<!-- Header & Export Actions -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+<div>
+<nav class="flex items-center gap-2 text-on-surface-variant mb-2">
+<span class="font-caption-sm text-caption-sm">الأرشيف الرقمي</span>
+<span class="material-symbols-outlined text-[12px]">chevron_left</span>
+<span class="font-caption-sm text-caption-sm text-primary font-bold">التقارير التفصيلية</span>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-primary">تحليل البيانات والتقارير</h2>
+<p id="reportSummaryText" class="font-body-md text-body-md text-on-surface-variant mt-1">عرض وتحليل إحصائيات الطلبات والوثائق الأكاديمية.</p>
+<div id="reportStatusBadge" class="mt-3 inline-flex items-center gap-2 rounded-full bg-surface-container-low px-3 py-1 text-caption-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+<span>جاهز للتحديث</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button id="refreshReportsBtn" class="flex items-center gap-2 px-6 py-2.5 bg-primary text-on-primary rounded-xl font-label-md hover:opacity-90 transition-all shadow-sm">
+<span class="material-symbols-outlined">refresh</span>
+تحديث الآن
+</button>
+<button class="flex items-center gap-2 px-6 py-2.5 bg-surface-container-high text-primary rounded-xl font-label-md hover:bg-outline-variant transition-all">
+<span class="material-symbols-outlined">download</span>
+                    تصدير Excel
+                </button>
+<button class="flex items-center gap-2 px-6 py-2.5 bg-secondary text-on-secondary rounded-xl font-label-md hover:opacity-90 transition-all shadow-sm">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+                    تصدير PDF
+                </button>
+</div>
+</div>
+<!-- Advanced Filters Bento Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 mb-8">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">filter_list</span>
+<h3 class="font-headline-md text-headline-md text-primary">تصفية متقدمة</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">الكلية</label>
+<select class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary transition-all">
+<option>جميع الكليات</option>
+<option>كلية الهندسة</option>
+<option>كلية الطب</option>
+<option>كلية العلوم</option>
+<option>كلية القانون</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">نوع الوثيقة</label>
+<select class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary transition-all">
+<option>جميع الوثائق</option>
+<option>شهادة تخرج</option>
+<option>كشف درجات</option>
+<option>تأييد استمرارية</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">لغة الوثيقة</label>
+<div class="flex gap-2">
+<button class="flex-1 py-2.5 bg-primary text-on-primary rounded-lg font-label-md">العربية</button>
+<button class="flex-1 py-2.5 bg-surface border border-outline-variant rounded-lg font-label-md hover:bg-surface-container-high">English</button>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">الفترة الزمنية</label>
+<div class="flex items-center bg-surface border border-outline-variant rounded-lg px-4 py-2.5 gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">calendar_today</span>
+<input class="bg-transparent border-none p-0 focus:ring-0 text-label-md w-full" placeholder="اختر التاريخ" type="text"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Analytics Dashboard (Grid Layout) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter mb-8">
+<!-- Main Chart: Growth Trend -->
+<div class="lg:col-span-2 bg-white border border-outline-variant rounded-xl p-6 shadow-sm">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-headline-md text-headline-md text-primary">تطور الطلبات الشهري</h3>
+<div class="flex items-center gap-4 text-caption-sm text-on-surface-variant">
+<div class="flex items-center gap-1"><span class="w-3 h-3 bg-primary rounded-full"></span> الحالة</div>
+<div class="flex items-center gap-1"><span class="w-3 h-3 bg-secondary-container rounded-full"></span> العدد</div>
+</div>
+</div>
+<div id="statusChart" class="flex flex-col gap-4"></div>
+</div>
+<!-- Side Distribution: Type breakdown -->
+<div class="bg-white border border-outline-variant rounded-xl p-6 shadow-sm flex flex-col">
+<h3 class="font-headline-md text-headline-md text-primary mb-6">توزيع أنواع الوثائق</h3>
+<div id="documentBreakdown" class="flex-grow flex flex-col justify-center space-y-6"></div>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center bg-surface-bright">
+<h3 class="font-headline-md text-headline-md text-primary">تفاصيل السجلات المستخرجة</h3>
+<div class="flex items-center gap-4">
+<span class="text-caption-sm text-on-surface-variant">عرض 1-10 من أصل 245 طلب</span>
+<div class="flex border border-outline-variant rounded-lg overflow-hidden">
+<button class="p-1 hover:bg-surface-container-high"><span class="material-symbols-outlined">chevron_right</span></button>
+<button class="p-1 border-r border-outline-variant hover:bg-surface-container-high"><span class="material-symbols-outlined">chevron_left</span></button>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-right border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-4 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">المجال</th>
+<th class="px-6 py-4 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">العنصر</th>
+<th class="px-6 py-4 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant text-center">عدد الطلبات</th>
+</tr>
+</thead>
+<tbody id="reportsTableBody" class="divide-y divide-outline-variant"></tbody>
+</table>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-primary text-on-primary border-t border-primary-container z-50 relative lg:pr-80">
+<div class="flex flex-col gap-2">
+<h3 class="font-headline-md text-headline-md text-on-primary">Bayan University</h3>
+<p class="font-caption-sm text-caption-sm text-on-primary-container opacity-80">© 2024 Bayan University. All Rights Reserved. Digital Records Division.</p>
+</div>
+<div class="flex gap-6">
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">Contact Support</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">University Home</a>
+</div>
+</footer>
+<!-- Bottom Nav for Mobile -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container shadow-[0_-2px_10px_rgba(0,0,0,0.05)] flex justify-around items-center h-16 z-50 border-t border-outline-variant">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px]">الرئيسية</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-[10px]">الطلبات</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="text-[10px] font-bold">التقارير</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px]">الملف</span>
+</a>
+</nav>
+<script>
+window.addEventListener('DOMContentLoaded', async function () {
+    const logoutBtn = document.getElementById('logoutBtn');
+    const sidebarLogoutBtn = document.getElementById('sidebarLogoutBtn');
+
+    function handleLogout(event) {
+        if (event) event.preventDefault();
+        localStorage.removeItem('adminSession');
+        window.location.href = 'admincp.html';
+    }
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', handleLogout);
+    }
+    if (sidebarLogoutBtn) {
+        sidebarLogoutBtn.addEventListener('click', handleLogout);
+    }
+
+    const reportSummaryText = document.getElementById('reportSummaryText');
+    const reportStatusBadge = document.getElementById('reportStatusBadge');
+    const refreshReportsBtn = document.getElementById('refreshReportsBtn');
+    const statusChart = document.getElementById('statusChart');
+    const documentBreakdown = document.getElementById('documentBreakdown');
+    const reportsTableBody = document.getElementById('reportsTableBody');
+    const REFRESH_INTERVAL_MS = 60000;
+
+    function emptyState(message) {
+        return `<div class="text-body-md text-on-surface-variant">${message}</div>`;
+    }
+
+    function loadingSkeletons() {
+        if (statusChart) {
+            statusChart.innerHTML = Array.from({ length: 3 }, () => `
+                <div class="space-y-2 animate-pulse">
+                    <div class="h-4 bg-surface-container-high rounded w-2/3"></div>
+                    <div class="h-3 bg-surface-container-high rounded-full"></div>
+                </div>`).join('');
+        }
+        if (documentBreakdown) {
+            documentBreakdown.innerHTML = Array.from({ length: 3 }, () => `
+                <div class="space-y-2 animate-pulse">
+                    <div class="h-4 bg-surface-container-high rounded w-3/4"></div>
+                    <div class="h-2 bg-surface-container-high rounded-full"></div>
+                </div>`).join('');
+        }
+        if (reportsTableBody) {
+            reportsTableBody.innerHTML = `
+                <tr>
+                    <td colspan="3" class="px-6 py-5">
+                        <div class="animate-pulse space-y-3">
+                            <div class="h-4 bg-surface-container-high rounded w-2/3"></div>
+                            <div class="h-4 bg-surface-container-high rounded w-full"></div>
+                            <div class="h-4 bg-surface-container-high rounded w-5/6"></div>
+                        </div>
+                    </td>
+                </tr>`;
+        }
+    }
+
+    function setLoadingState(message, isError = false) {
+        if (reportSummaryText) {
+            reportSummaryText.textContent = message;
+        }
+        if (reportStatusBadge) {
+            reportStatusBadge.className = `mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-caption-sm ${isError ? 'bg-error-container text-error' : 'bg-surface-container-low text-on-surface-variant'}`;
+            reportStatusBadge.innerHTML = isError
+                ? '<span class="material-symbols-outlined text-[16px]">error</span><span>' + message + '</span>'
+                : '<span class="material-symbols-outlined text-[16px]">sync</span><span>' + message + '</span>';
+        }
+        if (refreshReportsBtn) {
+            refreshReportsBtn.disabled = true;
+            refreshReportsBtn.classList.add('opacity-70', 'cursor-not-allowed');
+        }
+    }
+
+    function setReadyState(message) {
+        if (reportSummaryText) {
+            reportSummaryText.textContent = message;
+        }
+        if (reportStatusBadge) {
+            reportStatusBadge.className = 'mt-3 inline-flex items-center gap-2 rounded-full bg-surface-container-low px-3 py-1 text-caption-sm text-on-surface-variant';
+            reportStatusBadge.innerHTML = '<span class="material-symbols-outlined text-[16px]">sync</span><span>محدث حديثاً • ' + message + '</span>';
+        }
+        if (refreshReportsBtn) {
+            refreshReportsBtn.disabled = false;
+            refreshReportsBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+        }
+    }
+
+    function renderStatusChart(statusSummary) {
+        if (!statusChart) return;
+        const entries = Object.entries(statusSummary || {});
+        if (entries.length === 0) {
+            statusChart.innerHTML = emptyState('لا توجد بيانات لحالات الطلبات حالياً.');
+            return;
+        }
+
+        const maxValue = Math.max(1, ...entries.map(([, value]) => Number(value) || 0));
+        statusChart.innerHTML = entries.map(([label, value]) => {
+            const count = Number(value) || 0;
+            const pct = Math.round((count / maxValue) * 100);
+            return `
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="font-label-md text-label-md text-on-surface-variant">${label || 'غير معروف'}</span>
+                        <span class="font-headline-sm text-headline-sm text-primary">${count}</span>
+                    </div>
+                    <div class="h-3 bg-surface-container-low rounded-full overflow-hidden">
+                        <div class="h-full bg-primary" style="width: ${pct}%"></div>
+                    </div>
+                </div>`;
+        }).join('');
+    }
+
+    function renderDocumentBreakdown(documentSummary) {
+        if (!documentBreakdown) return;
+        const rows = Array.isArray(documentSummary) ? documentSummary : [];
+        if (rows.length === 0) {
+            documentBreakdown.innerHTML = emptyState('لا توجد بيانات لأنواع الوثائق حالياً.');
+            return;
+        }
+
+        const maxValue = Math.max(1, ...rows.map(row => Number(row.cnt) || 0));
+        documentBreakdown.innerHTML = rows.map((row, index) => {
+            const count = Number(row.cnt) || 0;
+            const pct = Math.round((count / maxValue) * 100);
+            const colorClass = ['bg-primary', 'bg-secondary', 'bg-tertiary-container', 'bg-outline-variant', 'bg-primary-container'][index % 5];
+            return `
+                <div class="space-y-2">
+                    <div class="flex justify-between font-label-md text-label-md">
+                        <span>${row.certype || 'غير محدد'}</span>
+                        <span class="font-bold">${count}</span>
+                    </div>
+                    <div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+                        <div class="${colorClass} h-full" style="width: ${pct}%"></div>
+                    </div>
+                </div>`;
+        }).join('');
+    }
+
+    function renderReportTable(topColleges, topDepartments) {
+        if (!reportsTableBody) return;
+        const rows = [];
+        (topColleges || []).forEach((item) => {
+            rows.push({ scope: 'الكلية', name: item.name || 'غير معروف', count: Number(item.requests) || 0 });
+        });
+        (topDepartments || []).forEach((item) => {
+            rows.push({ scope: 'القسم', name: item.name || 'غير معروف', count: Number(item.requests) || 0 });
+        });
+
+        if (rows.length === 0) {
+            reportsTableBody.innerHTML = `<tr><td colspan="3" class="px-6 py-4 text-center text-on-surface-variant">لا توجد بيانات مقيّمة للعرض حالياً.</td></tr>`;
+            return;
+        }
+
+        reportsTableBody.innerHTML = rows.map((row) => `
+            <tr class="hover:bg-surface-container-low transition-colors">
+                <td class="px-6 py-4 font-body-md text-body-md text-primary font-bold">${row.scope}</td>
+                <td class="px-6 py-4 font-body-md text-body-md">${row.name}</td>
+                <td class="px-6 py-4 font-body-md text-body-md text-center">${row.count}</td>
+            </tr>`).join('');
+    }
+
+    async function loadReports() {
+        setLoadingState('جارٍ تحميل البيانات...');
+        loadingSkeletons();
+
+        try {
+            const res = await fetch('/admin/reports');
+            if (!res.ok) throw new Error('تعذّر تحميل التقارير');
+            const data = await res.json();
+            if (!data || !data.success) throw new Error(data?.message || 'تعذّر تحميل التقارير');
+
+            const totals = data.totals || {};
+            const now = new Date();
+            const timeLabel = now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+            if (reportSummaryText) {
+                reportSummaryText.textContent = `إجمالي الكليات: ${totals.colleges ?? 0} • إجمالي الأقسام: ${totals.departments ?? 0} • إجمالي الطلبات: ${totals.requests ?? 0}`;
+            }
+
+            renderStatusChart(data.statusSummary || {});
+            renderDocumentBreakdown(data.documentSummary || []);
+            renderReportTable(data.topColleges || [], data.topDepartments || []);
+            setReadyState(timeLabel);
+        } catch (err) {
+            console.error(err);
+            if (reportSummaryText) {
+                reportSummaryText.textContent = 'تعذّر تحميل البيانات من /admin/reports. يرجى التحقق من اتصال السيرفر.';
+            }
+            if (reportStatusBadge) {
+                reportStatusBadge.className = 'mt-3 inline-flex items-center gap-2 rounded-full bg-error-container px-3 py-1 text-caption-sm text-error';
+                reportStatusBadge.innerHTML = '<span class="material-symbols-outlined text-[16px]">error</span><span>تعذّر تحميل البيانات</span>';
+            }
+            renderStatusChart({});
+            renderDocumentBreakdown([]);
+            renderReportTable([], []);
+            if (refreshReportsBtn) {
+                refreshReportsBtn.disabled = false;
+                refreshReportsBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+            }
+        }
+    }
+
+    if (refreshReportsBtn) {
+        refreshReportsBtn.addEventListener('click', () => loadReports());
+    }
+
+    await loadReports();
+
+    const refreshTimer = window.setInterval(() => {
+        loadReports();
+    }, REFRESH_INTERVAL_MS);
+
+    window.addEventListener('beforeunload', () => {
+        window.clearInterval(refreshTimer);
+    });
+});
+</script>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+    const session = localStorage.getItem('adminSession');
+    if (!session) {
+        window.location.href = 'admincp.html';
+        return;
+    }
+
+    try {
+        JSON.parse(session);
+    } catch (error) {
+        localStorage.removeItem('adminSession');
+        window.location.href = 'admincp.html';
+    }
+});
+</script>
+</body></html>

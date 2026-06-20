@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bayan University | Track Request</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "secondary": "#7b5800",
+                    "background": "#f8f9fa",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#c6955e",
+                    "primary": "#002045",
+                    "on-primary-container": "#86a0cd",
+                    "primary-fixed": "#d6e3ff",
+                    "tertiary-container": "#4f2e00",
+                    "on-tertiary-fixed": "#2b1700",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-variant": "#e1e3e4",
+                    "tertiary": "#321b00",
+                    "inverse-primary": "#adc7f7",
+                    "on-background": "#191c1d",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#adc7f7",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "on-secondary-fixed-variant": "#5d4200",
+                    "surface-bright": "#f8f9fa",
+                    "on-surface": "#191c1d",
+                    "surface-container-highest": "#e1e3e4",
+                    "secondary-fixed-dim": "#f7bd48",
+                    "outline": "#74777f",
+                    "tertiary-fixed-dim": "#f2bc82",
+                    "surface-tint": "#455f88",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#633f0f",
+                    "secondary-fixed": "#ffdea6",
+                    "secondary-container": "#fdc34d",
+                    "surface-dim": "#d9dadb",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#c4c6cf",
+                    "on-secondary-container": "#715000",
+                    "surface-container": "#edeeef",
+                    "surface": "#f8f9fa"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "unit": "4px",
+                    "container-max": "1440px",
+                    "margin-desktop": "48px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "caption-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "caption-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-primary text-on-primary">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-8">
+    <a href="index.html" class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim">Bayan University</a>
+    <nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-700 hover:text-primary transition-colors font-label-md text-label-md" href="index.html">Dashboard</a>
+<a class="text-slate-700 hover:text-primary transition-colors font-label-md text-label-md" href="reqstat.html">My Requests</a>
+<a class="text-slate-700 hover:text-primary transition-colors font-label-md text-label-md" href="vereq.html">Verify Document</a>
+</nav>
+    <!-- Mobile nav toggle -->
+    <button id="mobileNavToggle" class="md:hidden p-2 rounded-lg bg-surface/90 text-slate-700">
+        <span class="material-symbols-outlined">menu</span>
+    </button>
+    <!-- Mobile nav menu -->
+    <nav id="mobileNav" class="hidden md:hidden absolute top-16 right-4 left-4 bg-surface rounded-lg p-4 shadow-lg z-50 space-y-2">
+        <a class="block text-slate-700 font-label-md" href="index.html">Dashboard</a>
+        <a class="block text-slate-700 font-label-md" href="reqstat.html">My Requests</a>
+        <a class="block text-slate-700 font-label-md" href="vereq.html">Verify Document</a>
+    </nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center bg-surface-container-high px-4 py-1.5 rounded-full gap-2 border border-outline-variant">
+<span class="material-symbols-outlined text-slate-600 text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md placeholder:text-slate-500 w-48" placeholder="بحث عن وثيقة..." type="text">
+</div>
+<button class="material-symbols-outlined text-slate-600 hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-slate-600 hover:text-primary transition-colors">help</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-xl font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">New Request</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-24 pb-16 px-5 md:px-10 bg-gradient-to-br from-primary via-slate-900 to-slate-950 min-h-screen text-on-primary">
+<div class="max-w-3xl mx-auto space-y-6">
+<!-- Hero / Search Section -->
+<section class="bg-surface/95 rounded-[32px] border border-white/10 p-4 md:p-6 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.8)] backdrop-blur-sm">
+<div class="text-center mb-8">
+<h1 class="font-headline-md text-4xl md:text-5xl text-slate-950 mb-3">تتبع حالة الطلب</h1>
+<p class="text-body-md text-slate-600 max-w-2xl mx-auto">أدخل رقم التتبع الخاص بطلبك لمتابعة آخر المستجدات وحالة المصادقة بسرعة واحترافية.</p>
+</div>
+<div class="max-w-2xl mx-auto flex flex-col sm:flex-row gap-3 items-center">
+<div class="flex-1 relative w-full">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-500">search</span>
+<input id="requestSearchInput" class="w-full pr-12 pl-4 py-3 rounded-2xl border border-outline focus:border-primary focus:ring-1 focus:ring-primary outline-none text-slate-900 placeholder:text-slate-500 bg-surface" placeholder="مثال: AB-2024-9987" type="text"/>
+</div>
+<button id="searchRequestBtn" class="bg-secondary text-white px-8 py-3 rounded-2xl font-label-sm text-label-sm hover:opacity-95 transition-opacity">بحث عن الطلب</button>
+</div>
+<div id="requestMessage" class="hidden max-w-2xl mx-auto mt-5 text-center font-medium text-red-300"></div>
+</section>
+<!-- Results Bento Grid Area -->
+<div id="resultsSection" class="grid grid-cols-1 gap-4 hidden md:grid-cols-2">
+<!-- Status Card -->
+<div class="md:col-span-2 bg-surface/95 rounded-[28px] border border-white/10 p-4 text-center shadow-sm">
+<div class="w-16 h-16 mx-auto rounded-full bg-primary-fixed flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-3xl text-primary" style="font-variation-settings: 'FILL' 1;">description</span>
+</div>
+<h2 class="font-headline-md text-2xl text-primary mb-2">رقم الطلب</h2>
+<p id="resultRequestNumber" class="font-label-md text-label-md text-secondary mb-3">AB-2024-9987</p>
+<div id="resultStatusBadge" class="bg-primary-container text-on-primary-container px-3 py-2 rounded-full font-label-sm inline-flex items-center gap-2">
+                            قيد المراجعة الأكاديمية
+                        </div>
+</div>
+<div class="bg-surface/95 rounded-[28px] border border-white/10 p-4 shadow-sm">
+<h3 class="font-label-md text-label-md font-semibold text-slate-900 mb-4">بيانات مقدم الطلب</h3>
+<div class="space-y-3 text-sm">
+<div class="flex justify-between gap-4">
+<span class="text-slate-500">الاسم بالعربية:</span>
+<span id="resultArabicName" class="text-slate-900">---</span>
+</div>
+<div class="flex justify-between gap-4">
+<span class="text-slate-500">الاسم بالإنجليزية:</span>
+<span id="resultEnglishName" class="text-slate-900">---</span>
+</div>
+<div class="flex justify-between gap-4">
+<span class="text-slate-500">الجنسية:</span>
+<span id="resultNationality" class="text-slate-900">---</span>
+</div>
+<div class="flex justify-between gap-4">
+<span class="text-slate-500">الرقم الجامعي:</span>
+<span id="resultUniversityId" class="text-slate-900">---</span>
+</div>
+<div class="flex justify-between gap-4">
+<span class="text-slate-500">سنة التخرج:</span>
+<span id="resultGraduationYear" class="text-slate-900">---</span>
+</div>
+<div class="flex justify-between gap-4">
+<span class="text-slate-500">الكلية:</span>
+<span id="resultCollege" class="text-slate-900">---</span>
+</div>
+<div class="flex justify-between gap-4">
+<span class="text-slate-500">القسم:</span>
+<span id="resultDepartment" class="text-slate-900">---</span>
+</div>
+</div>
+</div>
+<div class="bg-surface/95 rounded-[28px] border border-white/10 p-4 shadow-sm">
+<h3 class="font-label-md text-label-md font-semibold text-slate-900 mb-4">تفاصيل الطلب</h3>
+<div class="space-y-3 text-sm">
+<div class="flex justify-between gap-4">
+<span class="text-slate-500">نوع الطلب:</span>
+<span id="resultRequestType" class="text-slate-900">توثيق شهادة تخرج</span>
+</div>
+<div class="flex justify-between gap-4">
+<span class="text-slate-500">تاريخ التقديم:</span>
+<span id="resultSubmissionDate" class="text-slate-900">12 أكتوبر 2023</span>
+</div>
+<div class="flex justify-between gap-4">
+<span class="text-slate-500">عدد النسخ:</span>
+<span id="resultCopies" class="text-slate-900">1</span>
+</div>
+<div class="flex justify-between gap-4">
+<span class="text-slate-500">اللغة:</span>
+<span id="resultLanguage" class="text-slate-900">العربية</span>
+</div>
+</div>
+</div>
+<div class="bg-surface/95 rounded-[28px] border border-white/10 p-4 shadow-sm md:col-span-2">
+<h3 class="font-label-md text-label-md font-semibold text-slate-900 mb-3">ملاحظة الإدارة</h3>
+<p id="resultNotes" class="text-sm text-slate-600">لا توجد ملاحظات حالياً.</p>
+</div>
+
+<!-- Timeline Section -->
+<div class="bg-surface/95 rounded-[28px] border border-white/10 p-4 shadow-sm md:col-span-2">
+<!-- Background Visual Accent -->
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary opacity-20"></div>
+<h2 class="font-headline-md text-2xl text-slate-900 mb-6">الجدول الزمني للطلب</h2>
+<div class="relative space-y-6">
+<!-- Timeline Line -->
+<div class="absolute right-[19px] top-4 bottom-4 w-0.5 bg-outline-variant"></div>
+<!-- Step 1: Completed -->
+<div class="relative flex gap-4 items-start">
+<div class="z-10 w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white">check</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-sm font-semibold text-slate-900">استلام الطلب</h4>
+<p class="text-sm text-slate-600">تم استلام طلبكم إلكترونياً وبدأت عملية الفحص الأولي.</p>
+<!--<span class="font-caption-sm text-caption-sm text-slate-500 mt-1 block" >12 أكتوبر 2023 - 09:30 ص</span> -->
+</div>
+</div>
+<!-- Step 2: Active -->
+<div class="relative flex gap-4 items-start">
+<div class="z-10 w-10 h-10 rounded-full border-4 border-secondary bg-surface/95 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">pending</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-sm font-semibold text-slate-900">قيد المراجعة الأكاديمية</h4>
+<p class="text-sm text-slate-600">يقوم قسم السجلات الآن بمراجعة الدرجات العلمية ومطابقتها مع الأرشيف الورقي.</p>
+<span class="font-caption-sm text-caption-sm text-slate-500 mt-1 block">جاري التنفيذ حالياً</span>
+</div>
+</div>
+<!-- Step 3: Pending -->
+<div class="relative flex gap-4 items-start opacity-70">
+<div class="z-10 w-10 h-10 rounded-full bg-surface/95 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">verified</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-sm font-semibold text-slate-900">اعتماد الوثيقة</h4>
+<p class="text-sm text-slate-600">بانتظار توقيع عميد الكلية والختم الرسمي للجامعة.</p>
+</div>
+</div>
+<!-- Step 4: Final -->
+<div class="relative flex gap-4 items-start opacity-70">
+<div class="z-10 w-10 h-10 rounded-full bg-surface/95 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">task_alt</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-sm font-semibold text-slate-900">جاهز للاستلام</h4>
+<p class="text-sm text-slate-600">سيتم إخطاركم عبر الرسائل النصية عند جاهزية الوثيقة للاستلام من المكتب.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full py-8 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-primary dark:bg-on-background border-t border-primary-container text-on-primary">
+<div>
+<span class="font-headline-md text-headline-md text-on-primary block mb-2">Bayan University</span>
+<p class="font-caption-sm text-caption-sm opacity-70">© 2024 Bayan University. All Rights Reserved. Digital Records Division.</p>
+</div>
+<div class="flex gap-6">
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">Contact Support</a>
+<a class="font-caption-sm text-caption-sm text-on-primary-container hover:text-white transition-colors" href="#">University Home</a>
+</div>
+</footer>
+<script>
+    function setText(id, text) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text || '---';
+    }
+
+    function showMessage(text, isError = true) {
+        const msg = document.getElementById('requestMessage');
+        if (!msg) return;
+        msg.textContent = text;
+        msg.classList.remove('hidden');
+        msg.classList.toggle('text-red-300', isError);
+        msg.classList.toggle('text-emerald-300', !isError);
+    }
+
+    function formatDate(dateValue) {
+        if (!dateValue) return '---';
+        const date = new Date(dateValue);
+        if (Number.isNaN(date.getTime())) return dateValue;
+        return date.toLocaleDateString('ar-SA', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    function formatNationality(value) {
+        const map = {
+            sudanese: 'سوداني',
+            iraqi: 'عراقي',
+            jordanian: 'أردني',
+            lebanese: 'لبناني',
+            other: 'أخرى'
+        };
+        return map[String(value || '').toLowerCase()] || value || '---';
+    }
+
+    function getStatusClasses(status) {
+        const normalized = String(status || '').trim();
+        if (normalized.includes('إيقاف') || normalized.includes('مؤقت')) {
+            return 'bg-orange-100 text-orange-800 border border-orange-200';
+        }
+        if (normalized.includes('قيد') || normalized.includes('جاري')) {
+            return 'bg-amber-100 text-amber-800 border border-amber-200';
+        }
+        if (normalized.includes('مكتمل') || normalized.includes('جاهز') || normalized.includes('مستلم')) {
+            return 'bg-emerald-100 text-emerald-800 border border-emerald-200';
+        }
+        if (normalized.includes('رفض') || normalized.includes('مرفوض')) {
+            return 'bg-red-100 text-red-800 border border-red-200';
+        }
+        return 'bg-slate-100 text-slate-800 border border-slate-200';
+    }
+
+    const lookupCache = {
+        colleges: new Map(),
+        departments: new Map()
+    };
+
+    async function loadLookups() {
+        const [collegeRes, deptRes] = await Promise.all([
+            fetch('/admin/colleges'),
+            fetch('/admin/departments')
+        ]);
+
+        if (collegeRes.ok) {
+            const collegeData = await collegeRes.json();
+            if (collegeData.success) {
+                collegeData.colleges.forEach((college) => {
+                    lookupCache.colleges.set(String(college.id), college.name);
+                });
+            }
+        }
+
+        if (deptRes.ok) {
+            const deptData = await deptRes.json();
+            if (deptData.success) {
+                deptData.departments.forEach((department) => {
+                    lookupCache.departments.set(String(department.id), {
+                        name: department.name,
+                        collegeName: department.collegeName,
+                        collegeId: String(department.college_id)
+                    });
+                });
+            }
+        }
+    }
+
+    function renderRequest(request) {
+        const departmentInfo = lookupCache.departments.get(String(request.Dno)) || {};
+        const collegeName = departmentInfo.collegeName || lookupCache.colleges.get(String(departmentInfo.collegeId)) || '---';
+        const departmentName = departmentInfo.name || request.Dno || '---';
+
+        setText('resultRequestNumber', request.Reqrev);
+        setText('resultStatusBadge', request.Status || 'قيد المراجعة');
+
+        const statusBadge = document.getElementById('resultStatusBadge');
+        if (statusBadge) {
+            statusBadge.className = `px-4 py-2 rounded-full font-label-md text-label-md inline-flex items-center gap-2 ${getStatusClasses(request.Status)}`;
+            statusBadge.innerHTML = `<span class="inline-block w-2 h-2 rounded-full bg-current"></span>${request.Status || 'قيد المراجعة'}`;
+        }
+
+        setText('resultArabicName', request.Astdname);
+        setText('resultEnglishName', request.Estdname);
+        setText('resultNationality', formatNationality(request.Nationality));
+        setText('resultUniversityId', request.Unino);
+        setText('resultGraduationYear', request.Gyear);
+        setText('resultCollege', collegeName);
+        setText('resultDepartment', departmentName);
+        setText('resultRequestType', request.Certype);
+        setText('resultSubmissionDate', formatDate(request.Reqdate));
+        setText('resultCopies', request.Ccno || '---');
+        setText('resultLanguage', request.Lang || '---');
+        setText('resultNotes', request.Notes || 'لا توجد ملاحظات حالياً.');
+
+        const resultsSection = document.getElementById('resultsSection');
+        if (resultsSection) {
+            resultsSection.classList.remove('hidden');
+        }
+        showMessage('تم العثور على الطلب وعرض حالته.', false);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const searchBtn = document.getElementById('searchRequestBtn');
+        const input = document.getElementById('requestSearchInput');
+
+        showMessage('أدخل رقم الطلب ثم اضغط بحث.', false);
+
+        if (!searchBtn || !input) {
+            return;
+        }
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                searchBtn.click();
+            }
+        });
+
+        const params = new URLSearchParams(window.location.search);
+        const preset = params.get('request') || params.get('reqrev');
+        if (preset) {
+            input.value = preset;
+        }
+
+        loadLookups().catch((error) => {
+            console.error('Failed to load name lookups:', error);
+        });
+
+        searchBtn.addEventListener('click', async () => {
+            const reqrev = input.value.trim();
+            if (!reqrev) {
+                showMessage('يرجى إدخال رقم الطلب للبحث.', true);
+                return;
+            }
+
+            showMessage('جاري البحث عن حالة الطلب...', false);
+
+            try {
+                const response = await fetch(`http://localhost:3000/track-request?reqrev=${encodeURIComponent(reqrev)}`);
+                const result = await response.json();
+                if (!response.ok || !result.success) {
+                    showMessage(result.message || 'لم يتم العثور على الطلب. يرجى التحقق من رقم الطلب والمحاولة مرة أخرى.', true);
+                    return;
+                }
+
+                await loadLookups();
+                renderRequest(result.request);
+            } catch (error) {
+                console.error(error);
+                showMessage('حدث خطأ في الاتصال بالخادم. يرجى المحاولة مرة أخرى لاحقاً.', true);
+            }
+        });
+
+        if (preset) {
+            searchBtn.click();
+        }
+    });
+</script>
+<script src="libs/responsive-nav.js"></script>
+</body></html>
